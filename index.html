@@ -128,11 +128,19 @@
   .shots img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 1px var(--line), 0 18px 40px rgba(0, 0, 0, .35); }
   .shots figcaption { margin-top: 10px; font-size: .95rem; color: var(--muted); }
 
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; counter-reset: step; }
-  .steps li { counter-increment: step; }
-  .steps li::before { content: counter(step); display: block; margin-bottom: 10px; font: 800 3.6rem/1 var(--display); color: var(--signal); opacity: .9; }
-  .steps strong { display: block; margin-bottom: 4px; font: 700 1.15rem/1.3 var(--display); }
-  .steps p { margin: 0; color: #c9d6f2; font-size: 1rem; }
+  .guide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 72px; }
+  .guide h3 { margin: 0 0 18px; font: 700 1.35rem/1.25 var(--display); letter-spacing: -.01em; }
+  .guide ol { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 16px; }
+  .guide li { counter-increment: step; position: relative; padding-left: 52px; color: #c9d6f2; }
+  .guide li::before { content: counter(step); position: absolute; left: 0; top: -2px; width: 36px; text-align: left;
+                      font: 800 1.7rem/1.2 var(--display); color: var(--signal); }
+  .guide li strong { color: var(--bone); font-weight: 600; }
+  .fig { margin: 12px 0 4px; }
+  .fig img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); }
+  .fig figcaption { margin-top: 6px; font-size: .88rem; color: var(--muted); }
+  .fig.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fig.two figcaption { grid-column: 1 / -1; margin-top: -4px; }
+  .guide .alt { margin: 22px 0 0; padding: 14px 16px; border-radius: 12px; background: rgba(159, 179, 217, .1); color: #c9d6f2; font-size: .98rem; }
   code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .92em; padding: 2px 7px; border-radius: 6px; background: rgba(159, 179, 217, .14); }
 
   .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 64px; }
@@ -165,11 +173,10 @@
     .hero { grid-template-columns: 1fr; padding-bottom: 56px; }
     .lead { max-width: 46ch; }
     .features, .facts, .support { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .guide { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .bar nav { display: none; }
-    .steps { grid-template-columns: 1fr; }
     .btn { width: 100%; justify-content: center; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -275,26 +282,49 @@
 
   <section id="instalar">
     <div class="wrap">
-      <h2>Instalação em quatro passos</h2>
-      <p class="sub">Leva uns dois minutos. Faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão SD antes, por segurança.</p>
-      <ol class="steps">
-        <li>
-          <strong>Copie a pasta</strong>
-          <p>Extraia o zip e coloque a pasta <code>Control PS-5</code> dentro de <code>switch</code> no cartão SD.</p>
-        </li>
-        <li>
-          <strong>Abra pelo Homebrew</strong>
-          <p>No menu Homebrew do Switch, abra o Control PS-5. A tela de abertura mostra o app carregando.</p>
-        </li>
-        <li>
-          <strong>Instale o driver</strong>
-          <p>Na tela Início, toque em Instalar e reinicie o Switch quando o app pedir.</p>
-        </li>
-        <li>
-          <strong>Pareie o controle</strong>
-          <p>Abra o app de novo, toque em Parear controle e segure PS e Create até a luz piscar.</p>
-        </li>
-      </ol>
+      <h2>Como instalar</h2>
+      <p class="sub">São duas etapas: levar o app para o cartão SD e, dentro do Switch, instalar o driver e parear o controle. Antes, faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão, por segurança.</p>
+
+      <div class="guide">
+        <div>
+          <h3>Levar o app para o cartão SD</h3>
+          <ol>
+            <li>No pacote CNX, segure <strong>R</strong> e abra o <strong>Álbum</strong> para entrar no menu Homebrew.</li>
+            <li>Abra o aplicativo <strong>DBI</strong> e inicie a <strong>conexão MTP</strong>.</li>
+            <li>Conecte o cabo USB do Switch ao computador.</li>
+            <li>No computador, abra o dispositivo chamado <strong>Switch</strong>, entre em <strong>1: SD Card</strong> e depois na pasta <strong>switch</strong>. O caminho fica <code>Este Computador\Switch\1: SD Card\switch</code>.</li>
+            <li>Copie para lá a pasta já descompactada <strong>Control PS-5</strong>.</li>
+            <li>Saia do DBI e volte ao menu Homebrew do mesmo jeito (<strong>R</strong> + <strong>Álbum</strong>). O Control PS-5 aparece na lista: abra-o.
+              <figure class="fig"><img src="assets/screens/homebrew.jpg" alt="Lista do Homebrew com o Control PS-5 selecionado" loading="lazy"><figcaption>O Control PS-5 na lista do Homebrew.</figcaption></figure>
+            </li>
+          </ol>
+          <p class="alt">Prefere sem cabo? Tire o cartão SD, coloque a pasta <code>Control PS-5</code> dentro de <code>switch</code> no computador e devolva o cartão ao Switch.</p>
+        </div>
+
+        <div>
+          <h3>Instalar o driver e parear</h3>
+          <ol>
+            <li>Na tela <strong>Início</strong>, toque no botão azul <strong>Instalar</strong>. Quando terminar, o app pede para reiniciar o Switch.
+              <figure class="fig two">
+                <img src="assets/screens/instalando.jpg" alt="Tela Instalando driver com barra de progresso" loading="lazy">
+                <img src="assets/screens/reiniciar.jpg" alt="Aviso Driver instalado pedindo para reiniciar o Switch" loading="lazy">
+                <figcaption>Instalando o driver e o aviso para reiniciar.</figcaption>
+              </figure>
+            </li>
+            <li>Com o Switch ligado de novo, abra o Control PS-5 outra vez.</li>
+            <li>Toque em <strong>Parear controle</strong> e, na tela <strong>Controles</strong> que abrir, escolha <strong>Mudar ordem ou modo de segurar</strong>.
+              <figure class="fig"><img src="assets/screens/controles.jpg" alt="Tela Controles do Switch com a opção Mudar ordem ou modo de segurar selecionada" loading="lazy"><figcaption>A tela Controles do Switch.</figcaption></figure>
+            </li>
+            <li>No controle, segure <strong>Create</strong> e <strong>PS</strong> até as barras de luz começarem a piscar.</li>
+            <li>Na tela "Aperte L + R no controle", aperte <strong>L1</strong> e <strong>R1</strong> juntos. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam acesas, sem piscar.
+              <figure class="fig"><img src="assets/screens/sincronizar.jpg" alt="Tela pedindo para apertar L e R no controle, com um controle preto no jogador 1" loading="lazy"><figcaption>Controle sincronizado como jogador 1.</figcaption></figure>
+            </li>
+            <li>Volte ao app e configure gatilhos, luzes e perfis do jeito que quiser.
+              <figure class="fig"><img src="assets/screens/inicio.jpg" alt="Tela Início do app com o driver ativo e o DualSense conectado" loading="lazy"><figcaption>Driver ativo e DualSense conectado.</figcaption></figure>
+            </li>
+          </ol>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -442,11 +472,10 @@
 
   /* ---- capturas: mostra só as que existem em assets/screens ---- */
   var shots = [
-    ['inicio.jpg', 'Início: driver, controle e perfil atual'],
+    ['inicio.jpg', 'Início: driver ativo e DualSense conectado'],
     ['gatilhos.jpg', 'Gatilhos adaptáveis de L2 e R2'],
     ['luzes.jpg', 'Barra de luz, vibração e touchpad'],
-    ['perfis.jpg', 'Perfis por jogo, com os ícones dos seus jogos'],
-    ['teste.jpg', 'Teste do controle ao vivo']
+    ['abertura.jpg', 'Tela de abertura do app']
   ];
   var section = document.getElementById('capturas');
   var grid = document.getElementById('shots');

@@ -7,13 +7,36 @@ Um app, um toque em Instalar.
 
 ## Instalar
 
-1. Baixe o zip em **[Releases](https://github.com/vendashson-rgb/Control-PS-5/releases/latest)** (ou use a pasta `switch/Control PS-5` deste repositório).
-2. Coloque a pasta `Control PS-5` dentro de `switch` no cartão SD.
-3. Abra **Control PS-5** pelo menu Homebrew, toque em **Instalar** e reinicie o Switch.
-4. Abra o app de novo e toque em **Parear controle**.
+**1. Levar o app para o cartão SD**
+
+1. No pacote CNX, segure **R** e abra o **Álbum** para entrar no menu Homebrew.
+2. Abra o **DBI** e inicie a **conexão MTP**.
+3. Conecte o cabo USB do Switch ao computador.
+4. No computador, abra o dispositivo **Switch**, entre em **1: SD Card** e depois em **switch**
+   (`Este Computador\Switch: SD Card\switch`).
+5. Copie para lá a pasta já descompactada **Control PS-5** (baixe o zip em
+   [Releases](https://github.com/vendashson-rgb/Control-PS-5/releases/latest)).
+6. Saia do DBI e volte ao menu Homebrew (**R** + **Álbum**). O Control PS-5 aparece na lista.
+
+> Sem cabo: tire o cartão SD, coloque a pasta `Control PS-5` dentro de `switch` no computador e devolva o cartão.
+
+**2. Instalar o driver e parear**
+
+1. Na tela **Início**, toque no botão azul **Instalar**. Quando terminar, o app pede para reiniciar o Switch.
+2. Com o Switch ligado de novo, abra o Control PS-5 outra vez.
+3. Toque em **Parear controle** e escolha **Mudar ordem ou modo de segurar**.
+4. No controle, segure **Create** e **PS** até as barras de luz piscarem.
+5. Aperte **L1** e **R1**. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam fixas.
+6. Volte ao app e configure gatilhos, luzes e perfis.
 
 > Antes, faça uma cópia da pasta `atmosphere/contents/010000000000bd00` do cartão SD.
 > Se algo der errado, **Desinstalar** no app restaura o MissionControl original.
+
+## Capturas
+
+| Início | Gatilhos | Luzes e vibração |
+|---|---|---|
+| ![Início](assets/screens/inicio.jpg) | ![Gatilhos](assets/screens/gatilhos.jpg) | ![Luzes](assets/screens/luzes.jpg) |
 
 ## Compatibilidade
 
