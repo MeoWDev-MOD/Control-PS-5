@@ -41,7 +41,7 @@ Um app, um toque em Instalar.
 ## Compatibilidade
 
 - Switch com Atmosphère (pacote CNX).
-- Testado no firmware **23.0.1** com Atmosphère **1.12.0**.
+- **Requer firmware 23.0.1 e Atmosphère 1.12.0** (versões em que o driver foi construído e testado).
 - DualSense e DualSense Edge.
 
 ## Apoie
