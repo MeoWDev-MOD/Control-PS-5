@@ -1,0 +1,5 @@
+Coloque aqui as capturas de tela do app (1280x720, .jpg) com estes nomes exatos:
+
+  inicio.jpg   gatilhos.jpg   luzes.jpg   perfis.jpg   teste.jpg
+
+A pagina mostra so as que existirem.

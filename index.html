@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control PS-5 | DualSense no Nintendo Switch</title>
+<meta name="description" content="App gratuito para usar o controle de PS5 (DualSense) no Switch com gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo.">
+<meta name="theme-color" content="#050B1F">
+<meta property="og:title" content="Control PS-5: o DualSense funciona de verdade no Switch">
+<meta property="og:description" content="Gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo. Um app, um toque em Instalar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #050B1F;
+    --switch: #0A3277;
+    --signal: #2E8BFF;
+    --meow: #7B2FFF;
+    --bone: #EAF0FF;
+    --muted: #9FB3D9;
+    --line: rgba(159, 179, 217, .22);
+    --pix: #32BCAD;
+    --bar: #0040FF;                 /* cor da barra de luz escolhida no topo */
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --text: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--bone);
+    font: 400 1.0625rem/1.65 var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: min(1160px, 100% - 40px); margin-inline: auto; }
+
+  /* ---------- Topo ---------- */
+  .top {
+    position: relative;
+    background:
+      radial-gradient(900px 520px at 78% 38%, color-mix(in srgb, var(--bar) 34%, transparent), transparent 70%),
+      radial-gradient(700px 500px at 8% 110%, rgba(123, 47, 255, .22), transparent 70%),
+      linear-gradient(180deg, #050B1F 0%, #071A44 100%);
+    transition: background .5s ease;
+    overflow: hidden;
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; padding-block: 22px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 700 1.2rem/1 var(--display); letter-spacing: -.01em; }
+  .brand img { width: 38px; height: 38px; }
+  .bar nav { display: flex; gap: 26px; font-size: .98rem; }
+  .bar nav a { text-decoration: none; color: var(--muted); }
+  .bar nav a:hover { color: var(--bone); }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 36px; align-items: center; padding-block: 28px 84px; }
+  h1 {
+    margin: 0 0 22px;
+    font: 800 clamp(2.5rem, 5.6vw, 4.6rem)/1.02 var(--display);
+    font-variation-settings: "opsz" 96;
+    letter-spacing: -.028em;
+  }
+  .lead { margin: 0 0 30px; max-width: 34ch; font-size: 1.2rem; color: #c9d6f2; }
+  .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 26px; border-radius: 14px;
+    font: 700 1.05rem/1 var(--display); text-decoration: none; border: 0; cursor: pointer;
+    transition: transform .12s ease, background-color .2s ease;
+  }
+  .btn:active { transform: translateY(1px) scale(.99); }
+  .btn.primary { background: var(--signal); color: #04122f; }
+  .btn.primary:hover { background: #5aa5ff; }
+  .btn.quiet { background: transparent; color: var(--bone); box-shadow: inset 0 0 0 1.5px var(--line); }
+  .btn.quiet:hover { box-shadow: inset 0 0 0 1.5px var(--muted); }
+  .note { margin: 18px 0 0; font-size: .95rem; color: var(--muted); }
+
+  .stage { position: relative; }
+  .pad { position: relative; width: 100%; max-width: 640px; margin-inline: auto; }
+  .pad img.outline { width: 100%; height: auto; filter: drop-shadow(0 0 22px color-mix(in srgb, var(--bar) 55%, transparent)); transition: filter .4s ease; }
+  /* As duas faixas de luz ao lado do touchpad (posições do desenho 880x713) */
+  .lb { position: absolute; top: 22.4%; height: 20.4%; width: 1.1%; border-radius: 99px;
+        background: var(--bar); box-shadow: 0 0 18px 4px var(--bar), 0 0 60px 14px color-mix(in srgb, var(--bar) 60%, transparent);
+        transition: background-color .3s ease, box-shadow .3s ease; }
+  .lb.l { left: 28.2%; } .lb.r { left: 70.4%; }
+  .pad.off .lb { opacity: .08; box-shadow: none; }
+
+  .tools { display: grid; gap: 22px; max-width: 640px; margin: 28px auto 0; }
+  .tool-label { display: block; margin: 0 0 10px; font-size: .95rem; color: var(--muted); }
+  .swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sw { width: 34px; height: 34px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+        background: var(--c); box-shadow: 0 0 0 2px rgba(5, 11, 31, .9), 0 0 0 4px transparent; transition: box-shadow .15s ease, transform .15s ease; }
+  .sw:hover { transform: scale(1.08); }
+  .sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bone); }
+
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip { padding: 8px 14px; border-radius: 99px; border: 0; cursor: pointer; font: 500 .95rem/1 var(--text);
+          background: rgba(159, 179, 217, .12); color: var(--bone); transition: background-color .15s ease; }
+  .chip:hover { background: rgba(159, 179, 217, .22); }
+  .chip[aria-pressed="true"] { background: var(--bone); color: var(--ink); }
+  .travel { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; height: 72px; align-items: end;
+            padding: 10px; border-radius: 14px; background: rgba(5, 11, 31, .55); box-shadow: inset 0 0 0 1px var(--line); }
+  .travel span { display: block; border-radius: 6px; background: var(--signal); height: 8%; opacity: .35;
+                 transition: height .35s cubic-bezier(.2, 0, 0, 1), opacity .25s ease, background-color .25s ease; }
+  .travel span.on { opacity: 1; }
+  .travel-ends { display: flex; justify-content: space-between; margin-top: 6px; font-size: .85rem; color: var(--muted); }
+
+  /* ---------- Seções ---------- */
+  section { padding-block: clamp(56px, 8vw, 96px); }
+  h2 { margin: 0 0 14px; font: 800 clamp(1.8rem, 3.4vw, 2.6rem)/1.08 var(--display); letter-spacing: -.02em; max-width: 20ch; }
+  .sub { margin: 0 0 40px; max-width: 56ch; color: #c9d6f2; }
+
+  .features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 64px; }
+  .features h3 { margin: 0 0 6px; font: 700 1.3rem/1.2 var(--display); letter-spacing: -.01em; }
+  .features p { margin: 0; color: #c9d6f2; max-width: 46ch; }
+  .tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 99px; font: 600 .78rem/1.5 var(--text);
+         vertical-align: middle; background: rgba(255, 193, 77, .16); color: #ffc14d; }
+
+  #capturas { background: linear-gradient(180deg, transparent, rgba(10, 50, 119, .28) 40%, transparent); }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 1px var(--line), 0 18px 40px rgba(0, 0, 0, .35); }
+  .shots figcaption { margin-top: 10px; font-size: .95rem; color: var(--muted); }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; counter-reset: step; }
+  .steps li { counter-increment: step; }
+  .steps li::before { content: counter(step); display: block; margin-bottom: 10px; font: 800 3.6rem/1 var(--display); color: var(--signal); opacity: .9; }
+  .steps strong { display: block; margin-bottom: 4px; font: 700 1.15rem/1.3 var(--display); }
+  .steps p { margin: 0; color: #c9d6f2; font-size: 1rem; }
+  code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .92em; padding: 2px 7px; border-radius: 6px; background: rgba(159, 179, 217, .14); }
+
+  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 64px; }
+  .facts h3 { margin: 0 0 6px; font: 700 1.1rem/1.3 var(--display); }
+  .facts p, .facts ul { margin: 0; color: #c9d6f2; }
+  .facts ul { padding-left: 1.1em; }
+
+  .support {
+    border-radius: 28px; padding: clamp(28px, 5vw, 56px);
+    background: linear-gradient(135deg, rgba(50, 188, 173, .16), rgba(10, 50, 119, .4));
+    box-shadow: inset 0 0 0 1px rgba(50, 188, 173, .35);
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 34px; align-items: center;
+  }
+  .support h2 { max-width: 16ch; }
+  .support p { margin: 0 0 8px; color: #d7e3fa; max-width: 44ch; }
+  .pix-key { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .pix-num { font: 700 clamp(1.6rem, 3.2vw, 2.1rem)/1 var(--display); letter-spacing: .02em; color: var(--pix); }
+  .btn.pix { background: var(--pix); color: #03211e; }
+  .btn.pix:hover { background: #5fd4c7; }
+  .pix-help { margin-top: 14px; font-size: .95rem; color: var(--muted); }
+  .toast { margin-top: 12px; min-height: 1.4em; font-weight: 600; color: var(--pix); }
+
+  footer { padding-block: 44px 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+  footer .row { display: flex; flex-wrap: wrap; gap: 18px 36px; justify-content: space-between; align-items: center; }
+  footer .who { display: flex; align-items: center; gap: 12px; color: var(--bone); font: 700 1rem/1.2 var(--display); }
+  footer .who img { width: 36px; height: 36px; }
+  footer p { margin: 18px 0 0; max-width: 78ch; font-size: .9rem; }
+
+  @media (max-width: 920px) {
+    .hero { grid-template-columns: 1fr; padding-bottom: 56px; }
+    .lead { max-width: 46ch; }
+    .features, .facts, .support { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .bar nav { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .btn { width: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#"><img src="assets/logo.png" alt="" width="38" height="38">Control PS-5</a>
+      <nav aria-label="Seções">
+        <a href="#recursos">Recursos</a>
+        <a href="#capturas">Capturas</a>
+        <a href="#instalar">Instalar</a>
+        <a href="#apoiar">Apoiar</a>
+      </nav>
+    </div>
+
+    <div class="hero">
+      <div>
+        <h1>O DualSense funciona de verdade no Switch.</h1>
+        <p class="lead">Gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo. Você abre o app, toca em Instalar e pareia o controle.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/vendashson-rgb/Control-PS-5/releases/latest/download/Control-PS-5.zip">Baixar Control PS-5</a>
+          <a class="btn quiet" href="#instalar">Ver como instalar</a>
+        </div>
+        <p class="note">Gratuito. Para Switch com Atmosphère (pacote CNX).</p>
+      </div>
+
+      <div class="stage">
+        <div class="pad" id="pad">
+          <img class="outline" src="assets/controller.png" alt="Desenho do controle DualSense com a barra de luz acesa" width="880" height="713">
+          <span class="lb l" aria-hidden="true"></span>
+          <span class="lb r" aria-hidden="true"></span>
+        </div>
+
+        <div class="tools">
+          <div>
+            <span class="tool-label" id="lbl-color">Escolha a cor da barra de luz</span>
+            <div class="swatches" id="swatches" role="group" aria-labelledby="lbl-color"></div>
+          </div>
+          <div>
+            <span class="tool-label" id="lbl-trigger">Efeito do gatilho R2: veja onde ele resiste</span>
+            <div class="presets" id="presets" role="group" aria-labelledby="lbl-trigger"></div>
+            <div class="travel" id="travel" aria-hidden="true"></div>
+            <div class="travel-ends"><span>solto</span><span>fundo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="recursos">
+    <div class="wrap">
+      <h2>O que o app faz pelo seu controle</h2>
+      <p class="sub">Tudo é configurado dentro do Switch, sem mover pastas e sem editar arquivo.</p>
+      <div class="features">
+        <div>
+          <h3>Gatilhos adaptáveis em L2 e R2</h3>
+          <p>Resistência, clique de arma, arco, vibração e metralhadora. Cada gatilho tem predefinições prontas e ajuste fino de início, fim e força.</p>
+        </div>
+        <div>
+          <h3>Barra de luz e LEDs</h3>
+          <p>Doze cores rápidas, ajuste fino, brilho, LED do botão mute e LEDs de jogador. A prévia aparece no controle na hora.</p>
+        </div>
+        <div>
+          <h3>Perfil automático por jogo</h3>
+          <p>Configure o Mario Kart uma vez. Quando o jogo abre, o perfil dele é aplicado sozinho; os outros usam o padrão.</p>
+        </div>
+        <div>
+          <h3>Instalação em um toque</h3>
+          <p>O app instala, atualiza e desinstala o driver, e guarda um backup do MissionControl que você já tinha.</p>
+        </div>
+        <div>
+          <h3>Pareamento guiado</h3>
+          <p>Mostra o passo a passo no desenho do controle e abre a tela Controles do Switch para você parear outro.</p>
+        </div>
+        <div>
+          <h3>Teste do controle <span class="tag">novo</span></h3>
+          <p>Botões, analógicos, giroscópio, bateria e touchpad ao vivo, para ver se está tudo certo antes de jogar.</p>
+        </div>
+        <div>
+          <h3>Touchpad no sistema <span class="tag">experimental</span></h3>
+          <p>Como tela de toque, como mouse ou como cursor com mãozinha. Funciona dentro do app; no sistema depende do firmware e do jogo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capturas" hidden>
+    <div class="wrap">
+      <h2>Como fica no Switch</h2>
+      <p class="sub">Telas reais do app, capturadas no console.</p>
+      <div class="shots" id="shots"></div>
+    </div>
+  </section>
+
+  <section id="instalar">
+    <div class="wrap">
+      <h2>Instalação em quatro passos</h2>
+      <p class="sub">Leva uns dois minutos. Faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão SD antes, por segurança.</p>
+      <ol class="steps">
+        <li>
+          <strong>Copie a pasta</strong>
+          <p>Extraia o zip e coloque a pasta <code>Control PS-5</code> dentro de <code>switch</code> no cartão SD.</p>
+        </li>
+        <li>
+          <strong>Abra pelo Homebrew</strong>
+          <p>No menu Homebrew do Switch, abra o Control PS-5. A tela de abertura mostra o app carregando.</p>
+        </li>
+        <li>
+          <strong>Instale o driver</strong>
+          <p>Na tela Início, toque em Instalar e reinicie o Switch quando o app pedir.</p>
+        </li>
+        <li>
+          <strong>Pareie o controle</strong>
+          <p>Abra o app de novo, toque em Parear controle e segure PS e Create até a luz piscar.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="requisitos">
+    <div class="wrap">
+      <h2>Antes de instalar</h2>
+      <div class="facts" style="margin-top: 34px;">
+        <div>
+          <h3>Compatibilidade</h3>
+          <ul>
+            <li>Switch com Atmosphère (pacote CNX).</li>
+            <li>Testado no firmware 23.0.1 com Atmosphère 1.12.0.</li>
+            <li>DualSense e DualSense Edge.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Limites</h3>
+          <ul>
+            <li>O som do jogo não sai pelo alto-falante do controle: o Switch não envia áudio para controles.</li>
+            <li>Os efeitos dos gatilhos são configurados por perfil; o jogo não sabe que eles existem.</li>
+            <li>Os modos de touchpad no sistema são experimentais.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Se algo der errado</h3>
+          <p>Abra o app e toque em Desinstalar: ele restaura o MissionControl original. Se o app não abrir, apague <code>atmosphere/contents/010000000000bd00</code> e cole de volta o seu backup.</p>
+        </div>
+        <div>
+          <h3>Firmware novo</h3>
+          <p>O app confere o firmware antes de instalar e se recusa quando ele é mais novo que o suportado, para não travar o boot do console.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apoiar">
+    <div class="wrap">
+      <div class="support">
+        <div>
+          <h2>Gostou? Apoie o projeto</h2>
+          <p>O Control PS-5 é gratuito. Um Pix de qualquer valor ajuda a manter as atualizações quando sair firmware novo.</p>
+        </div>
+        <div>
+          <div class="pix-key">
+            <span class="pix-num" id="pixnum">21966547296</span>
+            <button class="btn pix" type="button" id="copy">Copiar chave Pix</button>
+          </div>
+          <p class="toast" id="toast" role="status" aria-live="polite"></p>
+          <p class="pix-help">No app do seu banco: Pix, Pagar com chave, e cole.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="who"><img src="assets/logo.png" alt="" width="36" height="36">Developed by MeoWDev MOD</div>
+      <a href="https://github.com/vendashson-rgb/Control-PS-5">github.com/vendashson-rgb/Control-PS-5</a>
+    </div>
+    <p>
+      O driver é baseado no <a href="https://github.com/ndeadly/MissionControl">MissionControl</a> (ndeadly, GPLv2) e roda sobre o
+      <a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphère</a>, com libnx e devkitPro. Projeto independente: não é afiliado,
+      aprovado ou patrocinado pela Sony ou pela Nintendo. DualSense, PlayStation e Nintendo Switch são marcas de seus donos.
+      O app não habilita pirataria. Use por sua conta e risco e mantenha um backup do cartão SD.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var pad = document.getElementById('pad');
+
+  /* ---- cores da barra de luz (as mesmas 12 do app) ---- */
+  var colors = [
+    ['Azul', '#0040FF'], ['Ciano', '#00E5FF'], ['Verde-água', '#4EDEA3'], ['Verde', '#00FF50'],
+    ['Lima', '#A0FF00'], ['Amarelo', '#FFD000'], ['Laranja', '#FF6A00'], ['Vermelho', '#FF1030'],
+    ['Rosa', '#FF2E88'], ['Violeta', '#9B30FF'], ['Índigo', '#5A2BFF'], ['Branco', '#FFFFFF']
+  ];
+  var swatches = document.getElementById('swatches');
+  colors.forEach(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'sw';
+    b.style.setProperty('--c', c[1]);
+    b.setAttribute('aria-label', c[0]);
+    b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    b.addEventListener('click', function () {
+      root.style.setProperty('--bar', c[1]);
+      swatches.querySelectorAll('.sw').forEach(function (s) { s.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+    });
+    swatches.appendChild(b);
+  });
+
+  /* ---- curso do gatilho: altura (0..1) por zona, como na tela de Gatilhos do app ---- */
+  var presets = [
+    { name: 'Sem efeito',      zones: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    { name: 'Acelerador',      zones: [0, 0, 0, .55, .55, .55, .55, .55, .55, .55] },
+    { name: 'Gatilho de arma', zones: [0, 0, .8, .8, .8, .8, 0, 0, 0, 0], accent: 5 },
+    { name: 'Arco',            zones: [0, .15, .3, .45, .6, .75, .9, 0, 0, 0] },
+    { name: 'Metralhadora',    zones: [0, .9, .35, .9, .35, .9, .35, .9, .35, .9], pulse: true }
+  ];
+  var travel = document.getElementById('travel');
+  var presetBox = document.getElementById('presets');
+  var bars = [];
+  for (var i = 0; i < 10; i++) { var s = document.createElement('span'); travel.appendChild(s); bars.push(s); }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer = null, phase = 0;
+
+  function paint(zones, accent) {
+    bars.forEach(function (bar, idx) {
+      var v = zones[idx];
+      bar.style.height = (8 + v * 92) + '%';
+      bar.classList.toggle('on', v > 0);
+      bar.style.backgroundColor = (accent === idx) ? '#FFC14D' : '';
+    });
+  }
+  function select(idx) {
+    var p = presets[idx];
+    presetBox.querySelectorAll('.chip').forEach(function (c, i) { c.setAttribute('aria-pressed', i === idx ? 'true' : 'false'); });
+    clearInterval(timer);
+    paint(p.zones, p.accent);
+    if (p.pulse && !reduce) {
+      phase = 0;
+      timer = setInterval(function () {
+        phase ^= 1;
+        paint(p.zones.map(function (v, z) { return v === 0 ? 0 : ((z + phase) % 2 ? .9 : .35); }));
+      }, 260);
+    }
+  }
+  presets.forEach(function (p, idx) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = p.name;
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () { select(idx); });
+    presetBox.appendChild(b);
+  });
+  select(1);
+
+  /* ---- capturas: mostra só as que existem em assets/screens ---- */
+  var shots = [
+    ['inicio.jpg', 'Início: driver, controle e perfil atual'],
+    ['gatilhos.jpg', 'Gatilhos adaptáveis de L2 e R2'],
+    ['luzes.jpg', 'Barra de luz, vibração e touchpad'],
+    ['perfis.jpg', 'Perfis por jogo, com os ícones dos seus jogos'],
+    ['teste.jpg', 'Teste do controle ao vivo']
+  ];
+  var section = document.getElementById('capturas');
+  var grid = document.getElementById('shots');
+  var found = 0;
+  shots.forEach(function (s) {
+    var img = new Image();
+    img.alt = s[1];
+    img.loading = 'lazy';
+    img.onload = function () {
+      var fig = document.createElement('figure');
+      var cap = document.createElement('figcaption');
+      cap.textContent = s[1];
+      fig.appendChild(img);
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+      found++;
+      section.hidden = false;
+    };
+    img.src = 'assets/screens/' + s[0];
+  });
+
+  /* ---- copiar chave Pix ---- */
+  var toast = document.getElementById('toast');
+  document.getElementById('copy').addEventListener('click', function () {
+    var key = document.getElementById('pixnum').textContent.trim();
+    function done() { toast.textContent = 'Chave Pix copiada.'; setTimeout(function () { toast.textContent = ''; }, 3500); }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(key).then(done, function () { toast.textContent = 'Selecione e copie: ' + key; });
+    } else {
+      var t = document.createElement('textarea');
+      t.value = key; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch (e) { toast.textContent = 'Selecione e copie: ' + key; }
+      document.body.removeChild(t);
+    }
+  });
+})();
+</script>
+</body>
+</html>
