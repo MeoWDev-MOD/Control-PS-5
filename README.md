@@ -3,7 +3,7 @@
 Use o controle de PS5 (DualSense) no Nintendo Switch com **gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo**.
 Um app, um toque em Instalar.
 
-**Página do projeto:** https://vendashson-rgb.github.io/Control-PS-5/
+**Página do projeto:** https://meowdev-mod.github.io/Control-PS-5/
 
 ## Instalar
 
@@ -15,7 +15,7 @@ Um app, um toque em Instalar.
 4. No computador, abra o dispositivo **Switch**, entre em **1: SD Card** e depois em **switch**
    (`Este Computador\Switch: SD Card\switch`).
 5. Copie para lá a pasta já descompactada **Control PS-5** (baixe o zip em
-   [Releases](https://github.com/vendashson-rgb/Control-PS-5/releases/latest)).
+   [Releases](https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest)).
 6. Saia do DBI e volte ao menu Homebrew (**R** + **Álbum**). O Control PS-5 aparece na lista.
 
 > Sem cabo: tire o cartão SD, coloque a pasta `Control PS-5` dentro de `switch` no computador e devolva o cartão.
