@@ -1,6 +1,6 @@
 // Página do Control PS-5: anúncios do CRM, tema, efeitos, o controle ao vivo e os modelos 3D (carregados só quando vão aparecer).
 import { initUI, themeSwitch } from "./ui.js";
-import { mountAdPairs } from "./banners.js";
+import { mountAdPairs, mountSideAds } from "./banners.js";
 import { mountConsent } from "./consent.js";
 import { startShader } from "./shader.js";
 import { initPageFx } from "./pagefx.js";
@@ -16,8 +16,25 @@ const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : match
 
 initUI();
 mountConsent();
-// Só dois espaços, a pedido do dono: depois dos recursos e depois das perguntas. Sem anúncio marcado no CRM, ficam escondidos.
+// A pedido do dono, sem encher de anúncio: dois deitados, depois dos recursos e das perguntas, e um em pé, à esquerda do topo,
+// só em tela com margem livre para ele. Sem anúncio marcado no CRM, ficam escondidos.
 mountAdPairs(["Recursos", "Faq"].map((n) => [$(`adSlot${n}`), $(`adMedia${n}`)]), "control-site");
+mountSideAds([[$("adTopo"), $("adTopoMedia")]], "control-site-lado", "(min-width: 1440px) and (min-height: 640px)");
+
+// O anúncio em pé começa inteiro e, ao descer a página, vai encolhendo até a metade, preso no alto da tela. A arte nunca é cortada
+// e não fica com menos de 110 px de largura, porque aí não dá para ler. O selo "Publicidade" mantém o tamanho.
+const adTopo = $("adTopo"), adTopoTag = adTopo.querySelector(".adtag");
+const encolheAdTopo = () => {
+  const largura = adTopo.offsetWidth;
+  if (!largura) return; // tela estreita ou sem anúncio
+  const menor = Math.min(1, Math.max(0.5, 110 / largura));
+  const andou = calmo ? (scrollY > 120 ? 1 : 0) : Math.min(scrollY / 480, 1);
+  const s = 1 - (1 - menor) * andou;
+  adTopo.style.transform = `scale(${s})`;
+  adTopoTag.style.transform = `scale(${1 / s})`;
+};
+addEventListener("scroll", encolheAdTopo, { passive: true });
+new ResizeObserver(encolheAdTopo).observe(adTopo); // também roda quando o anúncio aparece e quando a janela muda de tamanho
 
 $("themeBtn").onclick = (e) => themeSwitch(e, () => {
   const next = isDark() ? "light" : "dark";

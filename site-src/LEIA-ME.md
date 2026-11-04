@@ -11,7 +11,7 @@ Na tela do Switch aparecem as telas do app, na ordem do tutorial (`TELAS` e `apl
 
 A capa do palco (`img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp`) e a imagem de compartilhamento (`img/og.jpg`) são capturas da própria cena. Refaça as duas quando o controle ou as telas mudarem.
 
-Anúncios: lugar `control-site` do CRM, dois espaços deitados (`adSlotRecursos` e `adSlotFaq`). Sem anúncio marcado para esse lugar, os espaços ficam escondidos.
+Anúncios: lugar `control-site` do CRM, dois espaços deitados (`adSlotRecursos` e `adSlotFaq`), e lugar `control-site-lado`, um espaço em pé à esquerda do topo (`adTopo`), só em tela de 1440x640 para cima, onde cabe na margem. Ao descer a página, o `adTopo` encolhe até a metade e fica preso no alto da tela, sem cortar a arte (`encolheAdTopo` em `js/site.js`). Sem anúncio marcado para o lugar, o espaço fica escondido.
 
 O site divide o domínio com os outros projetos: tudo que fica no navegador usa chaves próprias, `ctl.*` e `ctl-*`.
 

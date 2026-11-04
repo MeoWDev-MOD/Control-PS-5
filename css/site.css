@@ -149,6 +149,11 @@ h1{font-size:clamp(33px,5vw,54px);line-height:1.07;letter-spacing:-.03em;font-we
 .ad .midia,.ad a{display:block;width:100%;height:100%}
 .ad img,.ad video{display:block;width:100%;height:100%;object-fit:contain}
 .adtag{position:absolute;top:8px;left:8px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(10,6,32,.72);padding:2px 8px;border-radius:99px}
+/* publicidade: em pé (1:4), à esquerda do topo. Só onde sobra margem para ela; ao descer a página, encolhe e fica presa no alto (site.js). */
+.adtopo{--margem:calc((100% - 1080px)/2);--larg:min(230px,var(--margem) - 40px,(100vh - 141px)/4);display:none;position:fixed;z-index:2;top:87px;left:calc((var(--margem) - var(--larg))/2);width:var(--larg);aspect-ratio:1/4;margin:0;overflow:visible;transform-origin:top center}
+.adtopo .midia{overflow:hidden;border-radius:inherit}
+.adtopo .adtag{top:100%;left:0;margin-top:6px;padding:0;color:var(--muted);background:none;transform-origin:top left}/* embaixo da arte: encolhida, ela não pode ficar coberta */
+@media (min-width:1440px) and (min-height:640px){.adtopo{display:block}}
 
 /* seções */
 .sec{padding:52px 0}
