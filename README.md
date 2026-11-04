@@ -1,6 +1,6 @@
 # Control PS-5
 
-Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado, com **gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo**.
+Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado, por Bluetooth e sem adaptador, com **gatilhos adaptáveis, barra de luz, touchpad como cursor e perfis por jogo**.
 Um app, um toque em Instalar.
 
 **Página do projeto:** https://meowdev-mod.github.io/Control-PS-5/
@@ -43,6 +43,16 @@ Um app, um toque em Instalar.
 - Switch com Atmosphère (pacote CNX).
 - **Requer firmware 23.0.1 e Atmosphère 1.12.0** (versões em que o driver foi construído e testado).
 - DualSense e DualSense Edge.
+
+## Aviso legal
+
+Os homebrews e as modificações da MeoWDev MOD não foram feitos para fomentar ou incentivar a pirataria. O Control PS-5 não traz, não baixa e não instala jogos, e não mexe na proteção de nenhum jogo. Sabemos que há pessoas mal-intencionadas que usam o desbloqueio para piratear, mas esse não é o propósito deste projeto. Use jogos originais e programas que você tem o direito de usar.
+
+O controle é compatível com o console, mas o sistema original não o aceita. Por isso, a conexão só é possível depois do desbloqueio, que permite instalar este driver.
+
+Este é um projeto independente, sem vínculo, aprovação ou patrocínio da Sony ou da Nintendo. Não usamos os logotipos dessas empresas. DualSense, PlayStation, PS5 e Nintendo Switch são marcas de seus donos, citadas só para indicar com qual console e com qual controle o app funciona.
+
+Cada pessoa responde pelo uso que faz do console e do app. Este aviso é informativo e não é orientação jurídica. Texto completo, com as leis citadas: [Aviso legal](https://meowdev-mod.github.io/Control-PS-5/#aviso-legal).
 
 ## Apoie
 

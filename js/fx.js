@@ -40,6 +40,28 @@ export function initFx() {
     start: "top 92%", once: true,
     onEnter: (b) => gsap.to(b, { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.06, clearProps: "transform,opacity,visibility" }),
   });
+  // Link direto (como #aviso-legal) ou salto na rolagem: o gatilho acima pode não disparar, e o que já
+  // passou pela tela não pode ficar invisível. Confere ao carregar e ao rolar, até não faltar nada.
+  let faltam = items;
+  let pedido = 0;
+  const revela = () => {
+    pedido = 0;
+    const limite = innerHeight * 0.92;
+    const agora = [];
+    faltam = faltam.filter((el) => {
+      if (getComputedStyle(el).visibility !== "hidden") return false;   // o gatilho normal já mostrou
+      if (el.getBoundingClientRect().top >= limite) return true;
+      agora.push(el);
+      return false;
+    });
+    if (agora.length) gsap.to(agora, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out", clearProps: "transform,opacity,visibility" });
+    if (!faltam.length) removeEventListener("scroll", agenda);
+  };
+  const agenda = () => { if (!pedido) pedido = requestAnimationFrame(revela); };
+  addEventListener("scroll", agenda, { passive: true });
+  addEventListener("load", () => setTimeout(agenda, 300));
+  addEventListener("hashchange", () => setTimeout(agenda, 300));
+  setTimeout(agenda, 800);
 
   // barras da conta do reparo crescem quando aparecem
   gsap.utils.toArray(".barra i").forEach((b) => {

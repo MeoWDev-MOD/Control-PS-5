@@ -4,7 +4,7 @@
 "use strict";
 
 // Mudou os termos? Troque esta data: o site pede um novo aceite.
-export const TERMS_VERSION = "2026-11-04";
+export const TERMS_VERSION = "2026-11-04b";
 const KEY = "ctl.consent";
 
 // O que só fica salvo com "Aceitar tudo". Tema e a própria escolha são necessários.

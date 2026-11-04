@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://meowdev-mod.github.io/Control-PS-5/</loc><lastmod>2026-11-04</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://meowdev-mod.github.io/Control-PS-5/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/dualsense-conectado-no-nintendo-switch.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/gatilhos-adaptaveis-do-dualsense-no-switch.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/barra-de-luz-e-vibracao-do-dualsense-no-switch.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/app-control-ps5-instalar-driver-dualsense.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp</image:loc></image:image>
+    <image:image><image:loc>https://meowdev-mod.github.io/Control-PS-5/img/aperte-l-e-r-para-sincronizar-controle-ps5-no-switch.webp</image:loc></image:image>
+  </url>
 </urlset>
