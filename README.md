@@ -1,6 +1,6 @@
 # Control PS-5
 
-Use o controle de PS5 (DualSense) no Nintendo Switch com **gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo**.
+Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado, com **gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo**.
 Um app, um toque em Instalar.
 
 **Página do projeto:** https://meowdev-mod.github.io/Control-PS-5/

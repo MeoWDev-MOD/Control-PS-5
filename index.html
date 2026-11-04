@@ -2,516 +2,357 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Control PS-5 | DualSense no Nintendo Switch</title>
-<meta name="description" content="App gratuito para usar o controle de PS5 (DualSense) no Switch com gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo.">
-<meta name="theme-color" content="#050B1F">
-<meta property="og:title" content="Control PS-5: o DualSense funciona de verdade no Switch">
-<meta property="og:description" content="Gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo. Um app, um toque em Instalar.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Como conectar controle de PS5 no Nintendo Switch | Control PS-5</title>
+<meta name="description" content="Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado com o Control PS-5, app grátis: passo a passo, gatilhos adaptáveis, barra de luz e perfis.">
+<meta name="keywords" content="como conectar controle de PS5 no Nintendo Switch, controle de PS5 no Switch, DualSense no Nintendo Switch, usar controle PS5 no Switch, parear DualSense no Switch, Switch desbloqueado, homebrew DualSense, Control PS-5, MissionControl, gatilhos adaptáveis no Switch">
+<meta name="author" content="MeoWDev MOD">
+<meta name="theme-color" content="#0c0920">
+<link rel="canonical" href="https://meowdev-mod.github.io/Control-PS-5/">
+<link rel="icon" href="img/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/logo.png">
-<link rel="icon" href="assets/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #050B1F;
-    --switch: #0A3277;
-    --signal: #2E8BFF;
-    --meow: #7B2FFF;
-    --bone: #EAF0FF;
-    --muted: #9FB3D9;
-    --line: rgba(159, 179, 217, .22);
-    --pix: #32BCAD;
-    --bar: #0040FF;                 /* cor da barra de luz escolhida no topo */
-    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-    --text: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--ink);
-    color: var(--bone);
-    font: 400 1.0625rem/1.65 var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  img { max-width: 100%; display: block; }
-  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
-  .wrap { width: min(1160px, 100% - 40px); margin-inline: auto; }
-
-  /* ---------- Topo ---------- */
-  .top {
-    position: relative;
-    background:
-      radial-gradient(900px 520px at 78% 38%, color-mix(in srgb, var(--bar) 34%, transparent), transparent 70%),
-      radial-gradient(700px 500px at 8% 110%, rgba(123, 47, 255, .22), transparent 70%),
-      linear-gradient(180deg, #050B1F 0%, #071A44 100%);
-    transition: background .5s ease;
-    overflow: hidden;
-  }
-  .bar { display: flex; align-items: center; justify-content: space-between; padding-block: 22px; }
-  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 700 1.2rem/1 var(--display); letter-spacing: -.01em; }
-  .brand img { width: 38px; height: 38px; }
-  .bar nav { display: flex; gap: 26px; font-size: .98rem; }
-  .bar nav a { text-decoration: none; color: var(--muted); }
-  .bar nav a:hover { color: var(--bone); }
-
-  .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 36px; align-items: center; padding-block: 28px 84px; }
-  h1 {
-    margin: 0 0 22px;
-    font: 800 clamp(2.5rem, 5.6vw, 4.6rem)/1.02 var(--display);
-    font-variation-settings: "opsz" 96;
-    letter-spacing: -.028em;
-  }
-  .lead { margin: 0 0 30px; max-width: 34ch; font-size: 1.2rem; color: #c9d6f2; }
-  .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 15px 26px; border-radius: 14px;
-    font: 700 1.05rem/1 var(--display); text-decoration: none; border: 0; cursor: pointer;
-    transition: transform .12s ease, background-color .2s ease;
-  }
-  .btn:active { transform: translateY(1px) scale(.99); }
-  .btn.primary { background: var(--signal); color: #04122f; }
-  .btn.primary:hover { background: #5aa5ff; }
-  .btn.quiet { background: transparent; color: var(--bone); box-shadow: inset 0 0 0 1.5px var(--line); }
-  .btn.quiet:hover { box-shadow: inset 0 0 0 1.5px var(--muted); }
-  .note { margin: 18px 0 0; font-size: .95rem; color: var(--muted); }
-
-  .stage { position: relative; }
-  .pad { position: relative; width: 100%; max-width: 640px; margin-inline: auto; }
-  .pad img.outline { width: 100%; height: auto; filter: drop-shadow(0 0 22px color-mix(in srgb, var(--bar) 55%, transparent)); transition: filter .4s ease; }
-  /* As duas faixas de luz ao lado do touchpad (posições do desenho 880x713) */
-  .lb { position: absolute; top: 22.4%; height: 20.4%; width: 1.1%; border-radius: 99px;
-        background: var(--bar); box-shadow: 0 0 18px 4px var(--bar), 0 0 60px 14px color-mix(in srgb, var(--bar) 60%, transparent);
-        transition: background-color .3s ease, box-shadow .3s ease; }
-  .lb.l { left: 28.2%; } .lb.r { left: 70.4%; }
-  .pad.off .lb { opacity: .08; box-shadow: none; }
-
-  .tools { display: grid; gap: 22px; max-width: 640px; margin: 28px auto 0; }
-  .tool-label { display: block; margin: 0 0 10px; font-size: .95rem; color: var(--muted); }
-  .swatches { display: flex; flex-wrap: wrap; gap: 10px; }
-  .sw { width: 34px; height: 34px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
-        background: var(--c); box-shadow: 0 0 0 2px rgba(5, 11, 31, .9), 0 0 0 4px transparent; transition: box-shadow .15s ease, transform .15s ease; }
-  .sw:hover { transform: scale(1.08); }
-  .sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bone); }
-
-  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-  .chip { padding: 8px 14px; border-radius: 99px; border: 0; cursor: pointer; font: 500 .95rem/1 var(--text);
-          background: rgba(159, 179, 217, .12); color: var(--bone); transition: background-color .15s ease; }
-  .chip:hover { background: rgba(159, 179, 217, .22); }
-  .chip[aria-pressed="true"] { background: var(--bone); color: var(--ink); }
-  .travel { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; height: 72px; align-items: end;
-            padding: 10px; border-radius: 14px; background: rgba(5, 11, 31, .55); box-shadow: inset 0 0 0 1px var(--line); }
-  .travel span { display: block; border-radius: 6px; background: var(--signal); height: 8%; opacity: .35;
-                 transition: height .35s cubic-bezier(.2, 0, 0, 1), opacity .25s ease, background-color .25s ease; }
-  .travel span.on { opacity: 1; }
-  .travel-ends { display: flex; justify-content: space-between; margin-top: 6px; font-size: .85rem; color: var(--muted); }
-
-  /* ---------- Seções ---------- */
-  section { padding-block: clamp(56px, 8vw, 96px); }
-  h2 { margin: 0 0 14px; font: 800 clamp(1.8rem, 3.4vw, 2.6rem)/1.08 var(--display); letter-spacing: -.02em; max-width: 20ch; }
-  .sub { margin: 0 0 40px; max-width: 56ch; color: #c9d6f2; }
-
-  .features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 64px; }
-  .features h3 { margin: 0 0 6px; font: 700 1.3rem/1.2 var(--display); letter-spacing: -.01em; }
-  .features p { margin: 0; color: #c9d6f2; max-width: 46ch; }
-  .tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 99px; font: 600 .78rem/1.5 var(--text);
-         vertical-align: middle; background: rgba(255, 193, 77, .16); color: #ffc14d; }
-
-  #capturas { background: linear-gradient(180deg, transparent, rgba(10, 50, 119, .28) 40%, transparent); }
-  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-  .shots figure { margin: 0; }
-  .shots img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 1px var(--line), 0 18px 40px rgba(0, 0, 0, .35); }
-  .shots figcaption { margin-top: 10px; font-size: .95rem; color: var(--muted); }
-
-  .guide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 72px; }
-  .guide h3 { margin: 0 0 18px; font: 700 1.35rem/1.25 var(--display); letter-spacing: -.01em; }
-  .guide ol { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 16px; }
-  .guide li { counter-increment: step; position: relative; padding-left: 52px; color: #c9d6f2; }
-  .guide li::before { content: counter(step); position: absolute; left: 0; top: -2px; width: 36px; text-align: left;
-                      font: 800 1.7rem/1.2 var(--display); color: var(--signal); }
-  .guide li strong { color: var(--bone); font-weight: 600; }
-  .fig { margin: 12px 0 4px; }
-  .fig img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); }
-  .fig figcaption { margin-top: 6px; font-size: .88rem; color: var(--muted); }
-  .fig.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .fig.two figcaption { grid-column: 1 / -1; margin-top: -4px; }
-  .guide .alt { margin: 22px 0 0; padding: 14px 16px; border-radius: 12px; background: rgba(159, 179, 217, .1); color: #c9d6f2; font-size: .98rem; }
-  code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .92em; padding: 2px 7px; border-radius: 6px; background: rgba(159, 179, 217, .14); }
-
-  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 64px; }
-  .facts h3 { margin: 0 0 6px; font: 700 1.1rem/1.3 var(--display); }
-  .facts p, .facts ul { margin: 0; color: #c9d6f2; }
-  .facts ul { padding-left: 1.1em; }
-
-  .support {
-    border-radius: 28px; padding: clamp(28px, 5vw, 56px);
-    background: linear-gradient(135deg, rgba(50, 188, 173, .16), rgba(10, 50, 119, .4));
-    box-shadow: inset 0 0 0 1px rgba(50, 188, 173, .35);
-    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 34px; align-items: center;
-  }
-  .support h2 { max-width: 16ch; }
-  .support p { margin: 0 0 8px; color: #d7e3fa; max-width: 44ch; }
-  .pix-key { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .pix-num { font: 700 clamp(1.6rem, 3.2vw, 2.1rem)/1 var(--display); letter-spacing: .02em; color: var(--pix); }
-  .btn.pix { background: var(--pix); color: #03211e; }
-  .btn.pix:hover { background: #5fd4c7; }
-  .pix-help { margin-top: 14px; font-size: .95rem; color: var(--muted); }
-  .toast { margin-top: 12px; min-height: 1.4em; font-weight: 600; color: var(--pix); }
-
-  footer { padding-block: 44px 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
-  footer .row { display: flex; flex-wrap: wrap; gap: 18px 36px; justify-content: space-between; align-items: center; }
-  footer .who { display: flex; align-items: center; gap: 12px; color: var(--bone); font: 700 1rem/1.2 var(--display); }
-  footer .who img { width: 36px; height: 36px; }
-  footer p { margin: 18px 0 0; max-width: 78ch; font-size: .9rem; }
-
-  @media (max-width: 920px) {
-    .hero { grid-template-columns: 1fr; padding-bottom: 56px; }
-    .lead { max-width: 46ch; }
-    .features, .facts, .support { grid-template-columns: 1fr; }
-    .guide { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px) {
-    .bar nav { display: none; }
-    .btn { width: 100%; justify-content: center; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; }
-  }
-</style>
+<meta property="og:site_name" content="Control PS-5">
+<meta property="og:title" content="Como conectar o controle de PS5 no Nintendo Switch">
+<meta property="og:description" content="App grátis para Switch desbloqueado: pareia o DualSense por Bluetooth, com gatilhos adaptáveis, barra de luz e perfil por jogo.">
+<meta property="og:image" content="https://meowdev-mod.github.io/Control-PS-5/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://meowdev-mod.github.io/Control-PS-5/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Como conectar o controle de PS5 no Nintendo Switch">
+<meta name="twitter:description" content="App grátis para Switch desbloqueado: pareia o DualSense por Bluetooth, com gatilhos adaptáveis, barra de luz e perfil por jogo.">
+<meta name="twitter:image" content="https://meowdev-mod.github.io/Control-PS-5/img/og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meowdev-mod.github.io/Control-PS-5/#org",
+      "name": "MeoWDev MOD",
+      "url": "https://meowdev-mod.github.io/Control-PS-5/",
+      "logo": "https://meowdev-mod.github.io/Control-PS-5/img/icon-512.png",
+      "sameAs": ["https://www.instagram.com/tech_meow.oficial", "https://www.youtube.com/@techmeow", "https://github.com/MeoWDev-MOD"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Control PS-5",
+      "url": "https://meowdev-mod.github.io/Control-PS-5/",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://meowdev-mod.github.io/Control-PS-5/#org" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Control PS-5",
+      "description": "App gratuito para Nintendo Switch desbloqueado que instala o driver e conecta o controle de PS5 (DualSense e DualSense Edge) por Bluetooth, com gatilhos adaptáveis, barra de luz, touchpad e perfil por jogo.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Nintendo Switch com Atmosphère",
+      "softwareVersion": "1.0.1",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+      "author": { "@id": "https://meowdev-mod.github.io/Control-PS-5/#org" },
+      "downloadUrl": "https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip",
+      "image": "https://meowdev-mod.github.io/Control-PS-5/img/og.jpg",
+      "screenshot": [
+        "https://meowdev-mod.github.io/Control-PS-5/img/dualsense-conectado-no-nintendo-switch.webp",
+        "https://meowdev-mod.github.io/Control-PS-5/img/gatilhos-adaptaveis-do-dualsense-no-switch.webp",
+        "https://meowdev-mod.github.io/Control-PS-5/img/barra-de-luz-e-vibracao-do-dualsense-no-switch.webp"
+      ],
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "HowTo",
+      "name": "Como conectar o controle de PS5 no Nintendo Switch",
+      "description": "Passo a passo para parear o DualSense em um Nintendo Switch desbloqueado usando o app gratuito Control PS-5.",
+      "image": "https://meowdev-mod.github.io/Control-PS-5/img/og.jpg",
+      "supply": [{ "@type": "HowToSupply", "name": "Controle de PS5 (DualSense ou DualSense Edge)" }, { "@type": "HowToSupply", "name": "Nintendo Switch desbloqueado com Atmosphère" }],
+      "tool": [{ "@type": "HowToTool", "name": "App Control PS-5" }, { "@type": "HowToTool", "name": "Computador com cabo USB ou leitor de cartão SD" }],
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Coloque o app no cartão SD", "text": "Baixe e descompacte o Control PS-5 e copie a pasta para dentro da pasta switch do cartão SD, pelo DBI com cabo USB ou com o cartão no computador.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp" },
+        { "@type": "HowToStep", "position": 2, "name": "Instale o driver", "text": "Abra o Control PS-5 no menu Homebrew e, na tela Início, toque no botão azul Instalar. Quando terminar, reinicie o Switch.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/app-control-ps5-instalar-driver-dualsense.webp" },
+        { "@type": "HowToStep", "position": 3, "name": "Toque em Parear controle", "text": "Abra o app de novo, toque em Parear controle e, na tela Controles, escolha Mudar ordem ou modo de segurar.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/tela-controles-do-nintendo-switch-mudar-ordem.webp" },
+        { "@type": "HowToStep", "position": 4, "name": "Segure Create e PS", "text": "No controle, segure Create e PS até as barras de luz começarem a piscar." },
+        { "@type": "HowToStep", "position": 5, "name": "Aperte L1 e R1 juntos", "text": "Na tela Aperte L + R, aperte L1 e R1 juntos. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam acesas, sem piscar.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/aperte-l-e-r-para-sincronizar-controle-ps5-no-switch.webp" },
+        { "@type": "HowToStep", "position": 6, "name": "Configure o controle", "text": "Volte ao app e ajuste gatilhos, luzes e perfis do jeito que quiser.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/dualsense-conectado-no-nintendo-switch.webp" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Como conectar o controle de PS5 no Nintendo Switch?", "acceptedAnswer": { "@type": "Answer", "text": "Em um Switch desbloqueado, copie o app gratuito Control PS-5 para o cartão SD, instale o driver pelo app e reinicie. Depois toque em Parear controle, segure Create e PS até as barras de luz piscarem e aperte L1 e R1 juntos na tela Aperte L + R." } },
+        { "@type": "Question", "name": "Dá para usar o controle de PS5 no Switch sem desbloquear?", "acceptedAnswer": { "@type": "Answer", "text": "Com este app, não. O Switch original não reconhece o DualSense por Bluetooth, e o Control PS-5 precisa de um Switch desbloqueado com Atmosphère. Sem desbloqueio, o caminho é um adaptador USB de terceiros, que em geral usa o DualSense como um controle comum." } },
+        { "@type": "Question", "name": "O Control PS-5 é grátis?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O download e todas as funções são gratuitos, e quem quiser pode apoiar o projeto com um Pix de qualquer valor." } },
+        { "@type": "Question", "name": "Como colocar o controle de PS5 em modo de pareamento?", "acceptedAnswer": { "@type": "Answer", "text": "Segure os botões Create e PS ao mesmo tempo até as barras de luz em volta do touchpad começarem a piscar." } },
+        { "@type": "Question", "name": "Os gatilhos adaptáveis funcionam no Switch?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, com o Control PS-5. Você escolhe o efeito de L2 e R2 no app, como resistência, clique de arma, arco, vibração ou metralhadora. Os efeitos valem por perfil: o jogo não sabe que eles existem." } },
+        { "@type": "Question", "name": "Funciona com o DualSense Edge?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O app funciona com o DualSense e com o DualSense Edge." } },
+        { "@type": "Question", "name": "Qual firmware e qual versão do Atmosphère eu preciso?", "acceptedAnswer": { "@type": "Answer", "text": "Firmware 23.0.1 e Atmosphère 1.12.0, as versões em que o driver foi construído e testado. O app confere o firmware antes de instalar e se recusa quando ele é mais novo que o suportado, para não travar o boot do console." } },
+        { "@type": "Question", "name": "O som do jogo sai pelo alto-falante do controle?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O Switch não envia áudio para controles, então o alto-falante do DualSense não toca o som do jogo." } },
+        { "@type": "Question", "name": "Funciona no Nintendo Switch 2?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O Control PS-5 é para o Switch 1 desbloqueado, e o Switch 2 não tem desbloqueio." } },
+        { "@type": "Question", "name": "Deu errado. Como desfazer?", "acceptedAnswer": { "@type": "Answer", "text": "Abra o app e toque em Desinstalar: ele restaura o MissionControl original. Se o app não abrir, apague a pasta atmosphere/contents/010000000000bd00 e cole de volta o seu backup." } },
+        { "@type": "Question", "name": "Onde desbloquear o Nintendo Switch?", "acceptedAnswer": { "@type": "Answer", "text": "Na Dat Zero Games, em Piedade, no Rio de Janeiro. O desbloqueio é feito na hora, via chip, você acompanha todo o processo e o Switch já sai com o Control PS-5 instalado no menu Homebrew. WhatsApp: (21) 98607-0618." } }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+  try { const t = localStorage.getItem("ctl.theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  try { if (sessionStorage.getItem("ctl.pt")) { sessionStorage.removeItem("ctl.pt"); document.documentElement.classList.add("pt"); } } catch (e) {}
+</script>
+<style>:root{--pt-logo:url(img/logo-gato-control-ps5.webp)}.webtit{display:block;font-size:clamp(20px,2.4vw,27px);line-height:1.14;letter-spacing:-.02em;font-weight:800;margin:2px 0}</style>
+<link rel="preload" as="image" href="img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp" fetchpriority="high">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-ig" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></symbol>
+  <symbol id="s-yt" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6z"/></symbol>
+  <symbol id="s-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 5 5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1-.8-.3-2.3-1.1-3.3-3-.2-.3 0-.5.1-.6l.4-.5.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.2 1.7.7 2.3.6 2.8.5.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1 0-.1-.2-.2-.4-.3z"/></symbol>
+  <symbol id="s-gh" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-sun2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 2v9M6.3 6.3a8 8 0 1 0 11.4 0"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M9 15l6-6M10 6l1-1a4.5 4.5 0 0 1 6.4 6.4l-1 1M14 18l-1 1a4.5 4.5 0 0 1-6.4-6.4l1-1"/></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="11" rx="5"/><path d="M8 11v3M6.5 12.5h3M15.5 11.5h.01M18 13.5h.01"/></symbol>
+  <symbol id="i-touch" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5l5 1a2 2 0 0 1 1.5 2.3l-.8 5a2 2 0 0 1-2 1.7h-4.4a2 2 0 0 1-1.6-.8L6 15.5a1.5 1.5 0 0 1 2-2.1z"/></symbol>
+</svg>
+<canvas id="fxBg" aria-hidden="true"></canvas>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><img src="img/icon-192.png" width="38" height="38" alt=""><span>Control PS-5</span></a>
+  <nav class="links" aria-label="Seções"><a href="#como-conectar">Como conectar</a><a href="#recursos">Recursos</a><a href="#telas">Telas</a><a href="#desbloqueio">Desbloqueio</a><a href="#duvidas">Dúvidas</a></nav>
+  <button class="iconbtn" id="themeBtn" aria-label="Mudar entre claro e escuro" title="Mudar entre claro e escuro">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+  </button>
+  <a class="b p dl" style="min-height:42px;padding:8px 16px;font-size:14px" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">Baixar grátis</a>
+</div><i id="scrollBar" aria-hidden="true"></i></header>
 
-<header class="top">
-  <div class="wrap">
-    <div class="bar">
-      <a class="brand" href="#"><img src="assets/logo.png" alt="" width="38" height="38">Control PS-5</a>
-      <nav aria-label="Seções">
-        <a href="#recursos">Recursos</a>
-        <a href="#capturas">Capturas</a>
-        <a href="#instalar">Instalar</a>
-        <a href="#apoiar">Apoiar</a>
-      </nav>
+<main class="wrap">
+  <section class="webcta" aria-label="Baixar o app">
+    <div class="selo" aria-hidden="true"><img src="img/logo-gato-control-ps5.webp" width="200" height="200" alt=""></div>
+    <div><span class="kick">Grátis, sem cadastro</span><strong class="webtit">Baixe o Control PS-5 para o seu Switch</strong><p>O app instala o driver, pareia o controle e libera as funções do DualSense.</p></div>
+    <a class="b p magnetic" style="min-height:56px;font-size:17px;padding-inline:26px" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip"><svg class="i"><use href="#i-down"/></svg><span>Baixar o app</span></a>
+  </section>
+
+  <section class="hero">
+    <div class="hero-texto">
+      <span class="kick">Para Nintendo Switch desbloqueado</span>
+      <h1>Conecte o controle de PS5 no <span class="grad">Nintendo Switch</span>.</h1>
+      <p class="lead">O Switch não reconhece o DualSense sozinho. Em um Switch desbloqueado, o <b>Control PS-5</b> instala o driver com um toque e o controle pareia por Bluetooth, com gatilhos adaptáveis, barra de luz e perfil por jogo.</p>
+      <div class="cta">
+        <a class="b p magnetic" style="min-height:54px;font-size:17px;padding-inline:24px" href="#como-conectar"><span>Ver como conectar</span><svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="b" style="min-height:54px;font-size:17px;padding-inline:24px" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip"><svg class="i"><use href="#i-down"/></svg>Baixar grátis</a>
+      </div>
+      <ul class="chips">
+        <li><svg class="i"><use href="#i-check"/></svg>App 100% grátis</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Bluetooth, sem adaptador</li>
+        <li><svg class="i"><use href="#i-check"/></svg>DualSense e DualSense Edge</li>
+      </ul>
+      <a class="nota-dz" href="#desbloqueio">
+        <img src="img/dat-zero-games-logo.webp" width="720" height="402" alt="Dat Zero Games" loading="lazy">
+        <span><b>Ainda não desbloqueou?</b> Na Dat Zero Games é feito na hora, e o Switch já sai com o app instalado.</span>
+        <svg class="i"><use href="#i-arrow"/></svg>
+      </a>
     </div>
-
-    <div class="hero">
-      <div>
-        <h1>O DualSense funciona de verdade no Switch.</h1>
-        <p class="lead">Gatilhos adaptáveis, barra de luz, touchpad e perfis por jogo. Você abre o app, toca em Instalar e pareia o controle.</p>
-        <div class="cta">
-          <a class="btn primary" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">Baixar Control PS-5</a>
-          <a class="btn quiet" href="#instalar">Ver como instalar</a>
-        </div>
-        <p class="note">Gratuito. Para Switch com Atmosphère (pacote CNX).</p>
+    <div>
+      <div class="stage3d" id="heroStage"><span class="ribbon" aria-hidden="true"></span>
+        <img class="poster" src="img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp" width="900" height="846" alt="Modelo 3D de um Nintendo Switch com o app Control PS-5 na tela e um controle de PS5 branco conectado, com a barra de luz acesa" fetchpriority="high">
+        <canvas id="hero3d" aria-label="Modelo 3D do Nintendo Switch e do controle de PS5 se conectando. Arraste para girar."></canvas>
       </div>
-
-      <div class="stage">
-        <div class="pad" id="pad">
-          <img class="outline" src="assets/controller.png" alt="Desenho do controle DualSense com a barra de luz acesa" width="880" height="713">
-          <span class="lb l" aria-hidden="true"></span>
-          <span class="lb r" aria-hidden="true"></span>
+      <div class="aovivo card" id="aoVivo">
+        <div>
+          <span class="tit">Escolha a cor da barra de luz</span>
+          <div class="cores" id="cores" role="group" aria-label="Cor da barra de luz"></div>
         </div>
-
-        <div class="tools">
-          <div>
-            <span class="tool-label" id="lbl-color">Escolha a cor da barra de luz</span>
-            <div class="swatches" id="swatches" role="group" aria-labelledby="lbl-color"></div>
-          </div>
-          <div>
-            <span class="tool-label" id="lbl-trigger">Efeito do gatilho R2: veja onde ele resiste</span>
-            <div class="presets" id="presets" role="group" aria-labelledby="lbl-trigger"></div>
-            <div class="travel" id="travel" aria-hidden="true"></div>
-            <div class="travel-ends"><span>solto</span><span>fundo</span></div>
-          </div>
+        <div>
+          <span class="tit">Efeito do gatilho R2: veja onde ele resiste</span>
+          <div class="efeitos" id="efeitos" role="group" aria-label="Efeito do gatilho R2"></div>
+          <div class="curso"><span>solto</span><div id="curso" aria-hidden="true"></div><span>fundo</span></div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
-
-<main>
-  <section id="recursos">
-    <div class="wrap">
-      <h2>O que o app faz pelo seu controle</h2>
-      <p class="sub">Tudo é configurado dentro do Switch, sem mover pastas e sem editar arquivo.</p>
-      <div class="features">
-        <div>
-          <h3>Gatilhos adaptáveis em L2 e R2</h3>
-          <p>Resistência, clique de arma, arco, vibração e metralhadora. Cada gatilho tem predefinições prontas e ajuste fino de início, fim e força.</p>
-        </div>
-        <div>
-          <h3>Barra de luz e LEDs</h3>
-          <p>Doze cores rápidas, ajuste fino, brilho, LED do botão mute e LEDs de jogador. A prévia aparece no controle na hora.</p>
-        </div>
-        <div>
-          <h3>Perfil automático por jogo</h3>
-          <p>Configure o Mario Kart uma vez. Quando o jogo abre, o perfil dele é aplicado sozinho; os outros usam o padrão.</p>
-        </div>
-        <div>
-          <h3>Instalação em um toque</h3>
-          <p>O app instala, atualiza e desinstala o driver, e guarda um backup do MissionControl que você já tinha.</p>
-        </div>
-        <div>
-          <h3>Pareamento guiado</h3>
-          <p>Mostra o passo a passo no desenho do controle e abre a tela Controles do Switch para você parear outro.</p>
-        </div>
-        <div>
-          <h3>Teste do controle <span class="tag">novo</span></h3>
-          <p>Botões, analógicos, giroscópio, bateria e touchpad ao vivo, para ver se está tudo certo antes de jogar.</p>
-        </div>
-        <div>
-          <h3>Touchpad no sistema <span class="tag">experimental</span></h3>
-          <p>Como tela de toque, como mouse ou como cursor com mãozinha. Funciona dentro do app; no sistema depende do firmware e do jogo.</p>
-        </div>
-      </div>
+      <p class="caption">As cores e os efeitos são os do app. Arraste o modelo para girar.</p>
     </div>
   </section>
 
-  <section id="capturas" hidden>
-    <div class="wrap">
-      <h2>Como fica no Switch</h2>
-      <p class="sub">Telas reais do app, capturadas no console.</p>
-      <div class="shots" id="shots"></div>
+  <section class="sec" id="da-para-conectar">
+    <div class="h"><span class="kick">A resposta curta</span><h2>Dá para usar o controle de PS5 no Switch?</h2><p>Dá, mas o Switch original não aceita o DualSense por conta própria. Veja o que muda em cada caso.</p></div>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th scope="col">Recurso</th><th scope="col">Switch original</th><th scope="col">Com adaptador USB</th><th scope="col" class="me">Desbloqueado com Control PS-5</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Conecta o DualSense</th><td class="n">Não</td><td class="l">Sim, pelo adaptador</td><td class="me y">Sim, direto por Bluetooth</td></tr>
+          <tr><th scope="row">Gatilhos adaptáveis</th><td class="n">Não</td><td class="n">Em geral, não</td><td class="me y">Sim, em L2 e R2</td></tr>
+          <tr><th scope="row">Barra de luz e LEDs</th><td class="n">Não</td><td class="l">Depende do adaptador</td><td class="me y">Sim, 12 cores e ajuste fino</td></tr>
+          <tr><th scope="row">Perfil por jogo</th><td class="n">Não</td><td class="n">Não</td><td class="me y">Sim, automático</td></tr>
+          <tr><th scope="row">Custo</th><td class="n">Não se aplica</td><td class="l">Compra do adaptador</td><td class="me y">App grátis</td></tr>
+          <tr><th scope="row">Precisa desbloquear</th><td class="y">Não</td><td class="y">Não</td><td class="me l">Sim</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <section id="instalar">
-    <div class="wrap">
-      <h2>Como instalar</h2>
-      <p class="sub">São duas etapas: levar o app para o cartão SD e, dentro do Switch, instalar o driver e parear o controle. Antes, faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão, por segurança.</p>
-
-      <div class="guide">
-        <div>
-          <h3>Levar o app para o cartão SD</h3>
-          <ol>
-            <li>No pacote CNX, segure <strong>R</strong> e abra o <strong>Álbum</strong> para entrar no menu Homebrew.</li>
-            <li>Abra o aplicativo <strong>DBI</strong> e inicie a <strong>conexão MTP</strong>.</li>
-            <li>Conecte o cabo USB do Switch ao computador.</li>
-            <li>No computador, abra o dispositivo chamado <strong>Switch</strong>, entre em <strong>1: SD Card</strong> e depois na pasta <strong>switch</strong>. O caminho fica <code>Este Computador\Switch\1: SD Card\switch</code>.</li>
-            <li>Copie para lá a pasta já descompactada <strong>Control PS-5</strong>.</li>
-            <li>Saia do DBI e volte ao menu Homebrew do mesmo jeito (<strong>R</strong> + <strong>Álbum</strong>). O Control PS-5 aparece na lista: abra-o.
-              <figure class="fig"><img src="assets/screens/homebrew.jpg" alt="Lista do Homebrew com o Control PS-5 selecionado" loading="lazy"><figcaption>O Control PS-5 na lista do Homebrew.</figcaption></figure>
-            </li>
+  <section class="sec" id="como-conectar">
+    <div class="h"><span class="kick">Passo a passo</span><h2>Como conectar o controle de PS5 no Nintendo Switch</h2><p>Role a página e acompanhe no modelo 3D. As telas no console são capturas reais do app.</p></div>
+    <div class="story" id="montagem">
+      <div class="storypalco" id="storyStage"><canvas id="story3d" aria-label="Modelo 3D mostrando cada passo da conexão do controle de PS5 com o Nintendo Switch"></canvas><div id="rotulos3d" aria-hidden="true"></div><div class="carrega">Carregando o modelo 3D</div></div>
+      <div class="passos">
+        <article class="card passo"><span class="nro">1</span><h3>Coloque o app no cartão SD</h3>
+          <p>Antes, faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão, por segurança. Depois <a href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">baixe o app</a> e descompacte.</p>
+          <ol class="sub">
+            <li>No pacote CNX, segure <kbd>R</kbd> e abra o <b>Álbum</b> para entrar no menu Homebrew.</li>
+            <li>Abra o <b>DBI</b>, inicie a <b>conexão MTP</b> e ligue o cabo USB no computador.</li>
+            <li>No computador, abra <b>Switch</b>, depois <b>1: SD Card</b> e a pasta <b>switch</b>.</li>
+            <li>Copie para lá a pasta <b>Control PS-5</b> já descompactada.</li>
           </ol>
-          <p class="alt">Prefere sem cabo? Tire o cartão SD, coloque a pasta <code>Control PS-5</code> dentro de <code>switch</code> no computador e devolva o cartão ao Switch.</p>
-        </div>
-
-        <div>
-          <h3>Instalar o driver e parear</h3>
-          <ol>
-            <li>Na tela <strong>Início</strong>, toque no botão azul <strong>Instalar</strong>. Quando terminar, o app pede para reiniciar o Switch.
-              <figure class="fig two">
-                <img src="assets/screens/instalando.jpg" alt="Tela Instalando driver com barra de progresso" loading="lazy">
-                <img src="assets/screens/reiniciar.jpg" alt="Aviso Driver instalado pedindo para reiniciar o Switch" loading="lazy">
-                <figcaption>Instalando o driver e o aviso para reiniciar.</figcaption>
-              </figure>
-            </li>
-            <li>Com o Switch ligado de novo, abra o Control PS-5 outra vez.</li>
-            <li>Toque em <strong>Parear controle</strong> e, na tela <strong>Controles</strong> que abrir, escolha <strong>Mudar ordem ou modo de segurar</strong>.
-              <figure class="fig"><img src="assets/screens/controles.jpg" alt="Tela Controles do Switch com a opção Mudar ordem ou modo de segurar selecionada" loading="lazy"><figcaption>A tela Controles do Switch.</figcaption></figure>
-            </li>
-            <li>No controle, segure <strong>Create</strong> e <strong>PS</strong> até as barras de luz começarem a piscar.</li>
-            <li>Na tela "Aperte L + R no controle", aperte <strong>L1</strong> e <strong>R1</strong> juntos. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam acesas, sem piscar.
-              <figure class="fig"><img src="assets/screens/sincronizar.jpg" alt="Tela pedindo para apertar L e R no controle, com um controle preto no jogador 1" loading="lazy"><figcaption>Controle sincronizado como jogador 1.</figcaption></figure>
-            </li>
-            <li>Volte ao app e configure gatilhos, luzes e perfis do jeito que quiser.
-              <figure class="fig"><img src="assets/screens/inicio.jpg" alt="Tela Início do app com o driver ativo e o DualSense conectado" loading="lazy"><figcaption>Driver ativo e DualSense conectado.</figcaption></figure>
-            </li>
-          </ol>
-        </div>
+          <p>Prefere sem cabo? Coloque o cartão SD no computador, copie a pasta para dentro de <b>switch</b> e devolva o cartão ao Switch.</p>
+          <img src="img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp" width="1280" height="720" loading="lazy" alt="Menu Homebrew do Nintendo Switch com o app Control PS-5 na lista"></article>
+        <article class="card passo"><span class="nro">2</span><h3>Abra o app e instale o driver</h3>
+          <p>Saia do DBI e volte ao menu Homebrew (<kbd>R</kbd> + Álbum). Abra o Control PS-5 e, na tela <b>Início</b>, toque no botão azul <b>Instalar</b>. Quando terminar, o app pede para reiniciar o Switch.</p>
+          <img src="img/app-control-ps5-instalar-driver-dualsense.webp" width="1280" height="720" loading="lazy" alt="Tela Início do Control PS-5 com o botão azul para instalar o driver do DualSense"></article>
+        <article class="card passo"><span class="nro">3</span><h3>Toque em Parear controle</h3>
+          <p>Com o Switch ligado de novo, abra o Control PS-5 outra vez. Toque em <b>Parear controle</b> e, na tela <b>Controles</b> que abrir, escolha <b>Mudar ordem ou modo de segurar</b>.</p>
+          <img src="img/tela-controles-do-nintendo-switch-mudar-ordem.webp" width="1280" height="720" loading="lazy" alt="Tela Controles do Nintendo Switch com a opção Mudar ordem ou modo de segurar"></article>
+        <article class="card passo"><span class="nro">4</span><h3>Segure Create e PS</h3>
+          <p>No controle de PS5, segure <kbd>Create</kbd> e <kbd>PS</kbd> até as barras de luz começarem a piscar. É assim que o DualSense entra em modo de pareamento.</p></article>
+        <article class="card passo"><span class="nro">5</span><h3>Aperte L1 e R1 juntos</h3>
+          <p>Na tela <b>Aperte L + R</b>, aperte <kbd>L1</kbd> e <kbd>R1</kbd> juntos. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam acesas, sem piscar.</p>
+          <img src="img/aperte-l-e-r-para-sincronizar-controle-ps5-no-switch.webp" width="1280" height="720" loading="lazy" alt="Tela do Switch pedindo para apertar L e R, com o controle de PS5 sincronizado como jogador 1"></article>
+        <article class="card passo"><span class="nro">6</span><h3>Pronto: configure do seu jeito</h3>
+          <p>Volte ao app e ajuste gatilhos, luzes e perfis. O controle aparece como <b>DualSense, Jogador 1</b> e o driver como <b>Ativo</b>.</p>
+          <img src="img/dualsense-conectado-no-nintendo-switch.webp" width="1280" height="720" loading="lazy" alt="Tela Início do Control PS-5 com o driver ativo e o DualSense conectado como jogador 1"></article>
       </div>
     </div>
   </section>
 
-  <section id="requisitos">
-    <div class="wrap">
-      <h2>Antes de instalar</h2>
-      <div class="facts" style="margin-top: 34px;">
-        <div>
-          <h3>Compatibilidade</h3>
-          <ul>
-            <li>Switch com Atmosphère (pacote CNX).</li>
-            <li><strong>Requer firmware 23.0.1 e Atmosphère 1.12.0</strong> (versões em que o driver foi construído e testado).</li>
-            <li>DualSense e DualSense Edge.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Limites</h3>
-          <ul>
-            <li>O som do jogo não sai pelo alto-falante do controle: o Switch não envia áudio para controles.</li>
-            <li>Os efeitos dos gatilhos são configurados por perfil; o jogo não sabe que eles existem.</li>
-            <li>Os modos de touchpad no sistema são experimentais.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Se algo der errado</h3>
-          <p>Abra o app e toque em Desinstalar: ele restaura o MissionControl original. Se o app não abrir, apague <code>atmosphere/contents/010000000000bd00</code> e cole de volta o seu backup.</p>
-        </div>
-        <div>
-          <h3>Firmware novo</h3>
-          <p>O app confere o firmware antes de instalar e se recusa quando ele é mais novo que o suportado, para não travar o boot do console.</p>
-        </div>
+  <section class="sec" id="recursos">
+    <div class="h"><span class="kick">Recursos</span><h2>O que o app libera no seu controle</h2><p>Tudo é configurado dentro do Switch, sem mover pastas e sem editar arquivo.</p></div>
+    <div class="bento">
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-zap"/></svg></div><h3>Gatilhos adaptáveis em L2 e R2</h3><p>Resistência, clique de arma, arco, vibração e metralhadora. Cada gatilho tem efeitos prontos e ajuste fino de início, fim e força.</p><img src="img/gatilhos-adaptaveis-do-dualsense-no-switch.webp" width="1280" height="720" loading="lazy" alt="Tela Gatilhos adaptáveis do Control PS-5 com os ajustes de L2 e R2"></article>
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-sun2"/></svg></div><h3>Barra de luz e LEDs</h3><p>Doze cores rápidas, ajuste fino, brilho, LED do botão mute e LEDs de jogador. A prévia aparece no controle na hora.</p><img src="img/barra-de-luz-e-vibracao-do-dualsense-no-switch.webp" width="1280" height="720" loading="lazy" alt="Tela Luzes e vibração do Control PS-5 com as cores da barra de luz"></article>
+      <article class="card spot"><div class="ico"><svg class="i"><use href="#i-layers"/></svg></div><h3>Perfil automático por jogo</h3><p>Configure uma vez. Quando o jogo abre, o perfil dele é aplicado sozinho; os outros usam o padrão.</p></article>
+      <article class="card spot"><div class="ico"><svg class="i"><use href="#i-power"/></svg></div><h3>Instalação em um toque</h3><p>O app instala, atualiza e desinstala o driver, e guarda um backup do MissionControl que você já tinha.</p></article>
+      <article class="card spot"><div class="ico"><svg class="i"><use href="#i-link"/></svg></div><h3>Pareamento guiado</h3><p>Mostra o passo a passo no desenho do controle e abre a tela Controles do Switch para você parear outro.</p></article>
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-pad"/></svg></div><h3>Teste do controle</h3><p>Botões, analógicos, giroscópio, bateria e touchpad ao vivo, para ver se está tudo certo antes de jogar.</p></article>
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-touch"/></svg></div><h3>Touchpad no sistema <span class="tag alt">experimental</span></h3><p>Como tela de toque, como mouse ou como cursor com mãozinha. Funciona dentro do app; no sistema depende do firmware e do jogo.</p></article>
+    </div>
+  </section>
+
+  <aside class="ad hidden" id="adSlotRecursos" aria-label="Publicidade"><span class="adtag">Publicidade</span><div class="midia" id="adMediaRecursos"></div></aside>
+
+  <section class="sec" id="telas">
+    <div class="h"><span class="kick">Como fica no Switch</span><h2>Telas reais, capturadas no console</h2><p>Toque em uma tela para ver maior.</p></div>
+    <div class="fotos telas" id="galeria">
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: tela Início com o DualSense conectado"><img src="img/dualsense-conectado-no-nintendo-switch.webp" width="1280" height="720" loading="lazy" alt="Control PS-5 com o driver ativo e o DualSense conectado como jogador 1"></button><figcaption>Driver ativo e DualSense conectado.</figcaption></figure>
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: tela de gatilhos"><img src="img/gatilhos-adaptaveis-do-dualsense-no-switch.webp" width="1280" height="720" loading="lazy" alt="Ajuste dos gatilhos adaptáveis L2 e R2 no Control PS-5"></button><figcaption>Gatilhos adaptáveis em L2 e R2.</figcaption></figure>
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: tela de luzes"><img src="img/barra-de-luz-e-vibracao-do-dualsense-no-switch.webp" width="1280" height="720" loading="lazy" alt="Cores da barra de luz, LEDs e vibração do DualSense no Control PS-5"></button><figcaption>Barra de luz, LEDs e vibração.</figcaption></figure>
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: menu Homebrew"><img src="img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp" width="1280" height="720" loading="lazy" alt="Control PS-5 na lista do menu Homebrew do Nintendo Switch"></button><figcaption>O Control PS-5 no menu Homebrew.</figcaption></figure>
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: instalando o driver"><img src="img/instalando-driver-dualsense-no-switch.webp" width="1280" height="720" loading="lazy" alt="Instalando o driver do DualSense no Nintendo Switch"></button><figcaption>Instalando o driver.</figcaption></figure>
+      <figure class="foto"><button type="button" class="zoom" aria-label="Ampliar: sincronizando o controle"><img src="img/aperte-l-e-r-para-sincronizar-controle-ps5-no-switch.webp" width="1280" height="720" loading="lazy" alt="Controle de PS5 sincronizado como jogador 1 na tela do Nintendo Switch"></button><figcaption>Controle sincronizado como jogador 1.</figcaption></figure>
+    </div>
+  </section>
+  <dialog class="tela-grande" id="telaGrande" aria-label="Tela ampliada"><form method="dialog"><button class="iconbtn" aria-label="Fechar">✕</button></form><img id="telaGrandeImg" alt=""></dialog>
+
+  <section class="sec" id="desbloqueio">
+    <div class="card dz">
+      <div class="dz-texto">
+        <img class="dz-logo" src="img/dat-zero-games-logo.webp" width="720" height="402" loading="lazy" alt="Logo da Dat Zero Games">
+        <span class="kick">Ainda não tem o Switch desbloqueado?</span>
+        <h2>Desbloqueie na Dat Zero e saia com o app instalado</h2>
+        <p>O desbloqueio é feito na hora, via chip, e você acompanha todo o processo. O Switch já sai com o app no menu Homebrew: é só parear o controle.</p>
+        <ul class="dz-lista">
+          <li><svg class="i"><use href="#i-check"/></svg>Feito na hora, com você acompanhando</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Control PS-5 já instalado no Homebrew</li>
+          <li><svg class="i"><use href="#i-check"/></svg>1 ano de garantia</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Loja pioneira, com mais de 3.000 aparelhos</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Para Switch 1, qualquer modelo</li>
+        </ul>
+      </div>
+      <div class="dz-oferta">
+        <img class="dz-switch" src="img/nintendo-switch-com-control-ps5-no-menu-homebrew.webp" width="900" height="418" loading="lazy" alt="Nintendo Switch mostrando o menu Homebrew com o app Control PS-5 selecionado">
+        <div class="dz-preco"><small>Desbloqueio do Nintendo Switch</small><b>R$ 339,90</b></div>
+        <a class="b wa magnetic" style="min-height:56px;font-size:17px;width:100%" href="https://wa.me/5521986070618?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Control%20PS-5%20e%20quero%20desbloquear%20meu%20Nintendo%20Switch." target="_blank" rel="noopener"><svg style="width:20px;height:20px;fill:currentColor"><use href="#s-wa"/></svg>Chamar no WhatsApp</a>
+        <p class="dz-end"><svg class="i"><use href="#i-pin"/></svg><a href="https://www.google.com/maps/search/?api=1&query=Rua+Alfredo+Reis+68+Piedade+Rio+de+Janeiro+20740-190" target="_blank" rel="noopener">Rua Alfredo Reis, 68, Piedade, Rio de Janeiro</a></p>
+        <p class="dz-end">WhatsApp <a href="https://wa.me/5521986070618" target="_blank" rel="noopener">(21) 98607-0618</a> · <a href="https://www.instagram.com/datzerogames/" target="_blank" rel="noopener">@datzerogames</a></p>
       </div>
     </div>
   </section>
 
-  <section id="apoiar">
-    <div class="wrap">
-      <div class="support">
-        <div>
-          <h2>Gostou? Apoie o projeto</h2>
-          <p>O Control PS-5 é gratuito. Um Pix de qualquer valor ajuda a manter as atualizações quando sair firmware novo.</p>
-        </div>
-        <div>
-          <div class="pix-key">
-            <span class="pix-num" id="pixnum">21966547296</span>
-            <button class="btn pix" type="button" id="copy">Copiar chave Pix</button>
-          </div>
-          <p class="toast" id="toast" role="status" aria-live="polite"></p>
-          <p class="pix-help">No app do seu banco: Pix, Pagar com chave, e cole.</p>
-        </div>
-      </div>
+  <section class="sec" id="antes-de-instalar">
+    <div class="h"><span class="kick">Antes de instalar</span><h2>O que você precisa saber</h2></div>
+    <div class="who">
+      <article class="card spot"><b>Compatibilidade</b><p>Switch 1 desbloqueado com Atmosphère (pacote CNX). <strong>Requer firmware 23.0.1 e Atmosphère 1.12.0</strong>, as versões em que o driver foi construído e testado. Funciona com DualSense e DualSense Edge.</p></article>
+      <article class="card spot"><b>Limites</b><p>O som do jogo não sai pelo alto-falante do controle, porque o Switch não envia áudio para controles. Os efeitos dos gatilhos são configurados por perfil: o jogo não sabe que eles existem.</p></article>
+      <article class="card spot"><b>Firmware novo e desfazer</b><p>O app confere o firmware antes de instalar e se recusa quando ele é mais novo que o suportado, para não travar o boot. Para voltar atrás, toque em Desinstalar: ele restaura o MissionControl original.</p></article>
+    </div>
+    <p class="aviso"><b>Use por sua conta e risco.</b> Modificar o console pode anular a garantia de fábrica, e usar um console modificado online traz risco de banimento. Mantenha um backup do cartão SD. O app não habilita pirataria.</p>
+  </section>
+
+  <section class="sec" id="duvidas">
+    <div class="h"><span class="kick">Dúvidas</span><h2>Perguntas frequentes sobre o controle de PS5 no Switch</h2></div>
+    <div class="faq">
+      <details><summary>Como conectar o controle de PS5 no Nintendo Switch?</summary><p>Em um Switch desbloqueado, copie o app gratuito Control PS-5 para o cartão SD, instale o driver pelo app e reinicie. Depois toque em Parear controle, segure Create e PS até as barras de luz piscarem e aperte L1 e R1 juntos na tela Aperte L + R.</p></details>
+      <details><summary>Dá para usar o controle de PS5 no Switch sem desbloquear?</summary><p>Com este app, não. O Switch original não reconhece o DualSense por Bluetooth, e o Control PS-5 precisa de um Switch desbloqueado com Atmosphère. Sem desbloqueio, o caminho é um adaptador USB de terceiros, que em geral usa o DualSense como um controle comum.</p></details>
+      <details><summary>O Control PS-5 é grátis?</summary><p>Sim. O download e todas as funções são gratuitos, e quem quiser pode apoiar o projeto com um Pix de qualquer valor.</p></details>
+      <details><summary>Como colocar o controle de PS5 em modo de pareamento?</summary><p>Segure os botões Create e PS ao mesmo tempo até as barras de luz em volta do touchpad começarem a piscar.</p></details>
+      <details><summary>Os gatilhos adaptáveis funcionam no Switch?</summary><p>Sim, com o Control PS-5. Você escolhe o efeito de L2 e R2 no app, como resistência, clique de arma, arco, vibração ou metralhadora. Os efeitos valem por perfil: o jogo não sabe que eles existem.</p></details>
+      <details><summary>Funciona com o DualSense Edge?</summary><p>Sim. O app funciona com o DualSense e com o DualSense Edge.</p></details>
+      <details><summary>Qual firmware e qual versão do Atmosphère eu preciso?</summary><p>Firmware 23.0.1 e Atmosphère 1.12.0, as versões em que o driver foi construído e testado. O app confere o firmware antes de instalar e se recusa quando ele é mais novo que o suportado, para não travar o boot do console.</p></details>
+      <details><summary>O som do jogo sai pelo alto-falante do controle?</summary><p>Não. O Switch não envia áudio para controles, então o alto-falante do DualSense não toca o som do jogo.</p></details>
+      <details><summary>Funciona no Nintendo Switch 2?</summary><p>Não. O Control PS-5 é para o Switch 1 desbloqueado, e o Switch 2 não tem desbloqueio.</p></details>
+      <details><summary>Deu errado. Como desfazer?</summary><p>Abra o app e toque em Desinstalar: ele restaura o MissionControl original. Se o app não abrir, apague a pasta <code>atmosphere/contents/010000000000bd00</code> e cole de volta o seu backup.</p></details>
+      <details><summary>Onde desbloquear o Nintendo Switch?</summary><p>Na <a href="#desbloqueio">Dat Zero Games</a>, em Piedade, no Rio de Janeiro. O desbloqueio é feito na hora, via chip, você acompanha todo o processo e o Switch já sai com o Control PS-5 instalado no menu Homebrew. WhatsApp: (21) 98607-0618.</p></details>
     </div>
   </section>
+
+  <aside class="ad hidden" id="adSlotFaq" aria-label="Publicidade"><span class="adtag">Publicidade</span><div class="midia" id="adMediaFaq"></div></aside>
+
+  <section class="sec"><div class="card final spot" id="apoie">
+    <h2>Seu DualSense pronto para o Switch</h2>
+    <p style="margin-bottom:18px">O Control PS-5 é gratuito. Gostou? Um Pix de qualquer valor ajuda a manter as atualizações quando sair firmware novo.</p>
+    <div class="cta">
+      <a class="b p magnetic" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip"><svg class="i"><use href="#i-down"/></svg><span>Baixar grátis</span></a>
+      <button type="button" class="b" id="pixBtn" data-chave="21966547296">Copiar chave Pix: 21966547296</button>
+    </div>
+    <p class="pix-ok" id="pixOk" role="status"></p>
+  </div></section>
+
+  <section class="sec outros" id="outros-projetos" aria-labelledby="tituloOutros"><div class="card spot projeto">
+    <div class="selo" aria-hidden="true"><img src="img/logo-ps5-controle-test.webp" width="380" height="380" loading="lazy" alt=""></div>
+    <div><span class="kick">Outro projeto nosso</span><h2 id="tituloOutros">Conheça o PS-5 Controle Test</h2><p>Teste e calibre o controle do PS5: botões, analógicos, drift, gatilhos e vibração. Grátis no navegador do computador. No celular, o app para Android tem 2 dias grátis.</p></div>
+    <a class="b p magnetic" style="min-height:56px;font-size:17px;padding-inline:26px" href="https://meowdev-mod.github.io/ps5-controle-test/" target="_blank" rel="noopener" aria-label="Conhecer o projeto PS-5 Controle Test"><span>Conhecer o projeto</span><svg class="i"><use href="#i-arrow"/></svg></a>
+  </div></section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="row">
-      <div class="who"><img src="assets/logo.png" alt="" width="36" height="36">Developed by MeoWDev MOD</div>
-      <a href="https://github.com/MeoWDev-MOD/Control-PS-5">github.com/MeoWDev-MOD/Control-PS-5</a>
+<footer><div class="wrap fgrid">
+  <div><b>Developed by MeoWDev MOD</b><br>O driver é baseado no <a href="https://github.com/ndeadly/MissionControl" target="_blank" rel="noopener">MissionControl</a> (ndeadly, GPLv2) e roda sobre o <a href="https://github.com/Atmosphere-NX/Atmosphere" target="_blank" rel="noopener">Atmosphère</a>, com libnx e devkitPro.<br><br>Projeto independente: não é afiliado, aprovado ou patrocinado pela Sony ou pela Nintendo. DualSense, PlayStation e Nintendo Switch são marcas de seus donos. O serviço de desbloqueio é prestado pela Dat Zero Games.</div>
+  <div>
+    <h3>Contato e parcerias</h3>
+    <div class="redes">
+      <a href="https://www.instagram.com/tech_meow.oficial" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#s-ig"/></svg></a>
+      <a href="https://www.youtube.com/@techmeow" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#s-yt"/></svg></a>
+      <a href="https://wa.me/5521966547296?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20do%20Control%20PS-5%20e%20quero%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" aria-label="WhatsApp para parcerias"><svg><use href="#s-wa"/></svg></a>
+      <a href="https://github.com/MeoWDev-MOD/Control-PS-5" target="_blank" rel="noopener" aria-label="Código no GitHub"><svg><use href="#s-gh"/></svg></a>
     </div>
-    <p>
-      O driver é baseado no <a href="https://github.com/ndeadly/MissionControl">MissionControl</a> (ndeadly, GPLv2) e roda sobre o
-      <a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphère</a>, com libnx e devkitPro. Projeto independente: não é afiliado,
-      aprovado ou patrocinado pela Sony ou pela Nintendo. DualSense, PlayStation e Nintendo Switch são marcas de seus donos.
-      O app não habilita pirataria. Use por sua conta e risco e mantenha um backup do cartão SD.
-    </p>
+    WhatsApp: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">(21) 96654-7296</a><br>Instagram: <a href="https://www.instagram.com/tech_meow.oficial" target="_blank" rel="noopener">@tech_meow.oficial</a>
   </div>
-</footer>
+  <div class="flinks">
+    <a href="https://github.com/MeoWDev-MOD/Control-PS-5/releases">Versões do app</a><a href="https://meowdev-mod.github.io/ps5-controle-test/">PS-5 Controle Test</a><a href="https://meowdev-mod.github.io/ps5-hdmi-tool/">PS5 HDMI Tool</a><a href="termos/">Termos de uso</a><a href="privacidade/">Privacidade e cookies</a><a href="#" data-ck-manage>Gerenciar cookies</a>
+  </div>
+</div></footer>
 
-<script>
-(function () {
-  var root = document.documentElement;
-  var pad = document.getElementById('pad');
-
-  /* ---- cores da barra de luz (as mesmas 12 do app) ---- */
-  var colors = [
-    ['Azul', '#0040FF'], ['Ciano', '#00E5FF'], ['Verde-água', '#4EDEA3'], ['Verde', '#00FF50'],
-    ['Lima', '#A0FF00'], ['Amarelo', '#FFD000'], ['Laranja', '#FF6A00'], ['Vermelho', '#FF1030'],
-    ['Rosa', '#FF2E88'], ['Violeta', '#9B30FF'], ['Índigo', '#5A2BFF'], ['Branco', '#FFFFFF']
-  ];
-  var swatches = document.getElementById('swatches');
-  colors.forEach(function (c, i) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'sw';
-    b.style.setProperty('--c', c[1]);
-    b.setAttribute('aria-label', c[0]);
-    b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-    b.addEventListener('click', function () {
-      root.style.setProperty('--bar', c[1]);
-      swatches.querySelectorAll('.sw').forEach(function (s) { s.setAttribute('aria-pressed', 'false'); });
-      b.setAttribute('aria-pressed', 'true');
-    });
-    swatches.appendChild(b);
-  });
-
-  /* ---- curso do gatilho: altura (0..1) por zona, como na tela de Gatilhos do app ---- */
-  var presets = [
-    { name: 'Sem efeito',      zones: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-    { name: 'Acelerador',      zones: [0, 0, 0, .55, .55, .55, .55, .55, .55, .55] },
-    { name: 'Gatilho de arma', zones: [0, 0, .8, .8, .8, .8, 0, 0, 0, 0], accent: 5 },
-    { name: 'Arco',            zones: [0, .15, .3, .45, .6, .75, .9, 0, 0, 0] },
-    { name: 'Metralhadora',    zones: [0, .9, .35, .9, .35, .9, .35, .9, .35, .9], pulse: true }
-  ];
-  var travel = document.getElementById('travel');
-  var presetBox = document.getElementById('presets');
-  var bars = [];
-  for (var i = 0; i < 10; i++) { var s = document.createElement('span'); travel.appendChild(s); bars.push(s); }
-
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var timer = null, phase = 0;
-
-  function paint(zones, accent) {
-    bars.forEach(function (bar, idx) {
-      var v = zones[idx];
-      bar.style.height = (8 + v * 92) + '%';
-      bar.classList.toggle('on', v > 0);
-      bar.style.backgroundColor = (accent === idx) ? '#FFC14D' : '';
-    });
-  }
-  function select(idx) {
-    var p = presets[idx];
-    presetBox.querySelectorAll('.chip').forEach(function (c, i) { c.setAttribute('aria-pressed', i === idx ? 'true' : 'false'); });
-    clearInterval(timer);
-    paint(p.zones, p.accent);
-    if (p.pulse && !reduce) {
-      phase = 0;
-      timer = setInterval(function () {
-        phase ^= 1;
-        paint(p.zones.map(function (v, z) { return v === 0 ? 0 : ((z + phase) % 2 ? .9 : .35); }));
-      }, 260);
-    }
-  }
-  presets.forEach(function (p, idx) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'chip';
-    b.textContent = p.name;
-    b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', function () { select(idx); });
-    presetBox.appendChild(b);
-  });
-  select(1);
-
-  /* ---- capturas: mostra só as que existem em assets/screens ---- */
-  var shots = [
-    ['inicio.jpg', 'Início: driver ativo e DualSense conectado'],
-    ['gatilhos.jpg', 'Gatilhos adaptáveis de L2 e R2'],
-    ['luzes.jpg', 'Barra de luz, vibração e touchpad'],
-    ['abertura.jpg', 'Tela de abertura do app']
-  ];
-  var section = document.getElementById('capturas');
-  var grid = document.getElementById('shots');
-  var found = 0;
-  shots.forEach(function (s) {
-    var img = new Image();
-    img.alt = s[1];
-    img.loading = 'lazy';
-    img.onload = function () {
-      var fig = document.createElement('figure');
-      var cap = document.createElement('figcaption');
-      cap.textContent = s[1];
-      fig.appendChild(img);
-      fig.appendChild(cap);
-      grid.appendChild(fig);
-      found++;
-      section.hidden = false;
-    };
-    img.src = 'assets/screens/' + s[0];
-  });
-
-  /* ---- copiar chave Pix ---- */
-  var toast = document.getElementById('toast');
-  document.getElementById('copy').addEventListener('click', function () {
-    var key = document.getElementById('pixnum').textContent.trim();
-    function done() { toast.textContent = 'Chave Pix copiada.'; setTimeout(function () { toast.textContent = ''; }, 3500); }
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(key).then(done, function () { toast.textContent = 'Selecione e copie: ' + key; });
-    } else {
-      var t = document.createElement('textarea');
-      t.value = key; document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); done(); } catch (e) { toast.textContent = 'Selecione e copie: ' + key; }
-      document.body.removeChild(t);
-    }
-  });
-})();
-</script>
+<div class="mdl" id="mDl">
+  <a class="b p" href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip"><span>Baixar grátis</span></a>
+  <a class="b wa" href="#desbloqueio">Desbloquear</a>
+</div>
+<script defer src="vendor/gsap.min.js"></script>
+<script defer src="vendor/ScrollTrigger.min.js"></script>
+<script defer src="vendor/lenis.min.js"></script>
+<script type="module" src="js/site.js"></script>
 </body>
 </html>

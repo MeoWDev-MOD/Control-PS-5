@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meowdev-mod.github.io/Control-PS-5/sitemap.xml
