@@ -6,6 +6,9 @@ import sys
 
 from PIL import Image, ImageDraw
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from foco_homebrew import foco  # noqa: E402
+
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.join(AQUI, "..")
 PRINTS = os.path.join(RAIZ, "..", "..", "print")
@@ -18,7 +21,10 @@ TELAS = {
     "2026101508034200": "aperte-l-e-r-para-sincronizar-controle-ps5-no-switch",
 }
 for orig, nome in TELAS.items():
-    Image.open(os.path.join(PRINTS, orig + ".jpg")).convert("RGB").save(os.path.join(IMG, nome + ".webp"), quality=80, method=6)
+    im = Image.open(os.path.join(PRINTS, orig + ".jpg")).convert("RGB")
+    if nome.startswith("menu-homebrew"):
+        im = foco(im)   # só o Control PS-5 fica legível (ver foco_homebrew.py)
+    im.save(os.path.join(IMG, nome + ".webp"), quality=80, method=6)
 
 # Telas do app: as da interface atual, geradas pela prévia do app (mesmo código de desenho do console)
 PREVIA = os.path.join(RAIZ, "..", "dist", "previa-telas")

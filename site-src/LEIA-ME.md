@@ -5,7 +5,7 @@ O site é publicado direto da raiz deste repositório (GitHub Pages, branch `mai
 - `cena3d.js`: a cena do Nintendo Switch (3D) e do controle de PS5. Gera `js/cena3d.js`, com o Three.js junto:
   `NODE_PATH="<pasta com three instalado>/node_modules" esbuild site-src/cena3d.js --bundle --minify --format=esm --target=es2020 --outfile=js/cena3d.js`
 - `frente.json` e `img/dualsense-frente.webp`: o controle, o mesmo desenho de frente do app, separado em peças. Os dois são gerados por `app/tools/gerar_controle2d.py`, fora deste repositório. No site, como no app, o controle fica de frente e só balança de leve.
-- `preparar_imagens.py`: gera `img/`. As telas do sistema (menu Homebrew, tela Controles) são capturas reais do Switch, da pasta `print` do projeto. As telas do app vêm da prévia do app (`dist/previa-telas`), que usa o mesmo código de desenho do console, com dados de exemplo.
+- `preparar_imagens.py`: gera `img/`. As telas do sistema (menu Homebrew, tela Controles) são capturas reais do Switch, da pasta `print` do projeto. As telas do app vêm da prévia do app (`dist/previa-telas`), que usa o mesmo código de desenho do console, com dados de exemplo. No print do menu Homebrew, `foco_homebrew.py` deixa só o Control PS-5 legível; a imagem do bloco da Dat Zero é a cena do Switch mostrando esse print.
 
 Na tela do Switch aparecem as telas do app, na ordem do tutorial (`TELAS` e `aplica` em `cena3d.js`). A cena não traz logo da Nintendo nem da Sony.
 
