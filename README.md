@@ -22,7 +22,7 @@ Um app, um toque em Instalar.
 
 **2. Instalar o driver e parear**
 
-1. Na tela **Início**, toque no botão azul **Instalar**. Quando terminar, o app pede para reiniciar o Switch.
+1. Na tela **Início**, toque no botão roxo **Instalar driver**. Quando terminar, o app pede para reiniciar o Switch.
 2. Com o Switch ligado de novo, abra o Control PS-5 outra vez.
 3. Toque em **Parear controle** e escolha **Mudar ordem ou modo de segurar**.
 4. No controle, segure **Create** e **PS** até as barras de luz piscarem.

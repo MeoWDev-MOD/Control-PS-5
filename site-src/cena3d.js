@@ -1,24 +1,20 @@
-// Modelos 3D da página: o Nintendo Switch e o controle de PS5 se conectando.
-// O controle é montado a partir do desenho usado no próprio app (dualsense.json, medido por tracar_controle.py),
-// e a tela do Switch mostra as capturas reais do app. Sem logo da Nintendo nem da Sony.
+// Cena da página: o Nintendo Switch (3D) e o controle de PS5 se conectando.
+// O controle é o mesmo desenho de frente do app, em camadas (frente.json e img/dualsense-frente.webp, gerados por
+// app/tools/gerar_controle2d.py), e a tela do Switch mostra as telas do app. Sem logo da Nintendo nem da Sony.
 // Gerar o arquivo final: ver site-src/LEIA-ME.md.
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { toCreasedNormals } from "three/examples/jsm/utils/BufferGeometryUtils.js";
-import DS from "./dualsense.json";
+import FR from "./frente.json";
 
 const IMG = new URL("../img/", import.meta.url).href;
 const PI = Math.PI;
 const cl = (x) => Math.max(0, Math.min(1, x));
 const sm = (a, b, x) => { const t = cl((x - a) / (b - a)); return t * t * (3 - 2 * t); };
 const mix = (a, b, t) => a + (b - a) * t;
-const gauss = (x, y, cx, cy, r) => Math.exp(-((x - cx) ** 2 + (y - cy) ** 2) / (2 * r * r));
 
 // 1 unidade = 5 cm. O controle tem 16 cm; o Switch com os Joy-Con, 23,9 x 10,2 x 1,4 cm.
-const U = 3.2 / DS.w, CX = 440, CY = 400;
-const dx = (x) => (x - CX) * U, dy = (y) => -(y - CY) * U;
-const EPS = 0.034;
 
 // As mesmas 12 cores do app (tela Luzes e vibração).
 export const CORES = [
@@ -88,331 +84,108 @@ function telaDeCanvas(renderer, w, h, desenho, cor = true) {
 }
 
 // ---------- contornos do controle ----------
-function suaviza(p, n = 1) {
-  for (let k = 0; k < n; k++) {
-    const q = [];
-    p.forEach((a, i) => {
-      const b = p[(i + 1) % p.length];
-      q.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
-    });
-    p = q;
-  }
-  return p;
-}
-const PECA = Object.fromEntries(Object.entries(DS.pecas).map(([k, v]) => [k, suaviza(v.p, 1)]));
-const meioDe = (pol) => {
-  const xs = pol.map((p) => p[0]), ys = pol.map((p) => p[1]);
-  return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
-};
-function caminho(x, pol) {
-  x.beginPath();
-  pol.forEach(([a, b], i) => (i ? x.lineTo(a, b) : x.moveTo(a, b)));
-  x.closePath();
-}
-function formaDe(pol, ox, oy, k = 1) {
-  const s = new THREE.Shape();
-  pol.forEach(([x, y], i) => {
-    const X = (x - ox) * U * k, Y = -(y - oy) * U * k;
-    if (i) s.lineTo(X, Y); else s.moveTo(X, Y);
-  });
-  s.closePath();
-  return s;
-}
-function extrude(forma, { depth = 0.03, bevel = 0.012, seg = 3 } = {}) {
-  const g = new THREE.ExtrudeGeometry(forma, { depth, bevelEnabled: bevel > 0, bevelSize: bevel, bevelThickness: bevel, bevelSegments: seg, bevelOffset: -bevel, curveSegments: 4 });
-  return toCreasedNormals(g, 0.75);
-}
+// ---------- controle de PS5: o mesmo desenho de frente do app, em camadas ----------
+// As peças (atlas img/dualsense-frente.webp, posições em frente.json) ficam em profundidades diferentes. O
+// controle olha sempre para a câmera e só balança de leve, como no app: assim ele nunca deforma.
+const FR_VS = `varying vec2 vUv;
+void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+// Cor da peça x tinta, misturada com o âmbar do botão apertado, mais a luz própria (barra, LEDs)
+const FR_FS = `uniform sampler2D map;
+uniform vec3 mul;
+uniform vec3 add;
+uniform vec3 hlc;
+uniform float hl;
+uniform float alpha;
+varying vec2 vUv;
+void main() {
+  vec4 t = texture2D(map, vUv);
+  vec3 c = mix(t.rgb * mul, hlc, hl) + add;
+  gl_FragColor = vec4(c, t.a * alpha);
+}`;
+const PROFUNDO = 1.6;   // exagera um pouco a distância entre as camadas: a inclinação leve aparece mais
+const hex = (h) => { const n = parseInt(h.replace("#", ""), 16); return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]; };
 
-function mascara(pols, nx, ny) {
-  const c = document.createElement("canvas");
-  c.width = nx; c.height = ny;
-  const x = c.getContext("2d", { willReadFrequently: true });
-  x.scale(nx / DS.w, ny / DS.h);
-  x.fillStyle = "#fff";
-  pols.forEach((p) => { caminho(x, p); x.fill(); });
-  const d = x.getImageData(0, 0, nx, ny).data, m = new Float32Array(nx * ny);
-  for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3] / 255;
-  return m;
-}
-function desfoca(m, w, h, r) {
-  const a = new Float32Array(m.length);
-  for (let v = 0; v < 2; v++) {
-    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
-      let s = 0, n = 0;
-      for (let k = -r; k <= r; k++) {
-        const c = v ? j + k : i + k;
-        if (c < 0 || c >= (v ? h : w)) continue;
-        s += m[v ? c * w + i : j * w + c]; n++;
-      }
-      a[j * w + i] = s / n;
-    }
-    m.set(a);
-  }
-  return m;
-}
-// Distância até a borda, em células (duas varreduras).
-function distancia(m, w, h) {
-  const d = new Float32Array(w * h);
-  for (let i = 0; i < d.length; i++) d[i] = m[i] > 0.5 ? 1e6 : 0;
-  const D = 1.414;
-  for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
-    const k = j * w + i;
-    if (!d[k]) continue;
-    if (i) d[k] = Math.min(d[k], d[k - 1] + 1);
-    if (j) d[k] = Math.min(d[k], d[k - w] + 1);
-    if (i && j) d[k] = Math.min(d[k], d[k - w - 1] + D);
-    if (j && i < w - 1) d[k] = Math.min(d[k], d[k - w + 1] + D);
-  }
-  for (let j = h - 1; j >= 0; j--) for (let i = w - 1; i >= 0; i--) {
-    const k = j * w + i;
-    if (!d[k]) continue;
-    if (i < w - 1) d[k] = Math.min(d[k], d[k + 1] + 1);
-    if (j < h - 1) d[k] = Math.min(d[k], d[k + w] + 1);
-    if (i < w - 1 && j < h - 1) d[k] = Math.min(d[k], d[k + w + 1] + D);
-    if (j < h - 1 && i) d[k] = Math.min(d[k], d[k + w - 1] + D);
-  }
-  return d;
-}
-
-// ---------- DualSense ----------
-function criaControle(renderer, { pequena }) {
-  const W = DS.w, H = DS.h;
-  const GW = pequena ? 150 : 236, GH = Math.round((GW * H) / W), nx = GW + 1, ny = GH + 1, celX = W / GW, celY = H / GH;
-  const mCorpo = mascara([PECA.corpo], nx, ny);
-  const dist = distancia(mCorpo, nx, ny);
-  const r = pequena ? 1 : 2;
-  const mCentro = desfoca(mascara([PECA.centro], nx, ny), nx, ny, r);
-  const mTouch = desfoca(mascara([PECA.moldura], nx, ny), nx, ny, r);
-  const mOmbro = desfoca(mascara([PECA.l1, PECA.r1], nx, ny), nx, ny, r);
-  const zF = new Float32Array(nx * ny), zB = new Float32Array(nx * ny);
-  for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
-    const k = j * nx + i, xp = i * celX, yp = j * celY, D = dist[k] * celX;
-    const t = cl((D - celX * 1.7) / 74), p = 1 - Math.pow(1 - t, 2.6);
-    const queda = 1 - 0.38 * sm(330, 690, yp);
-    let f = EPS + (0.205 - EPS) * p * queda;
-    f += p * (0.034 * gauss(xp, yp, 118, 300, 105) + 0.034 * gauss(xp, yp, 762, 300, 105));
-    f -= p * (0.03 * mCentro[k] + 0.016 * mTouch[k] + 0.045 * mOmbro[k]);
-    f -= p * (0.022 * gauss(xp, yp, 284, 405, 44) + 0.022 * gauss(xp, yp, 593, 405, 44) + 0.012 * gauss(xp, yp, 152, 285, 56) + 0.012 * gauss(xp, yp, 723, 283, 64));
-    zF[k] = Math.max(EPS, f);
-    const tb = cl((D - celX * 1.7) / 120), pb = 1 - Math.pow(1 - tb, 2.6);
-    const pega = 0.55 + 0.45 * sm(100, 270, Math.abs(xp - CX)) * sm(210, 430, yp);
-    zB[k] = Math.max(EPS, EPS + (0.5 - EPS) * pb * pega);
-  }
-  // Altura da superfície em um ponto do desenho: é onde cada botão fica apoiado.
-  const sup = (xp, yp) => {
-    const a = cl(xp / W) * GW, b = cl(yp / H) * GH, i = Math.min(GW - 1, a | 0), j = Math.min(GH - 1, b | 0), u = a - i, v = b - j;
-    const q = (ii, jj) => zF[jj * nx + ii];
-    return mix(mix(q(i, j), q(i + 1, j), u), mix(q(i, j + 1), q(i + 1, j + 1), u), v);
-  };
-
-  // Malha da casca: só as células perto do corpo. A borda exata vem da transparência da textura.
-  const perto = new Uint8Array(nx * ny);
-  for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
-    if (mCorpo[j * nx + i] <= 0) continue;
-    for (let b = -1; b <= 1; b++) for (let a = -1; a <= 1; a++) {
-      const c = i + a, e = j + b;
-      if (c >= 0 && c < nx && e >= 0 && e < ny) perto[e * nx + c] = 1;
-    }
-  }
-  const ids = new Int32Array(nx * ny).fill(-1), pos = [], uv = [], zb = [];
-  for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
-    const k = j * nx + i;
-    if (!perto[k]) continue;
-    ids[k] = pos.length / 3;
-    const xp = i * celX, yp = j * celY;
-    pos.push(dx(xp), dy(yp), zF[k]);
-    uv.push(xp / W, 1 - yp / H);
-    zb.push(zB[k]);
-  }
-  const fr = [], tr = [];
-  for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
-    const a = ids[j * nx + i], b = ids[j * nx + i + 1], c = ids[(j + 1) * nx + i], d = ids[(j + 1) * nx + i + 1];
-    if (a < 0 || b < 0 || c < 0 || d < 0) continue;
-    fr.push(a, c, b, b, c, d);
-    tr.push(a, b, c, b, d, c);
-  }
-  const geoF = new THREE.BufferGeometry();
-  geoF.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geoF.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geoF.setIndex(fr);
-  geoF.computeVertexNormals();
-  const pos2 = pos.slice();
-  for (let i = 0; i < zb.length; i++) pos2[i * 3 + 2] = -zb[i];
-  const geoB = new THREE.BufferGeometry();
-  geoB.setAttribute("position", new THREE.Float32BufferAttribute(pos2, 3));
-  geoB.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geoB.setIndex(tr);
-  geoB.computeVertexNormals();
-
-  // Pintura da frente: asas brancas, centro preto, frestas em volta dos botões.
-  const TW = pequena ? 1100 : 1760, TH = Math.round((TW * H) / W);
-  const ESCURO = "#101014";
-  const mapa = telaDeCanvas(renderer, TW, TH, (x) => {
-    x.scale(TW / W, TH / H);
-    caminho(x, PECA.corpo); x.fillStyle = ESCURO; x.fill();
-    x.save();
-    caminho(x, PECA.corpo); x.clip();
-    const branco = x.createLinearGradient(0, 130, 0, 700);
-    branco.addColorStop(0, "#f7f5fa"); branco.addColorStop(1, "#e6e3ec");
-    x.fillStyle = branco; x.strokeStyle = branco; x.lineWidth = 16; x.lineJoin = "round";
-    [PECA.asaE, PECA.asaD].forEach((p) => { caminho(x, p); x.fill(); x.stroke(); });
-    x.fillStyle = ESCURO; x.strokeStyle = ESCURO; x.lineWidth = 5;
-    [PECA.centro, PECA.moldura].forEach((p) => { caminho(x, p); x.fill(); x.stroke(); });
-    x.strokeStyle = "#08080b"; x.lineWidth = 2;
-    caminho(x, PECA.centro); x.stroke();
-    x.restore();
-    // frestas embaixo dos botões
-    x.fillStyle = "#07070a"; x.strokeStyle = "#07070a"; x.lineWidth = 5;
-    ["dpadU", "dpadD", "dpadL", "dpadR", "tri", "cir", "x", "qua", "create", "options", "ps", "mute", "touch", "l1", "r1"].forEach((n) => { caminho(x, PECA[n]); x.fill(); x.stroke(); });
-    // poços dos analógicos
-    ["stickL", "stickR"].forEach((n) => { caminho(x, PECA[n]); x.fillStyle = "#0a0a0e"; x.fill(); x.strokeStyle = "#2c2c35"; x.lineWidth = 3; x.stroke(); });
-    // saída de som e microfone: furinhos dos dois lados do botão central
-    x.fillStyle = "#34343e";
-    for (const lado of [-1, 1]) for (let a = 0; a < 9; a++) for (let b = 0; b < 3; b++) {
-      x.beginPath(); x.arc(438 + lado * (40 + a * 7 + (b % 2) * 3.5), 394 + b * 7, 1.5, 0, 7); x.fill();
-    }
-  });
-  const emissivo = telaDeCanvas(renderer, TW, TH, (x) => {
-    x.fillStyle = "#000"; x.fillRect(0, 0, TW, TH);
-    x.scale(TW / W, TH / H);
-    x.fillStyle = "#fff";
-    caminho(x, PECA.moldura); x.fill();
-    x.fillStyle = "#000"; x.strokeStyle = "#000"; x.lineWidth = 3;
-    caminho(x, PECA.touch); x.fill(); x.stroke();
-    x.fillRect(0, 0, W, 170);
-    x.fillRect(310, 298, 260, 60);
-  }, false);
-  const mFrente = new THREE.MeshStandardMaterial({ map: mapa, alphaTest: 0.5, alphaToCoverage: true, roughness: 0.46, metalness: 0, emissive: new THREE.Color(0x0040ff), emissiveMap: emissivo, emissiveIntensity: 0 });
-  const mapaTras = telaDeCanvas(renderer, 900, Math.round((900 * H) / W), (x, a, b) => {
-    x.scale(a / W, b / H);
-    caminho(x, PECA.corpo); x.fillStyle = "#121217"; x.fill();
-  });
-  const mTras = new THREE.MeshStandardMaterial({ map: mapaTras, alphaTest: 0.5, alphaToCoverage: true, roughness: 0.62 });
-
+function criaControle(renderer) {
   const g = new THREE.Group();
-  g.add(new THREE.Mesh(geoF, mFrente), new THREE.Mesh(geoB, mTras));
-  const nucleo = new THREE.ExtrudeGeometry(formaDe(PECA.corpo, CX, CY), { depth: EPS * 2, bevelEnabled: false });
-  nucleo.translate(0, 0, -EPS);
-  g.add(new THREE.Mesh(nucleo, new THREE.MeshStandardMaterial({ color: 0x0c0c10, roughness: 0.6 })));
-
-  // Peças por cima da casca
-  const preto = () => new THREE.MeshStandardMaterial({ color: 0x1b1b22, roughness: 0.34, metalness: 0.05, emissive: 0xffb01f, emissiveIntensity: 0 });
-  const peca = (nome, op, mat, sobe = 0) => {
-    const pol = PECA[nome], [cx, cy] = meioDe(pol);
-    const m = new THREE.Mesh(extrude(formaDe(pol, cx, cy), op), mat);
-    m.position.set(dx(cx), dy(cy), sup(cx, cy) + sobe);
-    m.userData.z0 = m.position.z;
+  const tex = new THREE.TextureLoader().load(IMG + "dualsense-frente.webp");
+  tex.flipY = false;
+  tex.colorSpace = THREE.NoColorSpace;   // as cores já são as do desenho: o shader não converte
+  tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+  const [AW, AH] = FR.atlas, u = FR.unidade, [cx, cy] = FR.centro;
+  const P = {};
+  [...FR.pecas].sort((a, b) => a.z - b.z).forEach((p, ordem) => {
+    const [ax, ay, aw, ah] = p.atlas, [x0, y0] = p.xy, [nx, ny] = p.ancora;
+    const geo = new THREE.PlaneGeometry(aw * u, ah * u);
+    // a peça gira, encolhe e anda em volta do próprio centro (âncora)
+    geo.translate((x0 + aw / 2 - nx) * u, -(y0 + ah / 2 - ny) * u, 0);
+    const uv = geo.attributes.uv;
+    for (let i = 0; i < uv.count; i++) uv.setXY(i, (ax + uv.getX(i) * aw) / AW, (ay + (1 - uv.getY(i)) * ah) / AH);
+    const aditivo = p.tipo === "gatilho" || p.tipo === "brilho" || p.tipo === "led";
+    const mat = new THREE.ShaderMaterial({
+      uniforms: {
+        map: { value: tex }, mul: { value: new THREE.Vector3(1, 1, 1) }, add: { value: new THREE.Vector3(0, 0, 0) },
+        hlc: { value: new THREE.Vector3(1, 0.69, 0.12) }, hl: { value: 0 }, alpha: { value: aditivo ? 0 : 1 },
+      },
+      vertexShader: FR_VS, fragmentShader: FR_FS, transparent: true, depthWrite: false,
+      blending: aditivo ? THREE.AdditiveBlending : THREE.NormalBlending,
+    });
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set((nx - cx) * u, -(ny - cy) * u, p.z * PROFUNDO);
+    m.renderOrder = 10 + ordem;
+    m.userData = { x0: m.position.x, y0: m.position.y, z0: m.position.z };
     g.add(m);
-    return m;
-  };
-  const dpadMat = preto();
-  ["dpadU", "dpadD", "dpadL", "dpadR"].forEach((n) => peca(n, { depth: 0.022, bevel: 0.012 }, dpadMat, -0.004));
-
-  // △ ○ × □
-  const simbolo = (tipo) => telaDeCanvas(renderer, 128, 128, (x) => {
-    x.strokeStyle = "#d9d9e6"; x.lineWidth = 8; x.lineCap = "round"; x.lineJoin = "round";
-    x.beginPath();
-    if (tipo === "tri") { x.moveTo(64, 26); x.lineTo(103, 94); x.lineTo(25, 94); x.closePath(); }
-    if (tipo === "cir") x.arc(64, 64, 36, 0, 7);
-    if (tipo === "x") { x.moveTo(32, 32); x.lineTo(96, 96); x.moveTo(96, 32); x.lineTo(32, 96); }
-    if (tipo === "qua") x.rect(30, 30, 68, 68);
-    x.stroke();
-  });
-  const faceMat = preto();
-  ["tri", "cir", "x", "qua"].forEach((n) => {
-    const m = peca(n, { depth: 0.024, bevel: 0.013 }, faceMat, -0.004);
-    const s = new THREE.Mesh(new THREE.PlaneGeometry(0.135, 0.135), new THREE.MeshBasicMaterial({ map: simbolo(n), transparent: true, depthWrite: false, opacity: 0.9, toneMapped: false }));
-    s.position.z = 0.024 + 0.013 + 0.0015;
-    m.add(s);
+    P[p.nome] = m;
   });
 
-  const toque = peca("touch", { depth: 0.012, bevel: 0.017, seg: 4 }, new THREE.MeshStandardMaterial({ color: 0xf1eff6, roughness: 0.5 }), 0.008);
-  const create = peca("create", { depth: 0.014, bevel: 0.006 }, preto(), 0.002);
-  const options = peca("options", { depth: 0.014, bevel: 0.006 }, preto(), 0.002);
-  const ps = peca("ps", { depth: 0.02, bevel: 0.012 }, preto(), 0.002);
-  const mute = peca("mute", { depth: 0.012, bevel: 0.006 }, preto(), 0.002);
-
-  // Analógicos: base, pescoço e topo côncavo
-  const perfil = [[0.2, 0], [0.19, 0.012], [0.135, 0.045], [0.085, 0.09], [0.08, 0.15], [0.135, 0.178], [0.158, 0.196], [0.158, 0.214], [0.142, 0.226], [0.118, 0.218], [0.07, 0.208], [0, 0.205]].map(([a, b]) => new THREE.Vector2(a, b));
-  const geoStick = new THREE.LatheGeometry(perfil, 40);
-  geoStick.rotateX(PI / 2);
-  const matStick = new THREE.MeshStandardMaterial({ color: 0x1a1a20, roughness: 0.55, side: THREE.DoubleSide });
-  const stick = (nome) => {
-    const [cx, cy] = meioDe(PECA[nome]);
-    const m = new THREE.Mesh(geoStick, matStick);
-    m.position.set(dx(cx), dy(cy), sup(cx, cy) - 0.008);
-    g.add(m);
-    return m;
-  };
-  const stickL = stick("stickL"), stickR = stick("stickR");
-
-  // Ombros e gatilhos
-  const l1 = peca("l1", { depth: 0.2, bevel: 0.03, seg: 3 }, preto(), 0);
-  const r1 = peca("r1", { depth: 0.2, bevel: 0.03, seg: 3 }, preto(), 0);
-  [l1, r1].forEach((m) => { m.position.z = 0.0; m.position.y -= 0.006; m.userData.y0 = m.position.y; m.userData.z0 = 0; });
-  const gatilho = (nome) => {
-    const pol = PECA[nome], ys = pol.map((p) => p[1]), [cx] = meioDe(pol), base = Math.max(...ys);
-    const piv = new THREE.Group();
-    const m = new THREE.Mesh(extrude(formaDe(pol, cx, base), { depth: 0.2, bevel: 0.05, seg: 5 }), new THREE.MeshStandardMaterial({ color: 0x24242c, roughness: 0.42, emissive: 0xffb01f, emissiveIntensity: 0 }));
-    m.scale.y = 0.74;
-    m.position.z = -0.1;
-    piv.add(m);
-    piv.position.set(dx(cx), dy(158), -0.13);
-    piv.rotation.x = -0.34;
-    piv.userData.r0 = -0.34;
-    piv.userData.m = m;
-    g.add(piv);
-    return piv;
-  };
-  const l2 = gatilho("l2"), r2 = gatilho("r2");
-
-  // LEDs de jogador
-  const leds = DS.leds.map(([a, b]) => {
-    const m = new THREE.Mesh(new THREE.CircleGeometry(0.0165, 16), new THREE.MeshBasicMaterial({ color: 0x24242c, toneMapped: false }));
-    m.position.set(dx(a), dy(b), sup(a, b) + 0.004);
-    g.add(m);
-    return m;
-  });
-
-  // Brilho em volta das barras de luz
-  const texBrilho = telaDeCanvas(renderer, 128, 256, (x, a, b) => {
-    const r2d = x.createRadialGradient(a / 2, b / 2, 0, a / 2, b / 2, a / 2);
-    r2d.addColorStop(0, "rgba(255,255,255,1)"); r2d.addColorStop(0.4, "rgba(255,255,255,.34)"); r2d.addColorStop(1, "rgba(255,255,255,0)");
-    x.setTransform(1, 0, 0, b / a, 0, 0);
-    x.fillStyle = r2d;
-    x.fillRect(0, 0, a, a);
-  });
-  const matBrilho = new THREE.MeshBasicMaterial({ map: texBrilho, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, color: 0x0040ff, opacity: 0 });
-  [[258, 240, 0.22], [622, 240, -0.22]].forEach(([a, b, rot]) => {
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 1.05), matBrilho);
-    m.position.set(dx(a), dy(b), sup(a, b) + 0.03);
-    m.rotation.z = rot;
-    g.add(m);
-  });
-
-  // Marca pulsando em volta dos botões do passo
+  // Anel pulsando em volta dos botões do passo (Create e PS)
   const anelGeo = new THREE.RingGeometry(0.86, 1, 48);
   const marca = (nome, raio) => {
-    const [cx, cy] = meioDe(PECA[nome]);
+    const ref = P[nome];
     const m = new THREE.Mesh(anelGeo, new THREE.MeshBasicMaterial({ color: 0xffb01f, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
-    m.position.set(dx(cx), dy(cy), sup(cx, cy) + 0.05);
+    m.position.set(ref.position.x, ref.position.y, ref.position.z + 0.03);
     m.scale.setScalar(raio);
+    m.renderOrder = 100;
     g.add(m);
     return m;
   };
-  const marcas = { create: marca("create", 0.13), ps: marca("ps", 0.15) };
+  const marcas = { create: marca("create", 0.1), ps: marca("ps", 0.12) };
+  ["l2", "r2"].forEach((n) => P[n].material.uniforms.mul.value.set(1, 0.69, 0.12));
+  const THROW = 0.05;
+  const realce = (m, brilho) => { m.material.uniforms.hl.value = Math.min(1, brilho * 0.72); };
 
-  const cor = new THREE.Color(0x0040ff);
   return {
-    g, create, options, ps, mute, l1, r1, l2, r2, stickL, stickR, leds, marcas, toque, sup,
-    setLuz(c, intensidade) {
-      cor.set(c);
-      mFrente.emissive.copy(cor);
-      mFrente.emissiveIntensity = intensidade * 2.6;
-      matBrilho.color.copy(cor);
-      matBrilho.opacity = intensidade * 0.75;
+    g, create: P.create, options: P.options, ps: P.ps, l1: P.l1, r1: P.r1, l2: P.l2, r2: P.r2, toque: P.touch, marcas,
+    /** Botão afundando (k) e acendendo em âmbar (brilho), de 0 a 1 */
+    botao(nome, k, brilho = k) {
+      const m = P[nome];
+      m.position.z = m.userData.z0 - 0.012 * k;
+      m.scale.setScalar(1 - 0.045 * k);
+      m.material.uniforms.mul.value.setScalar(1 - 0.12 * k);
+      realce(m, brilho);
     },
-    setJogador(ligado) { leds.forEach((m, i) => m.material.color.set(ligado && i === 2 ? 0xffffff : 0x24242c)); },
+    ombro(nome, k, brilho = k) {
+      const m = P[nome];
+      m.position.y = m.userData.y0 - 0.014 * k;
+      m.material.uniforms.mul.value.setScalar(1 - 0.12 * k);
+      realce(m, brilho);
+    },
+    /** L2/R2 ficam atrás do L1/R1: apertar acende o ombro na intensidade do aperto */
+    gatilho(nome, p) { P[nome].material.uniforms.alpha.value = cl(p) * 0.95; },
+    stick(nome, x, y) {
+      const m = P[nome];
+      m.position.x = m.userData.x0 + x * THROW;
+      m.position.y = m.userData.y0 + y * THROW;
+    },
+    setLuz(c, k) {
+      const [r, gg, b] = hex(c);
+      const luz = P.luz.material.uniforms, apagada = [0.2, 0.21, 0.26];
+      luz.mul.value.set(mix(apagada[0], r, k), mix(apagada[1], gg, k), mix(apagada[2], b, k));
+      luz.add.value.set(r * 0.35 * k, gg * 0.35 * k, b * 0.35 * k);
+      const glow = P.luzglow.material.uniforms;
+      glow.mul.value.set(r, gg, b);
+      glow.alpha.value = 0.55 * k;
+    },
+    setJogador(ligado) { for (let i = 0; i < 5; i++) P["led" + i].material.uniforms.alpha.value = ligado && i === 2 ? 1 : 0; },
   };
 }
 
@@ -616,9 +389,8 @@ function montaCena(renderer, scene, { pequena = false } = {}) {
   const sw = criaSwitch(renderer);
   sw.g.position.set(0, 1.42, -0.5);
   sw.g.rotation.x = -0.05;
-  const ds = criaControle(renderer, { pequena });
+  const ds = criaControle(renderer);
   ds.g.position.set(0, -1.32, 0.75);
-  ds.g.rotation.x = -0.56;
   raiz.add(sw.g, ds.g);
   const sinal = criaSinal(renderer, scene);
   // Cartão de memória com o app, descendo até o console no passo 1
@@ -664,21 +436,22 @@ function montaCena(renderer, scene, { pequena = false } = {}) {
       sd.material.forEach((m) => { m.opacity = o; });
     }
 
+    // O controle fica de frente para a câmera e só balança de leve, como no app
+    ds.g.lookAt(cam.position);
+    ds.g.rotateY(Math.sin(t * 0.55) * 0.06);
+    ds.g.rotateX(-0.03 + Math.sin(t * 0.41) * 0.025);
+
     // Create + PS
     const seg = sm(2.75, 2.95, s) * (1 - sm(3.75, 3.95, s));
-    ds.create.position.z = ds.create.userData.z0 - 0.012 * seg;
-    ds.ps.position.z = ds.ps.userData.z0 - 0.016 * seg;
     const pulso = 0.6 + 0.4 * Math.sin(t * 6);
-    ds.create.material.emissiveIntensity = seg * 1.4 * pulso;
-    ds.ps.material.emissiveIntensity = seg * 1.4 * pulso;
+    ds.botao("create", seg, seg * pulso);
+    ds.botao("ps", seg, seg * pulso);
     ds.marcas.create.material.opacity = seg * pulso;
     ds.marcas.ps.material.opacity = seg * pulso;
     // L1 + R1
     const om = sm(3.82, 3.98, s) * (1 - sm(4.42, 4.56, s));
-    [ds.l1, ds.r1].forEach((m) => {
-      m.position.y = m.userData.y0 - 0.022 * om;
-      m.material.emissiveIntensity = om * 1.6 * pulso;
-    });
+    ds.ombro("l1", om, om * pulso);
+    ds.ombro("r1", om, om * pulso);
     // Barras de luz: piscam no pareamento, ficam fixas ao conectar (como no controle de verdade)
     const pareando = s >= 2.95 && s < 4.5;
     const conectado = s >= 4.5;
@@ -692,17 +465,16 @@ function montaCena(renderer, scene, { pequena = false } = {}) {
     // Gatilho R2 com o efeito escolhido
     const u = (t / 2.2) % 1;
     const p = s >= 4.7 ? EFEITOS[estado.efeito](u, t) * sm(4.7, 4.85, s) : 0;
-    ds.r2.rotation.x = ds.r2.userData.r0 - p * 0.72;
-    ds.r2.userData.m.material.emissiveIntensity = p * 0.35;
+    ds.gatilho("r2", p);
     // Analógicos mexendo depois de conectar
     const sol = sm(4.7, 4.9, s);
-    ds.stickL.rotation.set(Math.sin(t * 1.3) * 0.2 * sol, Math.cos(t * 1.1) * 0.2 * sol, 0);
-    ds.stickR.rotation.set(Math.cos(t * 0.9) * 0.16 * sol, Math.sin(t * 1.5) * 0.16 * sol, 0);
+    ds.stick("stickL", Math.sin(t * 1.3) * sol, Math.cos(t * 1.1) * sol);
+    ds.stick("stickR", Math.cos(t * 0.9) * 0.8 * sol, Math.sin(t * 1.5) * 0.8 * sol);
 
     // Sinal
     ds.g.updateWorldMatrix(true, false);
     sw.g.updateWorldMatrix(true, false);
-    deP.set(0, dy(235), 0.22).applyMatrix4(ds.g.matrixWorld);
+    ds.ps.getWorldPosition(deP);
     paraP.set(0, -0.75, 0.2).applyMatrix4(sw.g.matrixWorld);
     sinal.fluxo(deP, paraP, sm(3.9, 4.05, s) * (1 - sm(4.42, 4.56, s)), t, "#6fa8ff");
     sinal.ondas(deP, (pareando ? 1 : 0), t, "#5a8bff", cam);
@@ -778,8 +550,8 @@ export async function initHero(canvas, { onReady, pequena = false } = {}) {
   canvas.addEventListener("pointerdown", (e) => { arrasta = true; px = e.clientX; py = e.clientY; canvas.setPointerCapture?.(e.pointerId); canvas.classList.add("pega"); });
   canvas.addEventListener("pointermove", (e) => {
     if (!arrasta) return;
-    rot = Math.max(-1.1, Math.min(1.1, rot + (e.clientX - px) * 0.008));
-    inc = Math.max(-0.28, Math.min(0.5, inc + (e.clientY - py) * 0.004));
+    rot = Math.max(-0.45, Math.min(0.45, rot + (e.clientX - px) * 0.004));
+    inc = Math.max(-0.12, Math.min(0.28, inc + (e.clientY - py) * 0.002));
     px = e.clientX; py = e.clientY;
     toca();
   });

@@ -49,7 +49,7 @@
       "description": "App gratuito para Nintendo Switch desbloqueado que instala o driver e conecta o controle de PS5 (DualSense e DualSense Edge) por Bluetooth, com gatilhos adaptáveis, barra de luz, touchpad e perfil por jogo.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Nintendo Switch com Atmosphère",
-      "softwareVersion": "1.0.1",
+      "softwareVersion": "1.1.0",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
       "author": { "@id": "https://meowdev-mod.github.io/Control-PS-5/#org" },
       "downloadUrl": "https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip",
@@ -70,7 +70,7 @@
       "tool": [{ "@type": "HowToTool", "name": "App Control PS-5" }, { "@type": "HowToTool", "name": "Computador com cabo USB ou leitor de cartão SD" }],
       "step": [
         { "@type": "HowToStep", "position": 1, "name": "Coloque o app no cartão SD", "text": "Baixe e descompacte o Control PS-5 e copie a pasta para dentro da pasta switch do cartão SD, pelo DBI com cabo USB ou com o cartão no computador.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp" },
-        { "@type": "HowToStep", "position": 2, "name": "Instale o driver", "text": "Abra o Control PS-5 no menu Homebrew e, na tela Início, toque no botão azul Instalar. Quando terminar, reinicie o Switch.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/app-control-ps5-instalar-driver-dualsense.webp" },
+        { "@type": "HowToStep", "position": 2, "name": "Instale o driver", "text": "Abra o Control PS-5 no menu Homebrew e, na tela Início, toque no botão roxo Instalar driver. Quando terminar, reinicie o Switch.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/app-control-ps5-instalar-driver-dualsense.webp" },
         { "@type": "HowToStep", "position": 3, "name": "Toque em Parear controle", "text": "Abra o app de novo, toque em Parear controle e, na tela Controles, escolha Mudar ordem ou modo de segurar.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/tela-controles-do-nintendo-switch-mudar-ordem.webp" },
         { "@type": "HowToStep", "position": 4, "name": "Segure Create e PS", "text": "No controle, segure Create e PS até as barras de luz começarem a piscar." },
         { "@type": "HowToStep", "position": 5, "name": "Aperte L1 e R1 juntos", "text": "Na tela Aperte L + R, aperte L1 e R1 juntos. Quando sincronizar, um controle preto aparece na tela e as barras de luz ficam acesas, sem piscar.", "image": "https://meowdev-mod.github.io/Control-PS-5/img/aperte-l-e-r-para-sincronizar-controle-ps5-no-switch.webp" },
@@ -162,8 +162,8 @@
     </div>
     <div>
       <div class="stage3d" id="heroStage"><span class="ribbon" aria-hidden="true"></span>
-        <img class="poster" src="img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp" width="900" height="846" alt="Modelo 3D de um Nintendo Switch com o app Control PS-5 na tela e um controle de PS5 branco conectado, com a barra de luz acesa" fetchpriority="high">
-        <canvas id="hero3d" aria-label="Modelo 3D do Nintendo Switch e do controle de PS5 se conectando. Arraste para girar."></canvas>
+        <img class="poster" src="img/controle-de-ps5-conectado-no-nintendo-switch-3d.webp" width="900" height="846" alt="Nintendo Switch com o app Control PS-5 na tela e um controle de PS5 branco conectado, com a barra de luz acesa" fetchpriority="high">
+        <canvas id="hero3d" aria-label="Nintendo Switch e controle de PS5 se conectando. Arraste para mexer a cena."></canvas>
       </div>
       <div class="aovivo card" id="aoVivo">
         <div>
@@ -176,7 +176,7 @@
           <div class="curso"><span>solto</span><div id="curso" aria-hidden="true"></div><span>fundo</span></div>
         </div>
       </div>
-      <p class="caption">As cores e os efeitos são os do app. Arraste o modelo para girar.</p>
+      <p class="caption">As cores e os efeitos são os do app. Arraste para mexer a cena.</p>
     </div>
   </section>
 
@@ -198,9 +198,9 @@
   </section>
 
   <section class="sec" id="como-conectar">
-    <div class="h"><span class="kick">Passo a passo</span><h2>Como conectar o controle de PS5 no Nintendo Switch</h2><p>Role a página e acompanhe no modelo 3D. As telas no console são capturas reais do app.</p></div>
+    <div class="h"><span class="kick">Passo a passo</span><h2>Como conectar o controle de PS5 no Nintendo Switch</h2><p>Role a página e acompanhe na animação. As telas que aparecem no console são as do próprio app.</p></div>
     <div class="story" id="montagem">
-      <div class="storypalco" id="storyStage"><canvas id="story3d" aria-label="Modelo 3D mostrando cada passo da conexão do controle de PS5 com o Nintendo Switch"></canvas><div id="rotulos3d" aria-hidden="true"></div><div class="carrega">Carregando o modelo 3D</div></div>
+      <div class="storypalco" id="storyStage"><canvas id="story3d" aria-label="Animação mostrando cada passo da conexão do controle de PS5 com o Nintendo Switch"></canvas><div id="rotulos3d" aria-hidden="true"></div><div class="carrega">Carregando o modelo 3D</div></div>
       <div class="passos">
         <article class="card passo"><span class="nro">1</span><h3>Coloque o app no cartão SD</h3>
           <p>Antes, faça uma cópia da pasta <code>atmosphere/contents/010000000000bd00</code> do cartão, por segurança. Depois <a href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">baixe o app</a> e descompacte.</p>
@@ -213,8 +213,8 @@
           <p>Prefere sem cabo? Coloque o cartão SD no computador, copie a pasta para dentro de <b>switch</b> e devolva o cartão ao Switch.</p>
           <img src="img/menu-homebrew-com-control-ps5-no-nintendo-switch.webp" width="1280" height="720" loading="lazy" alt="Menu Homebrew do Nintendo Switch com o app Control PS-5 na lista"></article>
         <article class="card passo"><span class="nro">2</span><h3>Abra o app e instale o driver</h3>
-          <p>Saia do DBI e volte ao menu Homebrew (<kbd>R</kbd> + Álbum). Abra o Control PS-5 e, na tela <b>Início</b>, toque no botão azul <b>Instalar</b>. Quando terminar, o app pede para reiniciar o Switch.</p>
-          <img src="img/app-control-ps5-instalar-driver-dualsense.webp" width="1280" height="720" loading="lazy" alt="Tela Início do Control PS-5 com o botão azul para instalar o driver do DualSense"></article>
+          <p>Saia do DBI e volte ao menu Homebrew (<kbd>R</kbd> + Álbum). Abra o Control PS-5 e, na tela <b>Início</b>, toque no botão roxo <b>Instalar driver</b>. Quando terminar, o app pede para reiniciar o Switch.</p>
+          <img src="img/app-control-ps5-instalar-driver-dualsense.webp" width="1280" height="720" loading="lazy" alt="Tela Início do Control PS-5 com o botão roxo para instalar o driver do DualSense"></article>
         <article class="card passo"><span class="nro">3</span><h3>Toque em Parear controle</h3>
           <p>Com o Switch ligado de novo, abra o Control PS-5 outra vez. Toque em <b>Parear controle</b> e, na tela <b>Controles</b> que abrir, escolha <b>Mudar ordem ou modo de segurar</b>.</p>
           <img src="img/tela-controles-do-nintendo-switch-mudar-ordem.webp" width="1280" height="720" loading="lazy" alt="Tela Controles do Nintendo Switch com a opção Mudar ordem ou modo de segurar"></article>
@@ -238,8 +238,8 @@
       <article class="card spot"><div class="ico"><svg class="i"><use href="#i-layers"/></svg></div><h3>Perfil automático por jogo</h3><p>Configure uma vez. Quando o jogo abre, o perfil dele é aplicado sozinho; os outros usam o padrão.</p></article>
       <article class="card spot"><div class="ico"><svg class="i"><use href="#i-power"/></svg></div><h3>Instalação em um toque</h3><p>O app instala, atualiza e desinstala o driver, e guarda um backup do MissionControl que você já tinha.</p></article>
       <article class="card spot"><div class="ico"><svg class="i"><use href="#i-link"/></svg></div><h3>Pareamento guiado</h3><p>Mostra o passo a passo no desenho do controle e abre a tela Controles do Switch para você parear outro.</p></article>
-      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-pad"/></svg></div><h3>Teste do controle</h3><p>Botões, analógicos, giroscópio, bateria e touchpad ao vivo, para ver se está tudo certo antes de jogar.</p></article>
-      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-touch"/></svg></div><h3>Touchpad no sistema <span class="tag alt">experimental</span></h3><p>Como tela de toque, como mouse ou como cursor com mãozinha. Funciona dentro do app; no sistema depende do firmware e do jogo.</p></article>
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-pad"/></svg></div><h3>Teste do controle</h3><p>Botões, analógicos, giroscópio, bateria e touchpad ao vivo. Até o PS e o mute dá para testar: na aba Testar eles não tiram você da tela.</p></article>
+      <article class="card wide spot"><div class="ico"><svg class="i"><use href="#i-touch"/></svg></div><h3>Touchpad como cursor</h3><p>O dedo move uma mãozinha com brilho roxo e o clique toca onde ela está, inclusive no menu HOME. Salva quem tem a tela de toque do Switch com defeito. Também funciona como tela de toque direta.</p></article>
     </div>
   </section>
 

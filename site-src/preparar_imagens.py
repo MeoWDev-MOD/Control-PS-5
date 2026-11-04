@@ -1,4 +1,5 @@
-# Gera img/ a partir das capturas reais do Switch (pasta print do projeto), da logo do app e da logo da Dat Zero.
+# Gera img/: telas do sistema (capturas reais do Switch, pasta print do projeto), telas do app (prévia do app, dist/previa-telas),
+# logo do app e logo da Dat Zero.
 # Nomes descritivos porque o Google lê o nome do arquivo. Uso: python site-src/preparar_imagens.py <logo da Dat Zero>
 import os
 import sys
@@ -13,19 +14,26 @@ os.makedirs(IMG, exist_ok=True)
 
 TELAS = {
     "2026101507514100": "menu-homebrew-com-control-ps5-no-nintendo-switch",
-    "2026101507515000": "abertura-do-app-control-ps5",
-    "2026101507575000": "app-control-ps5-instalar-driver-dualsense",
-    "2026101507575100": "instalando-driver-dualsense-no-switch",
-    "2026101507575500": "driver-instalado-reiniciar-o-switch",
-    "2026101507590400": "driver-ativo-parear-controle-ps5",
     "2026101508032900": "tela-controles-do-nintendo-switch-mudar-ordem",
     "2026101508034200": "aperte-l-e-r-para-sincronizar-controle-ps5-no-switch",
-    "2026101507594800": "dualsense-conectado-no-nintendo-switch",
-    "2026101507595500": "gatilhos-adaptaveis-do-dualsense-no-switch",
-    "2026101507595800": "barra-de-luz-e-vibracao-do-dualsense-no-switch",
 }
 for orig, nome in TELAS.items():
     Image.open(os.path.join(PRINTS, orig + ".jpg")).convert("RGB").save(os.path.join(IMG, nome + ".webp"), quality=80, method=6)
+
+# Telas do app: as da interface atual, geradas pela prévia do app (mesmo código de desenho do console)
+PREVIA = os.path.join(RAIZ, "..", "dist", "previa-telas")
+TELAS_APP = {
+    "00c-abertura": "abertura-do-app-control-ps5",
+    "01-inicio-instalar": "app-control-ps5-instalar-driver-dualsense",
+    "14-instalando": "instalando-driver-dualsense-no-switch",
+    "15-instalado": "driver-instalado-reiniciar-o-switch",
+    "03-inicio-sem-controle": "driver-ativo-parear-controle-ps5",
+    "05-inicio-conectado": "dualsense-conectado-no-nintendo-switch",
+    "06-gatilhos-l2": "gatilhos-adaptaveis-do-dualsense-no-switch",
+    "09-luzes": "barra-de-luz-e-vibracao-do-dualsense-no-switch",
+}
+for orig, nome in TELAS_APP.items():
+    Image.open(os.path.join(PREVIA, orig + ".png")).convert("RGB").save(os.path.join(IMG, nome + ".webp"), quality=80, method=6)
 
 
 def icone(lado, saida):
