@@ -3,7 +3,7 @@
 Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado, por Bluetooth e sem adaptador, com **gatilhos adaptáveis, barra de luz, touchpad como cursor e perfis por jogo**.
 Um app, um toque em Instalar.
 
-**Página do projeto:** https://meowdev-mod.github.io/Control-PS-5/
+**Página do projeto:** https://techmeow.app/Control-PS-5/
 
 ## Instalar
 
@@ -52,7 +52,7 @@ O controle é compatível com o console, mas o sistema original não o aceita. P
 
 Este é um projeto independente, sem vínculo, aprovação ou patrocínio da Sony ou da Nintendo. Não usamos os logotipos dessas empresas. DualSense, PlayStation, PS5 e Nintendo Switch são marcas de seus donos, citadas só para indicar com qual console e com qual controle o app funciona.
 
-Cada pessoa responde pelo uso que faz do console e do app. Este aviso é informativo e não é orientação jurídica. Texto completo, com as leis citadas: [Aviso legal](https://meowdev-mod.github.io/Control-PS-5/#aviso-legal).
+Cada pessoa responde pelo uso que faz do console e do app. Este aviso é informativo e não é orientação jurídica. Texto completo, com as leis citadas: [Aviso legal](https://techmeow.app/Control-PS-5/#aviso-legal).
 
 ## Apoie
 
