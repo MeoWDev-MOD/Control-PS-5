@@ -1,0 +1,40 @@
+{
+  "base": "https://techmeow.app/Control-PS-5/",
+  "docs": ".",
+  "raiz": "/Control-PS-5/",
+  "dominio": "https://techmeow.app",
+  "paginas": [
+    "index.html",
+    "privacidade/index.html",
+    "termos/index.html"
+  ],
+  "idiomas": [
+    "en",
+    "es",
+    "ru"
+  ],
+  "origem": "pt-BR",
+  "chave_idioma": "techmeow.lang",
+  "outros_traduzidos": [
+    "/ps5-hdmi-tool/"
+  ],
+  "paginas_exatas": [
+    "/",
+    "/projetos/",
+    "/app/",
+    "/app/acesso/",
+    "/privacidade/",
+    "/JNX/"
+  ],
+  "sitemap": [
+    "index.html"
+  ],
+  "sitemap_arquivo": "sitemap-idiomas.xml",
+  "imagens": {
+    "img/og.jpg": {
+      "en": "img/og-en.jpg",
+      "es": "img/og-es.jpg",
+      "ru": "img/og-ru.jpg"
+    }
+  }
+}

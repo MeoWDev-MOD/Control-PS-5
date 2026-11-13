@@ -17,6 +17,19 @@ O site divide o domínio com os outros projetos: tudo que fica no navegador usa 
 
 No bloco da Dat Zero Games não se fala de jogos, em texto ou imagem: é regra do dono.
 
+## Idiomas (inglês, espanhol e russo)
+
+As páginas em português são a fonte. `site-src/i18n/traduzir.py` gera `en/`, `es/` e `ru/`:
+
+- `python site-src/i18n/traduzir.py extrair` lista os textos em `site-src/i18n/textos-pt.json` e mostra o que falta traduzir (`faltando-<idioma>.json`).
+- As traduções ficam em `site-src/i18n/en.txt`, `es.txt` e `ru.txt`: uma linha `@@ chave` e, embaixo, o texto traduzido, com o mesmo HTML da página. `iguais.txt` lista o que não muda (marcas).
+- `python site-src/i18n/traduzir.py gerar` escreve as páginas traduzidas, o `sitemap-idiomas.xml` (o `sitemap.xml` continua com as imagens) e atualiza, nas páginas em português, os links de idioma (`<!--i18n:head-->`) e o menu (`<!--i18n:menu-->`, no cabeçalho). Se faltar alguma tradução, ele para e não publica página pela metade.
+- Mudou um texto em português? Rode `extrair`, traduza o que aparecer em `faltando-*.json` e rode `gerar`.
+- Textos fora do HTML: os nomes das cores e dos efeitos do controle 3D e o aviso do Pix ficam em `NOMES` (`js/site.js`); a barra de cookies em `TXT` (`js/consent.js`); a faixa "Grátis" é CSS por idioma (`html[lang=...] .ribbon::before` em `css/site.css`). Todos leem o `lang` da página.
+- Imagem de compartilhamento: `python site-src/i18n/og.py` gera `img/og-<idioma>.jpg` a partir de `img/og.jpg` (apaga o texto refazendo o fundo e escreve o traduzido por cima, com o Chrome). A troca por idioma fica em `site-src/i18n/config.json`. As capturas do app continuam em português (o app não tem outros idiomas).
+- O idioma escolhido fica em `techmeow.lang` no navegador e vale para todos os sites de techmeow.app. Sem escolha, quem tem o navegador em outro idioma só vê uma sugestão; a página não muda sozinha (o Google vê cada versão como ela é).
+- Este `traduzir.py` é cópia igual ao do PS5 HDMI Tool e ao do site principal: mudou em um, copie nos outros.
+
 ## SEO
 
 Título, descrição e dados estruturados ficam no `<head>` do `index.html`. As perguntas do bloco `FAQPage` têm de ser iguais às da seção Dúvidas da página: quando mudar uma, mude a outra. O Google não mostra mais os realces de perguntas e de passo a passo, e nota do app só entra se existir avaliação de verdade. `sitemap.xml` lista a página e as imagens; atualize `lastmod` quando a página mudar.

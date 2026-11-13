@@ -119,6 +119,7 @@ h1{font-size:clamp(33px,5vw,54px);line-height:1.07;letter-spacing:-.03em;font-we
 .stage3d.pronto .poster{opacity:0}
 .ribbon{position:absolute;overflow:hidden;width:150px;height:150px;top:-10px;left:-10px;display:flex;align-items:center;justify-content:center;z-index:3;pointer-events:none}
 .ribbon::before{content:"Grátis";position:absolute;width:150%;height:40px;background-image:linear-gradient(45deg,#ff9d0a 0%,#ffc14a 51%,#ff9d0a 100%);transform:rotate(-45deg) translateY(-20px);display:flex;align-items:center;justify-content:center;color:#2b1a00;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:14px;box-shadow:0 5px 10px rgba(0,0,0,.23)}
+html[lang="en"] .ribbon::before{content:"Free"}html[lang="es"] .ribbon::before{content:"Gratis"}html[lang="ru"] .ribbon::before{content:"Бесплатно";font-size:12px}
 .ribbon::after{content:"";position:absolute;width:10px;height:10px;bottom:0;left:0;z-index:-1;box-shadow:140px -140px #b86a00;background-image:linear-gradient(45deg,#d17a00 0%,#ffb01f 51%,#d17a00 100%)}
 
 /* controle ao vivo, embaixo do modelo */

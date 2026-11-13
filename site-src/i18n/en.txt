@@ -1,0 +1,547 @@
+# Traduções do Control PS-5 (en). Cada "@@ chave" vem de textos-pt.json (rode traduzir.py extrair).
+@@ cec5a35096
+Sections
+@@ f4c0260715
+FAQ
+@@ 750c79e9b6
+Switch between light and dark
+@@ 59b7adb81b
+Advertisement
+@@ 53bfbfc3da
+Loading the 3D model
+@@ 72534bbb0c
+No
+@@ 84fb9bfc81
+Yes
+@@ b633e4cdf0
+Another project of ours
+@@ 52c52e5712
+Meet PS-5 Controle Test
+@@ 6e372056f1
+Test and calibrate the PS5 controller: buttons, sticks, drift, triggers and vibration. Free in the computer browser. On the phone, the Android app has 2 free days.
+@@ 8c1e534a70
+Learn about the PS-5 Controle Test project
+@@ ea736292ed
+Learn about the project
+@@ 28cfb6dfbd
+See how to connect
+@@ 313a7561dd
+Contact and partnerships
+@@ 3ef23e0114
+WhatsApp for partnerships
+@@ 9873e9a96e
+Code on GitHub
+@@ a40c2e3964
+WhatsApp: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">+55 21 96654-7296</a><br>Instagram: <a href="https://www.instagram.com/tech_meow.oficial" target="_blank" rel="noopener">@tech_meow.oficial</a>
+@@ 42237dd3e6
+Terms of use
+@@ 00998dcd68
+Privacy and cookies
+@@ 68bf44c0db
+Manage cookies
+@@ 20e22c4f32
+Legal notice
+@@ b01e1c8cfb
+Home page
+@@ d659a8e09a
+Updated on November 4, 2026.
+@@ ba4498228a
+What it is
+@@ 61395e754f
+Acceptance
+@@ c57f3f41f6
+Ads and links
+@@ e751d565e8
+The website shows ads and third-party links. Whatever you buy or hire on those websites is their responsibility.
+@@ eed9cb6195
+Permitted use
+@@ 28cef50e5e
+Trademarks
+@@ f1d6c86fc8
+Changes
+@@ a2b8ac25dd
+We may update these terms. When that happens, the website will ask for a new acceptance.
+@@ 831d8659ea
+Law and contact
+@@ ef8d51ef99
+Summary
+@@ b5147d6288
+This website does not use tracking cookies or third-party analytics tools such as Google Analytics. What we call cookies here is, in practice, your browser's storage: small pieces of information kept on your device.
+@@ c7073faaaa
+Always on (necessary)
+@@ 9984f3d7da
+Chosen language (<code>techmeow.lang</code>), which applies to all techmeow.app websites.
+@@ c8e5c4405c
+Optional (only with Accept all)
+@@ 88b53f8eee
+If you choose only the necessary
+@@ c04a072141
+Ads still appear, but views and clicks are not counted, and the optional items are not saved. Changing your choice deletes the optional items from this browser.
+@@ d68b84efbc
+Ad counting
+@@ 4a4098c42d
+Services used
+@@ 8ea8d5b876
+Your rights
+@@ 9b8050ddd1
+R$339.90
+@@ 18ec9d9782
+Unlocking
+@@ 8728136faa
+Step by step
+@@ a68a1f0e9e
+How to connect a PS5 controller to the Nintendo Switch | Control PS-5
+@@ cf0a97a8dc
+Connect the PS5 controller (DualSense) to a hacked Nintendo Switch over Bluetooth, with no adapter. Free app, with adaptive triggers, light bar and touchpad.
+@@ c9311dccc2
+how to connect PS5 controller to Nintendo Switch, PS5 controller on Switch, DualSense on Nintendo Switch, use PS5 controller on Switch, pair DualSense with Switch, hacked Switch, DualSense homebrew, Control PS-5, MissionControl, adaptive triggers on Switch, PS5 controller on Switch without adapter, Switch OLED, broken Switch touchscreen, DualSense touchpad as cursor
+@@ cdb7e38765
+How to connect the PS5 controller to the Nintendo Switch
+@@ abb54fd74e
+Free app for hacked Switch consoles: pairs the DualSense over Bluetooth, with no adapter, with adaptive triggers, light bar and per-game profiles.
+@@ b95ed9e475
+Nintendo Switch with the Control PS-5 app on screen and a white PS5 controller connected, with the light bar on
+@@ 1a27e8998c
+Free app for hacked Nintendo Switch consoles that installs the driver and connects the PS5 controller (DualSense and DualSense Edge) over Bluetooth, with adaptive triggers, light bar, touchpad and per-game profiles.
+@@ eb5dec39c9
+Step by step to pair the DualSense with a hacked Nintendo Switch using the free Control PS-5 app.
+@@ 2efbb33d4c
+Put the app on the SD card
+@@ be5e8af36c
+Download and unzip Control PS-5 and copy the folder into the switch folder of the SD card, through DBI with a USB cable or with the card in the computer.
+@@ bc148dcdd7
+Install the driver
+@@ 8fda93b54a
+Open Control PS-5 from the Homebrew menu and, on the Home screen, tap the purple Install driver button. When it finishes, restart the Switch.
+@@ ef498d08b8
+Tap Pair controller
+@@ 0bf1a935fb
+Open the app again, tap Pair controller and, on the Controllers screen, choose Change Grip/Order.
+@@ a14e50491b
+Hold Create and PS
+@@ 04177cf94e
+On the controller, hold Create and PS until the light bars start blinking.
+@@ e6799687fc
+Press L1 and R1 together
+@@ 37c9629c51
+On the Press L + R screen, press L1 and R1 together. When it syncs, a black controller appears on screen and the light bars stay on, without blinking.
+@@ 1d1a22a562
+Set up the controller
+@@ 334adbeaff
+Go back to the app and adjust triggers, lights and profiles the way you want.
+@@ bfe690231e
+How do I connect the PS5 controller to the Nintendo Switch?
+@@ 33a9a796da
+On a hacked Switch, copy the free Control PS-5 app to the SD card, install the driver from the app and restart. Then tap Pair controller, hold Create and PS until the light bars blink and press L1 and R1 together on the Press L + R screen.
+@@ a471ed8825
+Can I use the PS5 controller on the Switch without hacking it?
+@@ df7b6b59f9
+Not with this app. The stock Switch does not recognize the DualSense over Bluetooth, and Control PS-5 needs a hacked Switch with Atmosphère. Without hacking it, the way is a third-party USB adapter, which usually treats the DualSense as a regular controller.
+@@ 0825b67e19
+Do I need an adapter to use the PS5 controller on the Switch?
+@@ a46df31c79
+With Control PS-5, no: on a hacked Switch, the DualSense pairs directly over Bluetooth. Without hacking it, you need a third-party Bluetooth adapter, such as those from 8BitDo, which usually treats the DualSense as a regular controller.
+@@ ba9b4efd5d
+Is Control PS-5 free?
+@@ 5fd0cf63e2
+Yes. The download and all features are free, and anyone who wants to can support the project with a Pix of any amount.
+@@ 72889fb378
+Does Control PS-5 have anything to do with piracy?
+@@ ca902617e6
+No. The app only connects the PS5 controller to the Switch: it does not include, download or install games, and it does not touch any game's protection. Hacking is needed because the stock system does not accept the controller.
+@@ 01d14a7c1f
+How do I put the PS5 controller in pairing mode?
+@@ 73837c65e4
+Hold the Create and PS buttons at the same time until the light bars around the touchpad start blinking.
+@@ 0c4d83651e
+Do the adaptive triggers work on the Switch?
+@@ 5dc537496a
+Yes, with Control PS-5. You choose the L2 and R2 effect in the app, such as resistance, gun click, bow, vibration or machine gun. The effects are per profile: the game does not know they exist.
+@@ 19f98f2ae5
+Does it work with the DualSense Edge?
+@@ 34f3233e82
+Yes. The app works with the DualSense and the DualSense Edge.
+@@ a89d1d2000
+The Switch touchscreen does not work. Can I use the controller touchpad?
+@@ 6f8313ef8a
+Yes, on a hacked Switch. In the app, open Lights, choose Cursor mode under Touchpad, save with Y and open the Control PS-5 Pointer overlay through Tesla or Ultrahand (L + ↓ + R3). Your finger moves a little hand and the click taps where it is, even on the HOME menu. The screen is still broken: the touchpad just does its job.
+@@ 4a22be2819
+Does it work on the Switch OLED?
+@@ e9f31e0867
+Yes. The app is for the Switch 1 hacked with Atmosphère and was tested on a Switch OLED. The Switch 2 is not compatible.
+@@ b0a4b0dd37
+Which firmware and which Atmosphère version do I need?
+@@ 87786dd38c
+Firmware 23.0.1 and Atmosphère 1.12.0, the versions the driver was built and tested on. The app checks the firmware before installing and refuses when it is newer than supported, so the console's boot does not hang.
+@@ e2849dd128
+Does the game sound come out of the controller speaker?
+@@ a1cd64462e
+No. The Switch does not send audio to controllers, so the DualSense speaker does not play the game sound.
+@@ d29e445f24
+Does it work on the Nintendo Switch 2?
+@@ a9508bed15
+No. Control PS-5 is for the hacked Switch 1, and the Switch 2 cannot be hacked.
+@@ e8cad49571
+Something went wrong. How do I undo it?
+@@ d8e72a4bde
+Open the app and tap Uninstall: it restores the original MissionControl. If the app does not open, delete the atmosphere/contents/010000000000bd00 folder and paste back your backup.
+@@ 7dc6b67cfc
+Where can I get my Nintendo Switch hacked?
+@@ 3989af9b6b
+At Dat Zero Games, in Piedade, Rio de Janeiro, Brazil. The unlocking is done while you wait, with a modchip, you follow the whole process and the Switch leaves with Control PS-5 already installed in the Homebrew menu. WhatsApp: +55 21 98607-0618.
+@@ b65ba10e54
+How to connect
+@@ fb7f240fb3
+Features
+@@ b7f79fe1ef
+Screens
+@@ 7391859fff
+Download for free
+@@ 1ff9b6fcd3
+Download the app
+@@ 4173bc0212
+Free, no sign-up
+@@ 9d0a18c120
+Download Control PS-5 for your Switch
+@@ c63d76848a
+The app installs the driver, pairs the controller and unlocks the DualSense features.
+@@ fa25df2c10
+For hacked Nintendo Switch consoles
+@@ 7500f1f709
+Connect the PS5 controller to the <span class="grad">Nintendo Switch</span>.
+@@ cc53eee113
+The Switch does not recognize the DualSense on its own. On a hacked Switch, <b>Control PS-5</b> installs the driver with one tap and the controller pairs over Bluetooth, with adaptive triggers, light bar and per-game profiles.
+@@ c668746b18
+<svg class="i"><use href="#i-down"/></svg>Download for free
+@@ e662e8e35a
+<svg class="i"><use href="#i-check"/></svg>100% free app
+@@ ff5b427ee8
+<svg class="i"><use href="#i-check"/></svg>Bluetooth, no adapter
+@@ 52992316e6
+<svg class="i"><use href="#i-check"/></svg>DualSense and DualSense Edge
+@@ 607b457c71
+<b>Not hacked yet?</b> At Dat Zero Games it is done while you wait, and the Switch leaves with the app installed.
+@@ c23399f39a
+Nintendo Switch and PS5 controller connecting. Drag to move the scene.
+@@ 2217de548a
+Choose the light bar color
+@@ cbab5e7ab6
+Light bar color
+@@ 266be6126b
+R2 trigger effect: see where it resists
+@@ 9a8f13b0a7
+R2 trigger effect
+@@ c3c23c39c5
+released
+@@ 2c16b58bfb
+fully pressed
+@@ 3a42d05e44
+The colors and effects are the app's. Drag to move the scene.
+@@ cc1748c66d
+The short answer
+@@ 3aa142da40
+Can you use the PS5 controller on the Switch?
+@@ 0d1d744fdf
+Yes, but the stock Switch does not accept the DualSense on its own. See what changes in each case.
+@@ 701babe8bc
+Feature
+@@ 55d8040d22
+Stock Switch
+@@ 2a0627f040
+With a USB adapter
+@@ 7fa11560d8
+Hacked, with Control PS-5
+@@ 0cd6ed6560
+Connects the DualSense
+@@ 4337f836ee
+Yes, through the adapter
+@@ b3df3c814b
+Yes, directly over Bluetooth
+@@ 7aca5bcbc3
+Adaptive triggers
+@@ ae3fa68e44
+Usually not
+@@ 5c0da3e436
+Yes, on L2 and R2
+@@ 5558575a83
+Light bar and LEDs
+@@ d844b5cc3b
+Depends on the adapter
+@@ b0d37099f5
+Yes, 12 colors and fine-tuning
+@@ 7246b56109
+Touchpad as cursor
+@@ e1e92ad777
+Yes, even on the HOME menu
+@@ 32c925ce5e
+Per-game profile
+@@ 407a76d82f
+Yes, automatic
+@@ 3f2c8bad12
+Cost
+@@ 9d5c93a7c3
+Not applicable
+@@ 754f586dbe
+Buying the adapter
+@@ d66c476b8a
+Free app
+@@ 63375a3315
+Requires hacking
+@@ a735b039cc
+Scroll the page and follow the animation. The screens shown on the console are the app's own.
+@@ 732c65efc4
+Animation showing each step of connecting the PS5 controller to the Nintendo Switch
+@@ 8086ba130b
+First, make a copy of the <code>atmosphere/contents/010000000000bd00</code> folder on the card, to be safe. Then <a href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">download the app</a> and unzip it.
+@@ 9ad882bf61
+In the CNX pack, hold <kbd>R</kbd> and open the <b>Album</b> to enter the Homebrew menu.
+@@ 6dc5dc66ce
+Open <b>DBI</b>, start the <b>MTP connection</b> and plug the USB cable into the computer.
+@@ 5dff188f25
+On the computer, open <b>Switch</b>, then <b>1: SD Card</b> and the <b>switch</b> folder.
+@@ db263d29d5
+Copy the unzipped <b>Control PS-5</b> folder there.
+@@ fbce08f0a9
+Prefer no cable? Put the SD card in the computer, copy the folder into <b>switch</b> and put the card back in the Switch.
+@@ 28f215ab5f
+Nintendo Switch Homebrew menu with the Control PS-5 app in the list
+@@ f7088d9dcd
+Open the app and install the driver
+@@ f7f9669cae
+Leave DBI and go back to the Homebrew menu (<kbd>R</kbd> + Album). Open Control PS-5 and, on the <b>Home</b> screen, tap the purple <b>Install driver</b> button. When it finishes, the app asks you to restart the Switch.
+@@ 42379dc5db
+Control PS-5 Home screen with the purple button to install the DualSense driver
+@@ bfa7091b6e
+With the Switch back on, open Control PS-5 again. Tap <b>Pair controller</b> and, on the <b>Controllers</b> screen that opens, choose <b>Change Grip/Order</b>.
+@@ 0c4b85fd3e
+Nintendo Switch Controllers screen with the Change Grip/Order option
+@@ e0bcd88bb8
+On the PS5 controller, hold <kbd>Create</kbd> and <kbd>PS</kbd> until the light bars start blinking. That is how the DualSense enters pairing mode.
+@@ 2bb30747a3
+On the <b>Press L + R</b> screen, press <kbd>L1</kbd> and <kbd>R1</kbd> together. When it syncs, a black controller appears on screen and the light bars stay on, without blinking.
+@@ 06fff12616
+Switch screen asking to press L and R, with the PS5 controller synced as player 1
+@@ 6bffac0b2c
+Done: set it up your way
+@@ 9a7c1e2e69
+Go back to the app and adjust triggers, lights and profiles. The controller shows as <b>DualSense, Player 1</b> and the driver as <b>Active</b>.
+@@ 102c375535
+Control PS-5 Home screen with the driver active and the DualSense connected as player 1
+@@ 2a90496cb1
+What Control PS-5 unlocks on the DualSense
+@@ 179806b1cd
+Everything is set up inside the Switch, without moving folders or editing files.
+@@ d6ca27dd2c
+Adaptive triggers on L2 and R2
+@@ f333a2fbb1
+Resistance, gun click, bow, vibration and machine gun. Each trigger has ready-made effects and fine-tuning of start, end and strength.
+@@ c038ed54e1
+Control PS-5 Adaptive triggers screen with the L2 and R2 settings
+@@ 86bdbed07d
+Twelve quick colors, fine-tuning, brightness, mute button LED and player LEDs. The preview shows on the controller right away.
+@@ 70695805ec
+Control PS-5 Lights and vibration screen with the light bar colors
+@@ 24bd09e10e
+Automatic per-game profile
+@@ 9bdc6420eb
+Set it up once. When the game opens, its profile is applied by itself; the others use the default.
+@@ 7e60ec1bec
+One-tap installation
+@@ be415ebc86
+The app installs, updates and uninstalls the driver, and keeps a backup of the MissionControl you already had.
+@@ fc55b3d8fc
+Guided pairing
+@@ 6434633265
+Shows the steps on a drawing of the controller and opens the Switch Controllers screen so you can pair another one.
+@@ 89ee245095
+Controller test
+@@ 180c5cbd57
+Buttons, sticks, gyroscope, battery and touchpad, live. You can even test PS and mute: on the Test tab they do not take you off the screen.
+@@ 36b60ff863
+Touchpad as cursor, for a broken touchscreen
+@@ 8f63073c6a
+Your finger moves a little hand with a purple glow and the click taps where it is, even on the HOME menu. A lifesaver if your Switch touchscreen is broken. It also works as a direct touchscreen.
+@@ fc3878b68f
+How it looks on the Switch
+@@ 49a8e24fbe
+The Control PS-5 screens on the Nintendo Switch
+@@ 6fa24af480
+Tap a screen to see it bigger.
+@@ 6921dbc362
+Enlarge: Home screen with the DualSense connected
+@@ 42a692f451
+Control PS-5 with the driver active and the DualSense connected as player 1
+@@ ddd6dffd26
+Driver active and DualSense connected.
+@@ 744745b9d2
+Enlarge: triggers screen
+@@ 700ea233b8
+Adjusting the L2 and R2 adaptive triggers in Control PS-5
+@@ 3168eb1a7b
+Adaptive triggers on L2 and R2.
+@@ b7552d2397
+Enlarge: lights screen
+@@ 2ef3dd861d
+DualSense light bar colors, LEDs and vibration in Control PS-5
+@@ a096877f50
+Light bar, LEDs and vibration.
+@@ b9054ab47c
+Enlarge: Homebrew menu
+@@ d3b5fe3ffc
+Control PS-5 in the Nintendo Switch Homebrew menu list
+@@ 8f0b7b1a94
+Control PS-5 in the Homebrew menu.
+@@ ea76700892
+Enlarge: installing the driver
+@@ 5871e0b140
+Installing the DualSense driver on the Nintendo Switch
+@@ e083753701
+Installing the driver.
+@@ 0ef263bf6f
+Enlarge: syncing the controller
+@@ 0bf2295d13
+PS5 controller synced as player 1 on the Nintendo Switch screen
+@@ 029e50726a
+Controller synced as player 1.
+@@ ffc65c4d03
+Enlarged screen
+@@ 7b2006fd7a
+Close
+@@ d193dc5cc4
+Dat Zero Games logo
+@@ 3fe17f8c24
+Your Switch is not hacked yet?
+@@ c8565360e4
+Get it unlocked at Dat Zero and leave with the app installed
+@@ 9292f9e97e
+The unlocking is done while you wait, with a modchip, and you follow the whole process. The Switch leaves with the app in the Homebrew menu: just pair the controller.
+@@ a8909bcd4b
+<svg class="i"><use href="#i-check"/></svg>Done while you wait, with you watching
+@@ 66b7298672
+<svg class="i"><use href="#i-check"/></svg>Control PS-5 already installed in Homebrew
+@@ 7e6a2585c8
+<svg class="i"><use href="#i-check"/></svg>1-year warranty
+@@ 6b6491cbe0
+<svg class="i"><use href="#i-check"/></svg>Pioneer store, with more than 3,000 consoles
+@@ 8580ef2637
+<svg class="i"><use href="#i-check"/></svg>For the Switch 1, any model
+@@ 94add9b81a
+Nintendo Switch showing the Homebrew menu with the Control PS-5 app selected
+@@ a6d4fdb466
+Nintendo Switch unlocking
+@@ 2fff6dbd53
+<svg style="width:20px;height:20px;fill:currentColor"><use href="#s-wa"/></svg>Message on WhatsApp
+@@ 8dd405e3d8
+Rua Alfredo Reis, 68, Piedade, Rio de Janeiro, Brazil
+@@ 5dc4709bea
+WhatsApp <a href="https://wa.me/5521986070618" target="_blank" rel="noopener">+55 21 98607-0618</a> · <a href="https://www.instagram.com/datzerogames/" target="_blank" rel="noopener">@datzerogames</a>
+@@ 4997b30247
+Before installing
+@@ ff0dbfb8df
+What you need to know
+@@ 9419bddba9
+Compatibility
+@@ 6097a4d826
+Switch 1 hacked with Atmosphère (CNX pack). <strong>Requires firmware 23.0.1 and Atmosphère 1.12.0</strong>, the versions the driver was built and tested on. Works with the DualSense and DualSense Edge.
+@@ 0ff9bf9d49
+Limits
+@@ fc108dc4bb
+The game sound does not come out of the controller speaker, because the Switch does not send audio to controllers. Trigger effects are set per profile: the game does not know they exist.
+@@ 3d547bda04
+New firmware and undoing
+@@ b2da7e522e
+The app checks the firmware before installing and refuses when it is newer than supported, so the boot does not hang. To go back, tap Uninstall: it restores the original MissionControl.
+@@ 495d357c9d
+<b>Use at your own risk.</b> Modifying the console may void the factory warranty, and using a modified console online carries a ban risk. Keep a backup of the SD card. The app does not enable piracy.
+@@ 465c329864
+Frequently asked questions about the PS5 controller on the Switch
+@@ cb61e6cb8c
+Open the app and tap Uninstall: it restores the original MissionControl. If the app does not open, delete the <code>atmosphere/contents/010000000000bd00</code> folder and paste back your backup.
+@@ d4c515b117
+At <a href="#desbloqueio">Dat Zero Games</a>, in Piedade, Rio de Janeiro, Brazil. The unlocking is done while you wait, with a modchip, you follow the whole process and the Switch leaves with Control PS-5 already installed in the Homebrew menu. WhatsApp: +55 21 98607-0618.
+@@ fdfb08b1e6
+Your DualSense ready for the Switch
+@@ b7e5507665
+Control PS-5 is free. Like it? A Pix of any amount (Brazilian instant payment) helps keep updates coming when new firmware comes out.
+@@ 337a8d2ec8
+Copy Pix key: 21966547296
+@@ c9701a7da6
+Attention
+@@ e5f9fb41b4
+Control PS-5 has a single goal: making the PS5 controller work on the Nintendo Switch. The controller is compatible with the console, but the stock system does not accept it. That is why the connection is only possible after hacking, which allows installing this driver.
+@@ aa570f2713
+We do not encourage piracy
+@@ 7421aee9d8
+MeoWDev MOD's homebrews and modifications were not made to promote or encourage piracy. Control PS-5 does not include, download or install games, and it does not touch any game's protection. We know there are ill-intentioned people who use hacking for piracy, but that is not the purpose of this project. Use original games and programs you have the right to use.
+@@ a340195879
+This is an independent project, with no ties to, approval from or sponsorship by Sony or Nintendo. We do not use these companies' logos. DualSense, PlayStation, PS5 and Nintendo Switch are trademarks of their owners, mentioned only to indicate which console and which controller the app works with.
+@@ 875ced319f
+What the law says
+@@ 6276e9a363
+Brazil's <a href="https://www.planalto.gov.br/ccivil_03/leis/l9609.htm" target="_blank" rel="noopener">Software Law</a> (Law 9.609/1998, art. 6, IV) states that the rights of the owner are not infringed by “the integration of a program, keeping its essential characteristics, into an application or operating system, technically indispensable to the user's needs, provided it is for the exclusive use of whoever carried it out”. Brazil's <a href="https://www.planalto.gov.br/ccivil_03/leis/l9279.htm" target="_blank" rel="noopener">Industrial Property Law</a> (Law 9.279/1996, art. 132, II) states that the trademark owner cannot prevent accessory manufacturers from using it to indicate what the product is for, provided they follow fair competition practices.
+@@ 546d250c82
+<b>Each person is responsible for how they use the console and the app.</b> This notice is informative and is not legal advice. See also the <a href="termos/">Terms of use</a>.
+@@ b8a6f4ff29
+<b>Developed by MeoWDev MOD</b><br>The driver is based on <a href="https://github.com/ndeadly/MissionControl" target="_blank" rel="noopener">MissionControl</a> (ndeadly, GPLv2) and runs on <a href="https://github.com/Atmosphere-NX/Atmosphere" target="_blank" rel="noopener">Atmosphère</a>, with libnx and devkitPro.<br><br>Independent project: not affiliated with, approved or sponsored by Sony or Nintendo. DualSense, PlayStation and Nintendo Switch are trademarks of their owners. The unlocking service is provided by Dat Zero Games.
+@@ c8eab204ec
+App releases
+@@ 53971128cb
+Unlock
+@@ 3832346b3b
+Hello! I came from the Control PS-5 page and I'd like to get my Nintendo Switch unlocked.
+@@ 36273f52cc
+Hello! I came from the Control PS-5 page and I'd like to talk about a partnership.
+@@ 06f6ca6565
+Privacy and cookies | Control PS-5
+@@ 2cba803b3a
+What the Control PS-5 website and app store, the ad counting and your rights under Brazil's LGPD.
+@@ 3241d9a63c
+Your choice of terms and cookies (<code>ctl.consent</code>).
+@@ eca6dd405e
+Light or dark theme (<code>ctl.theme</code>).
+@@ c146912ef3
+Page transition effect (<code>ctl.pt</code>), which disappears when you close the tab.
+@@ c14563319e
+Last ad seen, to show a different one on your next visit, and which ads this browser has already seen (<code>ctl-ad-*</code>).
+@@ 40e769cff9
+The website you came from (<code>ctl-de</code>), which disappears when you close the tab.
+@@ 5e0ac40b7d
+Count of ad views and clicks.
+@@ 7520751778
+With your permission, we tell our server when an ad appears or is clicked, in which place of the website and which website you came from. The server adds up these notices per day, with approximate city and country and device type. We do not store your IP or anything that identifies you.
+@@ b39084de60
+The app
+@@ 7b0f3dbf6a
+Control PS-5 runs on your Switch and does not send data to us: the app has no internet connection. The settings stay on the SD card.
+@@ 84741c54aa
+The website is hosted on GitHub Pages. The ad list and ad files come from Vercel and Supabase. As with any website, these services receive your IP and technical data to deliver the content. WhatsApp, Instagram, YouTube and GitHub have their own policies when you open their links.
+@@ 3c9dbce623
+You can change your choice at any time under Manage cookies, at the bottom of the pages, and request information under Brazil's data protection law (LGPD). Controller: MeoWDev MOD (Jefferson Honorio). Contact: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">WhatsApp +55 21 96654-7296</a>.
+@@ e80598798f
+Terms of use | Control PS-5
+@@ bb461258df
+Terms of use of the Control PS-5 website and app: risks of modifying the console, third-party unlocking service, ads and contact.
+@@ b617077610
+Control PS-5 is a free app for hacked Nintendo Switch consoles that installs a driver and connects the PS5 controller (DualSense). The driver is based on MissionControl (ndeadly, GPLv2). The project is maintained by MeoWDev MOD (Jefferson Honorio).
+@@ f0feaa3600
+By using the website or the app, you agree to these terms. If you do not agree, do not use them.
+@@ 3bd94d8108
+Risks of modifying the console
+@@ 5ccb2baf5d
+The app changes files on the SD card and only works on a hacked console. Modifying the console may void the factory warranty, and using it online carries a ban risk. Copy the indicated folder before installing and keep a backup of the SD card.
+@@ b9092c9233
+No warranty for the app
+@@ 4d8e031239
+The app is provided as is, with no guarantee that it works on every console, firmware or controller. To the extent permitted by law, we are not liable for data loss or other damage caused by its use. This does not remove any rights the law grants to consumers.
+@@ 240ac851db
+Unlocking by Dat Zero Games
+@@ 90d6e860a0
+The unlocking service promoted on this website is provided by Dat Zero Games. Price, deadline and warranty are agreed directly with the store, which is responsible for the service.
+@@ 35ac253b0d
+MeoWDev MOD's homebrews and modifications were not made to promote or encourage piracy. Control PS-5 does not include, download or install games, and it does not touch any game's protection. We know there are ill-intentioned people who use hacking for piracy, but that is not the purpose of this project. Use original games and programs you have the right to use. Do not use the website or the app to attack the website, circumvent the rights of others or break the law. Each person is responsible for how they use the console and the app.
+@@ 1c00cfda0f
+DualSense, PlayStation and PS5 are trademarks of Sony Interactive Entertainment. Nintendo Switch is a trademark of Nintendo. This project is not affiliated with, approved or sponsored by these companies and does not use their logos. The names are mentioned only to indicate which console and which controller the app works with.
+@@ 657650df3f
+Brazil's <a href="https://www.planalto.gov.br/ccivil_03/leis/l9609.htm" target="_blank" rel="noopener">Software Law</a> (Law 9.609/1998, art. 6, IV) states that the rights of the owner are not infringed by “the integration of a program, keeping its essential characteristics, into an application or operating system, technically indispensable to the user's needs, provided it is for the exclusive use of whoever carried it out”. Brazil's <a href="https://www.planalto.gov.br/ccivil_03/leis/l9279.htm" target="_blank" rel="noopener">Industrial Property Law</a> (Law 9.279/1996, art. 132, II) states that the trademark owner cannot prevent accessory manufacturers from using it to indicate what the product is for, provided they follow fair competition practices. This text is informative and is not legal advice.
+@@ 5d712b076d
+The laws of Brazil apply, and the Portuguese version prevails in case of doubt. Contact: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">WhatsApp +55 21 96654-7296</a>.

@@ -43,7 +43,7 @@ $("themeBtn").onclick = (e) => themeSwitch(e, () => {
 });
 
 startShader($("fxBg"), isDark).start();
-initPageFx("img/logo-gato-control-ps5.webp");
+initPageFx(new URL("../img/logo-gato-control-ps5.webp", import.meta.url).href); // vale também nas páginas de en/, es/ e ru/
 initFx();
 
 // Barra de baixo no celular: aparece quando os botões principais saem da tela.
@@ -66,6 +66,12 @@ const EFEITOS = [
   ["Metralhadora", [0, 0.9, 0.35, 0.9, 0.35, 0.9, 0.35, 0.9, 0.35, 0.9]],
   ["Motor vibrando", [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]],
 ];
+// Nomes no idioma da página (<html lang>; as páginas en/, es/ e ru/ saem de site-src/i18n).
+const LANG = (document.documentElement.lang || "pt").slice(0, 2).toLowerCase();
+const NOMES = {"en": {"Azul": "Blue", "Ciano": "Cyan", "Verde-água": "Aqua green", "Verde": "Green", "Lima": "Lime", "Amarelo": "Yellow", "Laranja": "Orange", "Vermelho": "Red", "Rosa": "Pink", "Violeta": "Violet", "Índigo": "Indigo", "Branco": "White", "Sem efeito": "No effect", "Acelerador": "Accelerator", "Freio firme": "Firm brake", "Gatilho de arma": "Gun trigger", "Arco": "Bow", "Metralhadora": "Machine gun", "Motor vibrando": "Engine rumble", "Chave copiada. No app do seu banco: Pix, Pagar com chave, e cole.": "Key copied. In your bank app: Pix, Pay with key, and paste it.", "Copie a chave: ": "Copy the key: "}, "es": {"Azul": "Azul", "Ciano": "Cian", "Verde-água": "Verde agua", "Verde": "Verde", "Lima": "Lima", "Amarelo": "Amarillo", "Laranja": "Naranja", "Vermelho": "Rojo", "Rosa": "Rosa", "Violeta": "Violeta", "Índigo": "Índigo", "Branco": "Blanco", "Sem efeito": "Sin efecto", "Acelerador": "Acelerador", "Freio firme": "Freno firme", "Gatilho de arma": "Gatillo de arma", "Arco": "Arco", "Metralhadora": "Ametralladora", "Motor vibrando": "Motor vibrando", "Chave copiada. No app do seu banco: Pix, Pagar com chave, e cole.": "Clave copiada. En la app de tu banco (Brasil): Pix, Pagar con clave, y pégala.", "Copie a chave: ": "Copia la clave: "}, "ru": {"Azul": "Синий", "Ciano": "Голубой", "Verde-água": "Бирюзовый", "Verde": "Зелёный", "Lima": "Лаймовый", "Amarelo": "Жёлтый", "Laranja": "Оранжевый", "Vermelho": "Красный", "Rosa": "Розовый", "Violeta": "Фиолетовый", "Índigo": "Индиго", "Branco": "Белый", "Sem efeito": "Без эффекта", "Acelerador": "Газ", "Freio firme": "Жёсткий тормоз", "Gatilho de arma": "Спуск оружия", "Arco": "Лук", "Metralhadora": "Пулемёт", "Motor vibrando": "Вибрация мотора", "Chave copiada. No app do seu banco: Pix, Pagar com chave, e cole.": "Ключ скопирован. В приложении банка (Бразилия): Pix, оплата по ключу — вставьте его.", "Copie a chave: ": "Скопируйте ключ: "}};
+const tr = (t) => NOMES[LANG]?.[t] ?? t;
+CORES.forEach((c) => { c[0] = tr(c[0]); });
+EFEITOS.forEach((e) => { e[0] = tr(e[0]); });
 let hero = null;
 const curso = $("curso");
 const barras = Array.from({ length: 10 }, () => curso.appendChild(document.createElement("span")));
@@ -100,8 +106,8 @@ desenhaCurso(EFEITOS[3][1]);
 // ---------- Pix e telas ampliadas ----------
 const pix = $("pixBtn");
 pix.onclick = async () => {
-  try { await navigator.clipboard.writeText(pix.dataset.chave); $("pixOk").textContent = "Chave copiada. No app do seu banco: Pix, Pagar com chave, e cole."; }
-  catch { $("pixOk").textContent = `Copie a chave: ${pix.dataset.chave}`; }
+  try { await navigator.clipboard.writeText(pix.dataset.chave); $("pixOk").textContent = tr("Chave copiada. No app do seu banco: Pix, Pagar com chave, e cole."); }
+  catch { $("pixOk").textContent = tr("Copie a chave: ") + pix.dataset.chave; }
 };
 const grande = $("telaGrande");
 $("galeria").addEventListener("click", (e) => {

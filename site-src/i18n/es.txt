@@ -1,0 +1,547 @@
+# Traduções do Control PS-5 (es). Cada "@@ chave" vem de textos-pt.json (rode traduzir.py extrair).
+@@ cec5a35096
+Secciones
+@@ f4c0260715
+Preguntas
+@@ 750c79e9b6
+Cambiar entre claro y oscuro
+@@ 59b7adb81b
+Publicidad
+@@ 53bfbfc3da
+Cargando el modelo 3D
+@@ 72534bbb0c
+No
+@@ 84fb9bfc81
+Sí
+@@ b633e4cdf0
+Otro proyecto nuestro
+@@ 52c52e5712
+Conoce PS-5 Controle Test
+@@ 6e372056f1
+Prueba y calibra el control del PS5: botones, palancas, drift, gatillos y vibración. Gratis en el navegador de la computadora. En el celular, la app para Android tiene 2 días gratis.
+@@ 8c1e534a70
+Conocer el proyecto PS-5 Controle Test
+@@ ea736292ed
+Conocer el proyecto
+@@ 28cfb6dfbd
+Ver cómo conectar
+@@ 313a7561dd
+Contacto y alianzas
+@@ 3ef23e0114
+WhatsApp para alianzas
+@@ 9873e9a96e
+Código en GitHub
+@@ a40c2e3964
+WhatsApp: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">+55 21 96654-7296</a><br>Instagram: <a href="https://www.instagram.com/tech_meow.oficial" target="_blank" rel="noopener">@tech_meow.oficial</a>
+@@ 42237dd3e6
+Términos de uso
+@@ 00998dcd68
+Privacidad y cookies
+@@ 68bf44c0db
+Administrar cookies
+@@ 20e22c4f32
+Aviso legal
+@@ b01e1c8cfb
+Inicio
+@@ d659a8e09a
+Actualizado el 4 de noviembre de 2026.
+@@ ba4498228a
+Qué es
+@@ 61395e754f
+Aceptación
+@@ c57f3f41f6
+Anuncios y enlaces
+@@ e751d565e8
+El sitio muestra anuncios y enlaces de terceros. Lo que compres o contrates en esos sitios es responsabilidad de ellos.
+@@ eed9cb6195
+Uso permitido
+@@ 28cef50e5e
+Marcas
+@@ f1d6c86fc8
+Cambios
+@@ a2b8ac25dd
+Podemos actualizar estos términos. Cuando eso ocurra, el sitio pedirá una nueva aceptación.
+@@ 831d8659ea
+Ley y contacto
+@@ ef8d51ef99
+Resumen
+@@ b5147d6288
+Este sitio no usa cookies de rastreo ni herramientas de analítica de terceros, como Google Analytics. Lo que aquí llamamos cookies es, en la práctica, el almacenamiento de tu navegador: pequeñas informaciones que quedan en tu dispositivo.
+@@ c7073faaaa
+Siempre activos (necesarios)
+@@ 9984f3d7da
+Idioma elegido (<code>techmeow.lang</code>), que vale para todos los sitios de techmeow.app.
+@@ c8e5c4405c
+Opcionales (solo con Aceptar todo)
+@@ 88b53f8eee
+Si eliges solo lo necesario
+@@ c04a072141
+Los anuncios siguen apareciendo, pero las vistas y los clics no se cuentan, y los opcionales no se guardan. Cambiar la elección borra los opcionales de este navegador.
+@@ d68b84efbc
+Conteo de los anuncios
+@@ 4a4098c42d
+Servicios usados
+@@ 8ea8d5b876
+Tus derechos
+@@ 9b8050ddd1
+R$ 339,90
+@@ 18ec9d9782
+Desbloqueo
+@@ 8728136faa
+Paso a paso
+@@ a68a1f0e9e
+Cómo conectar el control de PS5 a la Nintendo Switch | Control PS-5
+@@ cf0a97a8dc
+Conecta el control de PS5 (DualSense) a una Nintendo Switch desbloqueada por Bluetooth, sin adaptador. App gratis, con gatillos adaptativos, barra de luz y touchpad.
+@@ c9311dccc2
+cómo conectar control de PS5 a Nintendo Switch, control de PS5 en Switch, DualSense en Nintendo Switch, usar control de PS5 en Switch, emparejar DualSense con Switch, Switch desbloqueada, homebrew DualSense, Control PS-5, MissionControl, gatillos adaptativos en Switch, control de PS5 en Switch sin adaptador, Switch OLED, pantalla táctil de Switch rota, touchpad del DualSense como cursor
+@@ cdb7e38765
+Cómo conectar el control de PS5 a la Nintendo Switch
+@@ abb54fd74e
+App gratis para Switch desbloqueada: empareja el DualSense por Bluetooth, sin adaptador, con gatillos adaptativos, barra de luz y perfiles por juego.
+@@ b95ed9e475
+Nintendo Switch con la app Control PS-5 en pantalla y un control de PS5 blanco conectado, con la barra de luz encendida
+@@ 1a27e8998c
+App gratis para Nintendo Switch desbloqueada que instala el driver y conecta el control de PS5 (DualSense y DualSense Edge) por Bluetooth, con gatillos adaptativos, barra de luz, touchpad y perfiles por juego.
+@@ eb5dec39c9
+Paso a paso para emparejar el DualSense con una Nintendo Switch desbloqueada usando la app gratis Control PS-5.
+@@ 2efbb33d4c
+Pon la app en la tarjeta SD
+@@ be5e8af36c
+Descarga y descomprime Control PS-5 y copia la carpeta dentro de la carpeta switch de la tarjeta SD, con DBI por cable USB o con la tarjeta en la computadora.
+@@ bc148dcdd7
+Instala el driver
+@@ 8fda93b54a
+Abre Control PS-5 desde el menú Homebrew y, en la pantalla Inicio, toca el botón morado Instalar driver. Al terminar, reinicia la Switch.
+@@ ef498d08b8
+Toca Emparejar control
+@@ 0bf1a935fb
+Abre la app otra vez, toca Emparejar control y, en la pantalla Controles, elige Cambiar modo de sujeción/orden.
+@@ a14e50491b
+Mantén Create y PS
+@@ 04177cf94e
+En el control, mantén presionados Create y PS hasta que las barras de luz empiecen a parpadear.
+@@ e6799687fc
+Presiona L1 y R1 juntos
+@@ 37c9629c51
+En la pantalla Presiona L + R, presiona L1 y R1 juntos. Al sincronizar, aparece un control negro en la pantalla y las barras de luz quedan encendidas, sin parpadear.
+@@ 1d1a22a562
+Configura el control
+@@ 334adbeaff
+Vuelve a la app y ajusta gatillos, luces y perfiles como quieras.
+@@ bfe690231e
+¿Cómo conecto el control de PS5 a la Nintendo Switch?
+@@ 33a9a796da
+En una Switch desbloqueada, copia la app gratis Control PS-5 a la tarjeta SD, instala el driver desde la app y reinicia. Luego toca Emparejar control, mantén Create y PS hasta que las barras de luz parpadeen y presiona L1 y R1 juntos en la pantalla Presiona L + R.
+@@ a471ed8825
+¿Puedo usar el control de PS5 en la Switch sin desbloquearla?
+@@ df7b6b59f9
+Con esta app, no. La Switch original no reconoce el DualSense por Bluetooth, y Control PS-5 necesita una Switch desbloqueada con Atmosphère. Sin desbloqueo, el camino es un adaptador USB de terceros, que suele tratar el DualSense como un control común.
+@@ 0825b67e19
+¿Necesito un adaptador para usar el control de PS5 en la Switch?
+@@ a46df31c79
+Con Control PS-5, no: en una Switch desbloqueada, el DualSense se empareja directo por Bluetooth. Sin desbloqueo, necesitas un adaptador Bluetooth de terceros, como los de 8BitDo, que suele tratar el DualSense como un control común.
+@@ ba9b4efd5d
+¿Control PS-5 es gratis?
+@@ 5fd0cf63e2
+Sí. La descarga y todas las funciones son gratis, y quien quiera puede apoyar el proyecto con un Pix de cualquier valor.
+@@ 72889fb378
+¿Control PS-5 tiene algo que ver con la piratería?
+@@ ca902617e6
+No. La app solo conecta el control de PS5 a la Switch: no incluye, no descarga ni instala juegos, y no toca la protección de ningún juego. El desbloqueo es necesario porque el sistema original no acepta el control.
+@@ 01d14a7c1f
+¿Cómo pongo el control de PS5 en modo de emparejamiento?
+@@ 73837c65e4
+Mantén presionados los botones Create y PS al mismo tiempo hasta que las barras de luz alrededor del touchpad empiecen a parpadear.
+@@ 0c4d83651e
+¿Los gatillos adaptativos funcionan en la Switch?
+@@ 5dc537496a
+Sí, con Control PS-5. Eliges el efecto de L2 y R2 en la app, como resistencia, clic de arma, arco, vibración o ametralladora. Los efectos son por perfil: el juego no sabe que existen.
+@@ 19f98f2ae5
+¿Funciona con el DualSense Edge?
+@@ 34f3233e82
+Sí. La app funciona con el DualSense y el DualSense Edge.
+@@ a89d1d2000
+La pantalla táctil de la Switch no funciona. ¿Puedo usar el touchpad del control?
+@@ 6f8313ef8a
+Sí, en una Switch desbloqueada. En la app, abre Luces, elige Modo cursor en Touchpad, guarda con Y y abre el overlay Control PS-5 Pointer por Tesla o Ultrahand (L + ↓ + R3). El dedo mueve una manita y el clic toca donde está, incluso en el menú HOME. La pantalla sigue rota: el touchpad solo hace su trabajo.
+@@ 4a22be2819
+¿Funciona en la Switch OLED?
+@@ e9f31e0867
+Sí. La app es para la Switch 1 desbloqueada con Atmosphère y se probó en una Switch OLED. La Switch 2 no es compatible.
+@@ b0a4b0dd37
+¿Qué firmware y qué versión de Atmosphère necesito?
+@@ 87786dd38c
+Firmware 23.0.1 y Atmosphère 1.12.0, las versiones con las que el driver se hizo y se probó. La app revisa el firmware antes de instalar y se niega cuando es más nuevo que el soportado, para que el arranque de la consola no se trabe.
+@@ e2849dd128
+¿El sonido del juego sale por la bocina del control?
+@@ a1cd64462e
+No. La Switch no envía audio a los controles, así que la bocina del DualSense no reproduce el sonido del juego.
+@@ d29e445f24
+¿Funciona en la Nintendo Switch 2?
+@@ a9508bed15
+No. Control PS-5 es para la Switch 1 desbloqueada, y la Switch 2 no se puede desbloquear.
+@@ e8cad49571
+Algo salió mal. ¿Cómo lo deshago?
+@@ d8e72a4bde
+Abre la app y toca Desinstalar: vuelve el MissionControl original. Si la app no abre, borra la carpeta atmosphere/contents/010000000000bd00 y pega de vuelta tu copia de seguridad.
+@@ 7dc6b67cfc
+¿Dónde desbloqueo mi Nintendo Switch?
+@@ 3989af9b6b
+En Dat Zero Games, en Piedade, Río de Janeiro, Brasil. El desbloqueo se hace en el momento, con chip, tú sigues todo el proceso y la Switch sale con Control PS-5 ya instalado en el menú Homebrew. WhatsApp: +55 21 98607-0618.
+@@ b65ba10e54
+Cómo conectar
+@@ fb7f240fb3
+Funciones
+@@ b7f79fe1ef
+Pantallas
+@@ 7391859fff
+Descargar gratis
+@@ 1ff9b6fcd3
+Descargar la app
+@@ 4173bc0212
+Gratis, sin registro
+@@ 9d0a18c120
+Descarga Control PS-5 para tu Switch
+@@ c63d76848a
+La app instala el driver, empareja el control y libera las funciones del DualSense.
+@@ fa25df2c10
+Para Nintendo Switch desbloqueada
+@@ 7500f1f709
+Conecta el control de PS5 a la <span class="grad">Nintendo Switch</span>.
+@@ cc53eee113
+La Switch no reconoce el DualSense por sí sola. En una Switch desbloqueada, <b>Control PS-5</b> instala el driver con un toque y el control se empareja por Bluetooth, con gatillos adaptativos, barra de luz y perfiles por juego.
+@@ c668746b18
+<svg class="i"><use href="#i-down"/></svg>Descargar gratis
+@@ e662e8e35a
+<svg class="i"><use href="#i-check"/></svg>App 100% gratis
+@@ ff5b427ee8
+<svg class="i"><use href="#i-check"/></svg>Bluetooth, sin adaptador
+@@ 52992316e6
+<svg class="i"><use href="#i-check"/></svg>DualSense y DualSense Edge
+@@ 607b457c71
+<b>¿Todavía no está desbloqueada?</b> En Dat Zero Games se hace en el momento, y la Switch sale con la app instalada.
+@@ c23399f39a
+Nintendo Switch y control de PS5 conectándose. Arrastra para mover la escena.
+@@ 2217de548a
+Elige el color de la barra de luz
+@@ cbab5e7ab6
+Color de la barra de luz
+@@ 266be6126b
+Efecto del gatillo R2: mira dónde resiste
+@@ 9a8f13b0a7
+Efecto del gatillo R2
+@@ c3c23c39c5
+suelto
+@@ 2c16b58bfb
+a fondo
+@@ 3a42d05e44
+Los colores y efectos son los de la app. Arrastra para mover la escena.
+@@ cc1748c66d
+La respuesta corta
+@@ 3aa142da40
+¿Se puede usar el control de PS5 en la Switch?
+@@ 0d1d744fdf
+Sí, pero la Switch original no acepta el DualSense por sí sola. Mira qué cambia en cada caso.
+@@ 701babe8bc
+Función
+@@ 55d8040d22
+Switch original
+@@ 2a0627f040
+Con adaptador USB
+@@ 7fa11560d8
+Desbloqueada, con Control PS-5
+@@ 0cd6ed6560
+Conecta el DualSense
+@@ 4337f836ee
+Sí, por el adaptador
+@@ b3df3c814b
+Sí, directo por Bluetooth
+@@ 7aca5bcbc3
+Gatillos adaptativos
+@@ ae3fa68e44
+Por lo general, no
+@@ 5c0da3e436
+Sí, en L2 y R2
+@@ 5558575a83
+Barra de luz y LEDs
+@@ d844b5cc3b
+Depende del adaptador
+@@ b0d37099f5
+Sí, 12 colores y ajuste fino
+@@ 7246b56109
+Touchpad como cursor
+@@ e1e92ad777
+Sí, incluso en el menú HOME
+@@ 32c925ce5e
+Perfil por juego
+@@ 407a76d82f
+Sí, automático
+@@ 3f2c8bad12
+Costo
+@@ 9d5c93a7c3
+No se aplica
+@@ 754f586dbe
+Comprar el adaptador
+@@ d66c476b8a
+App gratis
+@@ 63375a3315
+Requiere desbloqueo
+@@ a735b039cc
+Desplázate por la página y sigue la animación. Las pantallas que aparecen en la consola son las de la propia app.
+@@ 732c65efc4
+Animación que muestra cada paso para conectar el control de PS5 a la Nintendo Switch
+@@ 8086ba130b
+Primero, haz una copia de la carpeta <code>atmosphere/contents/010000000000bd00</code> de la tarjeta, por seguridad. Luego <a href="https://github.com/MeoWDev-MOD/Control-PS-5/releases/latest/download/Control-PS-5.zip">descarga la app</a> y descomprímela.
+@@ 9ad882bf61
+En el pack CNX, mantén <kbd>R</kbd> y abre el <b>Álbum</b> para entrar al menú Homebrew.
+@@ 6dc5dc66ce
+Abre <b>DBI</b>, inicia la <b>conexión MTP</b> y conecta el cable USB a la computadora.
+@@ 5dff188f25
+En la computadora, abre <b>Switch</b>, luego <b>1: SD Card</b> y la carpeta <b>switch</b>.
+@@ db263d29d5
+Copia ahí la carpeta <b>Control PS-5</b> descomprimida.
+@@ fbce08f0a9
+¿Prefieres sin cable? Pon la tarjeta SD en la computadora, copia la carpeta dentro de <b>switch</b> y vuelve a poner la tarjeta en la Switch.
+@@ 28f215ab5f
+Menú Homebrew de la Nintendo Switch con la app Control PS-5 en la lista
+@@ f7088d9dcd
+Abre la app e instala el driver
+@@ f7f9669cae
+Sal de DBI y vuelve al menú Homebrew (<kbd>R</kbd> + Álbum). Abre Control PS-5 y, en la pantalla <b>Inicio</b>, toca el botón morado <b>Instalar driver</b>. Al terminar, la app pide reiniciar la Switch.
+@@ 42379dc5db
+Pantalla Inicio de Control PS-5 con el botón morado para instalar el driver del DualSense
+@@ bfa7091b6e
+Con la Switch encendida de nuevo, abre Control PS-5 otra vez. Toca <b>Emparejar control</b> y, en la pantalla <b>Controles</b> que se abre, elige <b>Cambiar modo de sujeción/orden</b>.
+@@ 0c4b85fd3e
+Pantalla Controles de la Nintendo Switch con la opción Cambiar modo de sujeción/orden
+@@ e0bcd88bb8
+En el control de PS5, mantén <kbd>Create</kbd> y <kbd>PS</kbd> hasta que las barras de luz empiecen a parpadear. Así el DualSense entra en modo de emparejamiento.
+@@ 2bb30747a3
+En la pantalla <b>Presiona L + R</b>, presiona <kbd>L1</kbd> y <kbd>R1</kbd> juntos. Al sincronizar, aparece un control negro en la pantalla y las barras de luz quedan encendidas, sin parpadear.
+@@ 06fff12616
+Pantalla de la Switch pidiendo presionar L y R, con el control de PS5 sincronizado como jugador 1
+@@ 6bffac0b2c
+Listo: configúralo a tu manera
+@@ 9a7c1e2e69
+Vuelve a la app y ajusta gatillos, luces y perfiles. El control aparece como <b>DualSense, Jugador 1</b> y el driver como <b>Activo</b>.
+@@ 102c375535
+Pantalla Inicio de Control PS-5 con el driver activo y el DualSense conectado como jugador 1
+@@ 2a90496cb1
+Lo que Control PS-5 libera en el DualSense
+@@ 179806b1cd
+Todo se configura dentro de la Switch, sin mover carpetas ni editar archivos.
+@@ d6ca27dd2c
+Gatillos adaptativos en L2 y R2
+@@ f333a2fbb1
+Resistencia, clic de arma, arco, vibración y ametralladora. Cada gatillo tiene efectos listos y ajuste fino de inicio, fin y fuerza.
+@@ c038ed54e1
+Pantalla de Gatillos adaptativos de Control PS-5 con los ajustes de L2 y R2
+@@ 86bdbed07d
+Doce colores rápidos, ajuste fino, brillo, LED del botón de silencio y LEDs de jugador. La vista previa aparece en el control al instante.
+@@ 70695805ec
+Pantalla de Luces y vibración de Control PS-5 con los colores de la barra de luz
+@@ 24bd09e10e
+Perfil automático por juego
+@@ 9bdc6420eb
+Configúralo una vez. Al abrir el juego, su perfil se aplica solo; los demás usan el predeterminado.
+@@ 7e60ec1bec
+Instalación con un toque
+@@ be415ebc86
+La app instala, actualiza y desinstala el driver, y guarda una copia del MissionControl que ya tenías.
+@@ fc55b3d8fc
+Emparejamiento guiado
+@@ 6434633265
+Muestra los pasos en un dibujo del control y abre la pantalla Controles de la Switch para emparejar otro.
+@@ 89ee245095
+Prueba del control
+@@ 180c5cbd57
+Botones, sticks, giroscopio, batería y touchpad, en vivo. Puedes probar hasta PS y silencio: en la pestaña Prueba no te sacan de la pantalla.
+@@ 36b60ff863
+Touchpad como cursor, para pantalla táctil rota
+@@ 8f63073c6a
+El dedo mueve una manita con brillo morado y el clic toca donde está, incluso en el menú HOME. Te salva si la pantalla táctil de tu Switch está rota. También funciona como pantalla táctil directa.
+@@ fc3878b68f
+Cómo se ve en la Switch
+@@ 49a8e24fbe
+Las pantallas de Control PS-5 en la Nintendo Switch
+@@ 6fa24af480
+Toca una pantalla para verla más grande.
+@@ 6921dbc362
+Ampliar: pantalla Inicio con el DualSense conectado
+@@ 42a692f451
+Control PS-5 con el driver activo y el DualSense conectado como jugador 1
+@@ ddd6dffd26
+Driver activo y DualSense conectado.
+@@ 744745b9d2
+Ampliar: pantalla de gatillos
+@@ 700ea233b8
+Ajuste de los gatillos adaptativos L2 y R2 en Control PS-5
+@@ 3168eb1a7b
+Gatillos adaptativos en L2 y R2.
+@@ b7552d2397
+Ampliar: pantalla de luces
+@@ 2ef3dd861d
+Colores de la barra de luz, LEDs y vibración del DualSense en Control PS-5
+@@ a096877f50
+Barra de luz, LEDs y vibración.
+@@ b9054ab47c
+Ampliar: menú Homebrew
+@@ d3b5fe3ffc
+Control PS-5 en la lista del menú Homebrew de la Nintendo Switch
+@@ 8f0b7b1a94
+Control PS-5 en el menú Homebrew.
+@@ ea76700892
+Ampliar: instalando el driver
+@@ 5871e0b140
+Instalación del driver del DualSense en la Nintendo Switch
+@@ e083753701
+Instalando el driver.
+@@ 0ef263bf6f
+Ampliar: sincronizando el control
+@@ 0bf2295d13
+Control de PS5 sincronizado como jugador 1 en la pantalla de la Nintendo Switch
+@@ 029e50726a
+Control sincronizado como jugador 1.
+@@ ffc65c4d03
+Pantalla ampliada
+@@ 7b2006fd7a
+Cerrar
+@@ d193dc5cc4
+Logo de Dat Zero Games
+@@ 3fe17f8c24
+¿Tu Switch todavía no está desbloqueada?
+@@ c8565360e4
+Desbloquéala en Dat Zero y sal con la app instalada
+@@ 9292f9e97e
+El desbloqueo se hace en el momento, con chip, y tú sigues todo el proceso. La Switch sale con la app en el menú Homebrew: solo falta emparejar el control.
+@@ a8909bcd4b
+<svg class="i"><use href="#i-check"/></svg>En el momento, contigo mirando
+@@ 66b7298672
+<svg class="i"><use href="#i-check"/></svg>Control PS-5 ya instalado en el Homebrew
+@@ 7e6a2585c8
+<svg class="i"><use href="#i-check"/></svg>1 año de garantía
+@@ 6b6491cbe0
+<svg class="i"><use href="#i-check"/></svg>Tienda pionera, con más de 3.000 consolas
+@@ 8580ef2637
+<svg class="i"><use href="#i-check"/></svg>Para la Switch 1, cualquier modelo
+@@ 94add9b81a
+Nintendo Switch mostrando el menú Homebrew con la app Control PS-5 seleccionada
+@@ a6d4fdb466
+Desbloqueo de Nintendo Switch
+@@ 2fff6dbd53
+<svg style="width:20px;height:20px;fill:currentColor"><use href="#s-wa"/></svg>Escribir por WhatsApp
+@@ 8dd405e3d8
+Rua Alfredo Reis, 68, Piedade, Río de Janeiro, Brasil
+@@ 5dc4709bea
+WhatsApp <a href="https://wa.me/5521986070618" target="_blank" rel="noopener">+55 21 98607-0618</a> · <a href="https://www.instagram.com/datzerogames/" target="_blank" rel="noopener">@datzerogames</a>
+@@ 4997b30247
+Antes de instalar
+@@ ff0dbfb8df
+Lo que necesitas saber
+@@ 9419bddba9
+Compatibilidad
+@@ 6097a4d826
+Switch 1 desbloqueada con Atmosphère (pack CNX). <strong>Requiere firmware 23.0.1 y Atmosphère 1.12.0</strong>, las versiones con las que el driver se hizo y se probó. Funciona con el DualSense y el DualSense Edge.
+@@ 0ff9bf9d49
+Límites
+@@ fc108dc4bb
+El sonido del juego no sale por la bocina del control, porque la Switch no envía audio a los controles. Los efectos de gatillo se configuran por perfil: el juego no sabe que existen.
+@@ 3d547bda04
+Firmware nuevo y cómo deshacer
+@@ b2da7e522e
+La app revisa el firmware antes de instalar y se niega cuando es más nuevo que el soportado, para que el arranque no se trabe. Para volver atrás, toca Desinstalar: vuelve el MissionControl original.
+@@ 495d357c9d
+<b>Úsalo bajo tu propio riesgo.</b> Modificar la consola puede anular la garantía de fábrica, y usar una consola modificada en línea tiene riesgo de baneo. Guarda una copia de la tarjeta SD. La app no permite piratería.
+@@ 465c329864
+Preguntas frecuentes sobre el control de PS5 en la Switch
+@@ cb61e6cb8c
+Abre la app y toca Desinstalar: vuelve el MissionControl original. Si la app no abre, borra la carpeta <code>atmosphere/contents/010000000000bd00</code> y pega de vuelta tu copia de seguridad.
+@@ d4c515b117
+En <a href="#desbloqueio">Dat Zero Games</a>, en Piedade, Río de Janeiro, Brasil. El desbloqueo se hace en el momento, con chip, tú sigues todo el proceso y la Switch sale con Control PS-5 ya instalado en el menú Homebrew. WhatsApp: +55 21 98607-0618.
+@@ fdfb08b1e6
+Tu DualSense listo para la Switch
+@@ b7e5507665
+Control PS-5 es gratis. ¿Te gustó? Un Pix de cualquier valor (pago instantáneo de Brasil) ayuda a mantener las actualizaciones cuando sale un firmware nuevo.
+@@ 337a8d2ec8
+Copiar clave Pix: 21966547296
+@@ c9701a7da6
+Atención
+@@ e5f9fb41b4
+Control PS-5 tiene un único objetivo: hacer que el control de PS5 funcione en la Nintendo Switch. El control es compatible con la consola, pero el sistema original no lo acepta. Por eso la conexión solo es posible después del desbloqueo, que permite instalar este driver.
+@@ aa570f2713
+No fomentamos la piratería
+@@ 7421aee9d8
+Los homebrews y las modificaciones de MeoWDev MOD no se hicieron para promover ni fomentar la piratería. Control PS-5 no incluye, no descarga ni instala juegos, y no toca la protección de ningún juego. Sabemos que hay personas malintencionadas que usan el desbloqueo para la piratería, pero ese no es el propósito de este proyecto. Usa juegos y programas originales que tengas derecho a usar.
+@@ a340195879
+Este es un proyecto independiente, sin vínculo, aprobación ni patrocinio de Sony o Nintendo. No usamos los logos de estas empresas. DualSense, PlayStation, PS5 y Nintendo Switch son marcas de sus dueños, citadas solo para indicar con qué consola y con qué control funciona la app.
+@@ 875ced319f
+Lo que dice la ley
+@@ 6276e9a363
+La <a href="https://www.planalto.gov.br/ccivil_03/leis/l9609.htm" target="_blank" rel="noopener">Ley de Software</a> de Brasil (Ley 9.609/1998, art. 6, IV) dice que no constituye ofensa a los derechos del titular “la integración de un programa, manteniendo sus características esenciales, a un sistema aplicativo u operativo, técnicamente indispensable a las necesidades del usuario, siempre que sea para el uso exclusivo de quien la promovió”. La <a href="https://www.planalto.gov.br/ccivil_03/leis/l9279.htm" target="_blank" rel="noopener">Ley de Propiedad Industrial</a> de Brasil (Ley 9.279/1996, art. 132, II) dice que el titular de la marca no puede impedir que fabricantes de accesorios la usen para indicar para qué sirve el producto, siempre que sigan las prácticas leales de competencia.
+@@ 546d250c82
+<b>Cada persona es responsable del uso que hace de la consola y de la app.</b> Este aviso es informativo y no es asesoría jurídica. Mira también los <a href="termos/">Términos de uso</a>.
+@@ b8a6f4ff29
+<b>Desarrollado por MeoWDev MOD</b><br>El driver se basa en <a href="https://github.com/ndeadly/MissionControl" target="_blank" rel="noopener">MissionControl</a> (ndeadly, GPLv2) y corre sobre <a href="https://github.com/Atmosphere-NX/Atmosphere" target="_blank" rel="noopener">Atmosphère</a>, con libnx y devkitPro.<br><br>Proyecto independiente: sin vínculo, aprobación ni patrocinio de Sony o Nintendo. DualSense, PlayStation y Nintendo Switch son marcas de sus dueños. El servicio de desbloqueo lo presta Dat Zero Games.
+@@ c8eab204ec
+Versiones de la app
+@@ 53971128cb
+Desbloquear
+@@ 3832346b3b
+¡Hola! Vengo de la página de Control PS-5 y quiero desbloquear mi Nintendo Switch.
+@@ 36273f52cc
+¡Hola! Vengo de la página de Control PS-5 y quiero hablar de una colaboración.
+@@ 06f6ca6565
+Privacidad y cookies | Control PS-5
+@@ 2cba803b3a
+Lo que el sitio y la app Control PS-5 guardan, el conteo de anuncios y tus derechos según la LGPD de Brasil.
+@@ 3241d9a63c
+Tu elección sobre términos y cookies (<code>ctl.consent</code>).
+@@ eca6dd405e
+Tema claro u oscuro (<code>ctl.theme</code>).
+@@ c146912ef3
+Efecto de transición entre páginas (<code>ctl.pt</code>), que se borra al cerrar la pestaña.
+@@ c14563319e
+Último anuncio visto, para mostrar otro en la próxima visita, y qué anuncios ya vio este navegador (<code>ctl-ad-*</code>).
+@@ 40e769cff9
+El sitio de donde viniste (<code>ctl-de</code>), que se borra al cerrar la pestaña.
+@@ 5e0ac40b7d
+Conteo de vistas y clics en los anuncios.
+@@ 7520751778
+Con tu permiso, avisamos a nuestro servidor cuando un anuncio aparece o recibe un clic, en qué lugar del sitio y de qué sitio viniste. El servidor suma estos avisos por día, con ciudad y país aproximados y tipo de dispositivo. No guardamos tu IP ni nada que te identifique.
+@@ b39084de60
+La app
+@@ 7b0f3dbf6a
+Control PS-5 corre en tu Switch y no nos envía datos: la app no se conecta a internet. Los ajustes quedan en la tarjeta SD.
+@@ 84741c54aa
+El sitio está alojado en GitHub Pages. La lista y los archivos de los anuncios vienen de Vercel y Supabase. Como en cualquier sitio, estos servicios reciben tu IP y datos técnicos para entregar el contenido. WhatsApp, Instagram, YouTube y GitHub tienen sus propias políticas cuando abres sus enlaces.
+@@ 3c9dbce623
+Puedes cambiar tu elección cuando quieras en Gestionar cookies, al pie de las páginas, y pedir información según la ley de protección de datos de Brasil (LGPD). Responsable: MeoWDev MOD (Jefferson Honorio). Contacto: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">WhatsApp +55 21 96654-7296</a>.
+@@ e80598798f
+Términos de uso | Control PS-5
+@@ bb461258df
+Términos de uso del sitio y de la app Control PS-5: riesgos de modificar la consola, servicio de desbloqueo de terceros, anuncios y contacto.
+@@ b617077610
+Control PS-5 es una app gratis para Nintendo Switch desbloqueada que instala un driver y conecta el control de PS5 (DualSense). El driver se basa en MissionControl (ndeadly, GPLv2). El proyecto lo mantiene MeoWDev MOD (Jefferson Honorio).
+@@ f0feaa3600
+Al usar el sitio o la app, aceptas estos términos. Si no estás de acuerdo, no los uses.
+@@ 3bd94d8108
+Riesgos de modificar la consola
+@@ 5ccb2baf5d
+La app cambia archivos de la tarjeta SD y solo funciona en una consola desbloqueada. Modificar la consola puede anular la garantía de fábrica, y usarla en línea tiene riesgo de baneo. Copia la carpeta indicada antes de instalar y guarda una copia de la tarjeta SD.
+@@ b9092c9233
+Sin garantía de la app
+@@ 4d8e031239
+La app se ofrece tal como está, sin garantía de que funcione en toda consola, firmware o control. En la medida en que la ley lo permite, no respondemos por pérdida de datos ni otros daños causados por su uso. Esto no quita ningún derecho que la ley da al consumidor.
+@@ 240ac851db
+Desbloqueo por Dat Zero Games
+@@ 90d6e860a0
+El servicio de desbloqueo promocionado en este sitio lo presta Dat Zero Games. Precio, plazo y garantía se acuerdan directamente con la tienda, que es responsable del servicio.
+@@ 35ac253b0d
+Los homebrews y las modificaciones de MeoWDev MOD no se hicieron para promover ni fomentar la piratería. Control PS-5 no incluye, no descarga ni instala juegos, y no toca la protección de ningún juego. Sabemos que hay personas malintencionadas que usan el desbloqueo para la piratería, pero ese no es el propósito de este proyecto. Usa juegos y programas originales que tengas derecho a usar. No uses el sitio ni la app para atacar el sitio, burlar derechos de otros o violar la ley. Cada persona es responsable del uso que hace de la consola y de la app.
+@@ 1c00cfda0f
+DualSense, PlayStation y PS5 son marcas de Sony Interactive Entertainment. Nintendo Switch es una marca de Nintendo. Este proyecto no tiene vínculo, aprobación ni patrocinio de estas empresas y no usa sus logos. Los nombres se citan solo para indicar con qué consola y con qué control funciona la app.
+@@ 657650df3f
+La <a href="https://www.planalto.gov.br/ccivil_03/leis/l9609.htm" target="_blank" rel="noopener">Ley de Software</a> de Brasil (Ley 9.609/1998, art. 6, IV) dice que no constituye ofensa a los derechos del titular “la integración de un programa, manteniendo sus características esenciales, a un sistema aplicativo u operativo, técnicamente indispensable a las necesidades del usuario, siempre que sea para el uso exclusivo de quien la promovió”. La <a href="https://www.planalto.gov.br/ccivil_03/leis/l9279.htm" target="_blank" rel="noopener">Ley de Propiedad Industrial</a> de Brasil (Ley 9.279/1996, art. 132, II) dice que el titular de la marca no puede impedir que fabricantes de accesorios la usen para indicar para qué sirve el producto, siempre que sigan las prácticas leales de competencia. Este texto es informativo y no es asesoría jurídica.
+@@ 5d712b076d
+Se aplican las leyes de Brasil y, en caso de duda, vale la versión en portugués. Contacto: <a href="https://wa.me/5521966547296" target="_blank" rel="noopener">WhatsApp +55 21 96654-7296</a>.

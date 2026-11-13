@@ -1,0 +1,7 @@
+# Textos que ficam iguais em todos os idiomas (marcas). Uma chave por linha.
+a5e9d6aac4 Control PS-5
+9c17140691 PS5 HDMI Tool
+8526a9a8fc PS-5 Controle Test
+0c035f6be3 Dat Zero Games
+5721bbef40 Instagram
+558865a16f YouTube

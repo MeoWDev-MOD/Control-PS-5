@@ -1,5 +1,7 @@
 # Control PS-5
 
+🌐 **[Read in English](README.en.md)**
+
 Conecte o controle de PS5 (DualSense) no Nintendo Switch desbloqueado, por Bluetooth e sem adaptador, com **gatilhos adaptáveis, barra de luz, touchpad como cursor e perfis por jogo**.
 Um app, um toque em Instalar.
 
