@@ -16,7 +16,11 @@
   "origem": "pt-BR",
   "chave_idioma": "techmeow.lang",
   "outros_traduzidos": [
-    "/ps5-hdmi-tool/"
+    "/ps5-hdmi-tool/",
+    "/Control-PS-5/",
+    "/ps5-controle-test/",
+    "/Iron-Check/",
+    "/BancadaSync-Download/"
   ],
   "paginas_exatas": [
     "/",
@@ -24,7 +28,8 @@
     "/app/",
     "/app/acesso/",
     "/privacidade/",
-    "/JNX/"
+    "/JNX/",
+    "/MeoWGuard/"
   ],
   "sitemap": [
     "index.html"
